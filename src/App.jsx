@@ -25,7 +25,7 @@ export const App = () => {
         <div className="tabs is-boxed">
           <Tabs
             tabs={tabs}
-            selectedTabId={selectedTabId}
+            selectedTab={selectedTabId}
             onTabSelected={setSelectedTabId}
           />
         </div>
