@@ -9,7 +9,8 @@ Implement the `App` and `Tabs` components to render and switch between given `ta
 1. Each link should have a href with a `#tab-id` (see the markup).
 1. Pass the `selectedTabId` as a prop to the `Tabs`, the specified tab should be selected if possible
   (otherwise, the first tab is selected).
-1. The `Tabs` should show the content of the selected tab (add an attribute `data-cy="tab-content"` for testing).
+1. The `Tabs` should show the content of the selected tab (add an attribute `data-cy="tab-content"` ?????????????
+ for testing).
 1. The selected tab (`li`) should have an `is-active` class.
 1. Pass the `onTabSelected` callback to the `Tabs`, it should be called whenever the user selects another tab.
    (Don't call the callback if the tab was not changed)
@@ -22,4 +23,4 @@ Implement the `App` and `Tabs` components to render and switch between given `ta
 
 - Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_tabs-js/) and add it to the PR description.
+- Replace `<your_account>` with your Github username in the [DEMO LINK](https://IzzetYusufov.github.io/react_tabs-js/) and add it to the PR description.
