@@ -18,7 +18,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${selectedTab.title}`}
+        {`Selected tab is ${selectedTab && selectedTab.title}`}
       </h1>
 
       <div data-cy="TabsComponent">
@@ -33,7 +33,7 @@ export const App = () => {
         </div>
 
         <div className="block" data-cy="TabContent">
-          {selectedTab.content}
+          {selectedTab && selectedTab.content}
         </div>
       </div>
     </div>
