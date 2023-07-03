@@ -1,13 +1,8 @@
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const isValidTabId = tabs.some(tab => tab.id === selectedTabId);
-
-  if (!isValidTabId) {
-    // eslint-disable-next-line no-param-reassign
-    selectedTabId = tabs[0].id;
-  }
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 
   const handleTabClick = (tab) => {
-    if (selectedTabId !== tab.id) {
+    if (selectedTab.id !== tab.id) {
       onTabSelected(tab);
     }
   };
@@ -18,7 +13,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map(tab => (
             <li
-              className={selectedTabId === tab.id ? 'is-active' : ''}
+              className={selectedTab.id === tab.id ? 'is-active' : ''}
               data-cy="Tab"
               key={tab.id}
             >
@@ -34,11 +29,9 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         </ul>
       </div>
 
-      {tabs.map(t => (selectedTabId === t.id ? (
-        <div className="block" data-cy="TabContent" key={t.id}>
-          {t.content}
-        </div>
-      ) : null))}
+      <div className="block" data-cy="TabContent">
+        {selectedTab.content}
+      </div>
     </div>
   );
 };
