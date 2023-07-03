@@ -2,9 +2,8 @@ import classNames from 'classnames';
 
 export const Tabs = ({
   tabs,
-  onTabSelected,
-  selectedTabId,
-  setsSelectedTabId,
+  selectedTab,
+  setsSelectedTab,
 }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
@@ -13,13 +12,13 @@ export const Tabs = ({
           <li
             data-cy="Tab"
             key={tab.id}
-            className={classNames({ 'is-active': tab.id === selectedTabId })}
+            className={classNames({ 'is-active': tab.id === selectedTab.id })}
           >
             <a
               href={`#${tab.id}`}
               data-cy="TabLink"
               onClick={() => (
-                tab.id !== selectedTabId && setsSelectedTabId(tab.id)
+                tab.id !== selectedTab.id && setsSelectedTab(tab)
               )}
             >
               {tab.title}
@@ -30,7 +29,7 @@ export const Tabs = ({
     </div>
 
     <div className="block" data-cy="TabContent">
-      {onTabSelected.content}
+      {selectedTab.content}
     </div>
   </div>
 );

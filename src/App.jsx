@@ -11,23 +11,19 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-const defaultId = tabs[0].id;
-
 export const App = () => {
-  const [selectedTabId, setsSelectedTabId] = useState(defaultId);
-  const onTabSelected = tabs.find(element => element.id === selectedTabId);
+  const [selectedTab, setsSelectedTab] = useState(tabs[0]);
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${onTabSelected.title}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
       <Tabs
         tabs={tabs}
-        selectedTabId={selectedTabId}
-        onTabSelected={onTabSelected}
-        setsSelectedTabId={setsSelectedTabId}
+        selectedTab={selectedTab}
+        setsSelectedTab={setsSelectedTab}
       />
     </div>
   );
