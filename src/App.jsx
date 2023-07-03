@@ -13,12 +13,10 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  const tabTitle = selectedTab.id.split('-')[1];
-
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is Tab ${tabTitle}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
       <Tabs
