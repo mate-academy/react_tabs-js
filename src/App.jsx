@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -18,7 +18,6 @@ export const App = () => {
       <h1 className="title">
         {`Selected tab is ${selectedTab.title}`}
       </h1>
-
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTab.id}

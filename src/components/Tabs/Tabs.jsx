@@ -1,8 +1,7 @@
 import cn from 'classnames';
 
-export const Tabs = (props) => {
-  const { tabs, selectedTabId, onTabSelected } = props;
-  const targetTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const targetTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   const getSelectedTab = (tab) => {
     if (tab.id !== selectedTabId) {
@@ -33,7 +32,7 @@ export const Tabs = (props) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {targetTab.content}
+        {`${targetTab.content}`}
       </div>
     </div>
   );
