@@ -12,13 +12,11 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  const selectTab = tabs.find(tab => tab.id === selectedTab.id);
-  const selectTitle = selectTab.id ? selectTab.title : tabs[0].title;
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${selectTitle}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
       <Tabs
         tabs={tabs}
