@@ -2,14 +2,11 @@ import cn from 'classnames';
 
 export const Tabs = ({
   tabs,
-  selectedTabId,
-  onTabSelected,
   setCurrentTab,
   currentTab,
 }) => {
   const onTabHandler = (tab) => {
-    if (tab.id !== selectedTabId) {
-      onTabSelected(tab);
+    if (tab.id !== currentTab.id) {
       setCurrentTab(tab);
     }
   };
@@ -20,7 +17,7 @@ export const Tabs = ({
         <ul>
           {tabs.map(tab => (
             <li
-              className={cn({ 'is-active': tab.id === selectedTabId })}
+              className={cn({ 'is-active': tab.id === currentTab.id })}
               data-cy="Tab"
               key={tab.id}
             >
