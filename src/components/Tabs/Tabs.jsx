@@ -8,9 +8,9 @@ export const Tabs = ({
   selectedTabId,
   table,
 }) => {
-  const checkChange = (tab) => {
+  const makeCheckChange = tab => () => {
     if (tab.id !== selectedTabId) {
-      onTabSelected(tab || tabs[0]);
+      onTabSelected(tab);
     }
   };
 
@@ -29,7 +29,7 @@ export const Tabs = ({
               <a
                 href={setId(tab.id)}
                 data-cy="TabLink"
-                onClick={() => checkChange(tab)}
+                onClick={makeCheckChange(tab)}
               >
                 {tab.title}
               </a>

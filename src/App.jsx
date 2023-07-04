@@ -26,9 +26,7 @@ export const App = () => {
 
       <Tabs
         tabs={tabs}
-        onTabSelected={(tab) => {
-          setTable(tab);
-        }}
+        onTabSelected={setTable}
         selectedTabId={selectedTabId}
         table={table}
       />
