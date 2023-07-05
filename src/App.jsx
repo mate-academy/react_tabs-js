@@ -19,9 +19,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is
-        {' '}
-        {table.title}
+        {`Selected tab is ${table.title}`}
       </h1>
 
       <Tabs
