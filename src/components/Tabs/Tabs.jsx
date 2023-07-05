@@ -7,9 +7,9 @@ export const Tabs = ({
   onTabSelected,
 }) => {
   const currentTabId = tabs.find(tab => tab.id === selectedTabId)?.id
-  || tabs[0].id;
+    || tabs[0].id;
 
-  function visibleContent(allTabs) {
+  function getVisibleContent(allTabs) {
     const obj = allTabs.find(tab => currentTabId === tab.id);
 
     return obj.content;
@@ -43,7 +43,7 @@ export const Tabs = ({
         </ul>
       </div>
       <div className="block" data-cy="TabContent">
-        {visibleContent(tabs)}
+        {getVisibleContent(tabs)}
       </div>
     </div>
   );

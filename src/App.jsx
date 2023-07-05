@@ -11,12 +11,12 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('tab-1');
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
   function visibleTitle(allTabs) {
-    const obj = allTabs.find(tab => selectedTabId === tab.id);
+    const foundTab = allTabs.find(tab => selectedTabId === tab.id);
 
-    return obj.title;
+    return foundTab.title;
   }
 
   const onTabSelected = (tab) => {
