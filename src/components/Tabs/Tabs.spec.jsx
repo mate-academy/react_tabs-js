@@ -29,7 +29,6 @@ describe('Tabs component', () => {
 
     it('should render all tabs', () => {
       page.tabs().should('have.length', 4);
-
       page.tabs().eq(0).should('have.text', 'Tab 10');
       page.tabs().eq(1).should('have.text', 'Tab 20');
       page.tabs().eq(2).should('have.text', 'Tab 30');
