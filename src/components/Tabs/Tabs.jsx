@@ -4,6 +4,11 @@ import classNames from 'classnames';
 export const Tabs = (props) => {
   const { tabs, selectedTabId, onTabSelected } = props;
   const currentTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
+  const tabHandler = (tab) => {
+    if (currentTab.id !== tab.id) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -19,9 +24,7 @@ export const Tabs = (props) => {
                 href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (currentTab.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
+                  tabHandler(tab);
                 }}
                 aria-hidden="true"
               >
