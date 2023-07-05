@@ -20,9 +20,7 @@ export const App = () => {
   }
 
   const onTabSelected = (tab) => {
-    if (selectedTabId !== tab.id) {
-      setSelectedTabId(tab.id);
-    }
+    setSelectedTabId(tab.id);
   };
 
   return (

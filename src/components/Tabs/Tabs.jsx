@@ -3,16 +3,15 @@ import classNames from 'classnames';
 export const Tabs = ({
   tabs,
   selectedTabId,
-  setSelectedTabId,
   onTabSelected,
 }) => {
   const currentTabId = tabs.find(tab => tab.id === selectedTabId)?.id
     || tabs[0].id;
 
   function getVisibleContent(allTabs) {
-    const obj = allTabs.find(tab => currentTabId === tab.id);
+    const foundTab = allTabs.find(tab => currentTabId === tab.id);
 
-    return obj.content;
+    return foundTab.content;
   }
 
   return (
