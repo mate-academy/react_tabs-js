@@ -21,15 +21,15 @@ export const App = () => {
     }
   };
 
+  const selectedTab = tabs.find(
+    tab => tab.id === selectedTabId,
+  )?.title;
+
   return (
     <div className="section">
       <h1 className="title">
         {`Selected tab is `
-        + `${tabs.find(
-          tab => tab.id === selectedTabId,
-        )?.title
-        }`
-        }
+        + `${selectedTab}`}
       </h1>
 
       <Tabs
