@@ -7,15 +7,14 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is
-        {' '}
-        {currentTab.title}
+        {`Selected tab is ${currentTab.title}`}
       </h1>
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <ul>
             {tabs.map(tab => (
               <li
+                key={tab.id}
                 data-cy="Tab"
                 className={cn({
                   'is-active': currentTab.id === tab.id,
