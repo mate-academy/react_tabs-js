@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
@@ -16,21 +14,21 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
+
             <li
               key={tab.id}
               data-cy="Tab"
               className={classNames({ 'is-active': selectedTab.id === tab.id })}
-              onClick={() => getSelectedTab(tab)}
             >
               <a
+                onClick={() => getSelectedTab(tab)}
                 href={`#${tab.id}`}
                 data-cy="TabLink"
               >
                 {tab.title}
               </a>
             </li>
-          ))
-  }
+          ))}
         </ul>
       </div>
       <div
