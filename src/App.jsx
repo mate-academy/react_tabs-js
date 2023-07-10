@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -15,8 +14,10 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  const handleTabSelected = (tabId) => {
-    setSelectedTabId(tabId);
+  const handleTabSelected = (tab) => {
+    if (tab.id !== selectedTabId) {
+      setSelectedTabId(tab.id);
+    }
   };
 
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
