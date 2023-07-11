@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 
-export const Tabs = ({ tabs, selectTab, setCurrentTab }) => {
-  const visibleTab = tabs.find(tab => tab.id === selectTab) || tabs[0];
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const visibleTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   const getVisibleTab = (tab) => {
-    if (tab.id !== selectTab) {
-      setCurrentTab(tab);
+    if (tab.id !== visibleTab.id) {
+      onTabSelected(tab);
     }
   };
 
