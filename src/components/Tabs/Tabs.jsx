@@ -1,6 +1,10 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => (
+export const Tabs = ({
+  tabs,
+  selectedTabId,
+  onTabSelected,
+}) => (
   <ul>
     {tabs.map(tab => (
       <li
