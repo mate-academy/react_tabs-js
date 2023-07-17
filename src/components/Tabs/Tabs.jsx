@@ -1,7 +1,6 @@
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
-  function onChangeTabHandler(event, index) {
-    event.preventDefault();
-    onTabSelected(tabs[index]);
+  function onChangeTabHandler(tab) {
+    onTabSelected(tab);
   }
 
   return (
@@ -9,7 +8,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       <div className="tabs is-boxed">
         <ul>
           {
-            tabs.map((tab, index) => (
+            tabs.map(tab => (
               <li
                 className={selectedTab.id === tab.id ? 'is-active' : null}
                 data-cy="Tab"
@@ -18,7 +17,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={e => onChangeTabHandler(e, index)}
+                  onClick={() => onChangeTabHandler(tab)}
                 >
                   {tab.title}
                 </a>
