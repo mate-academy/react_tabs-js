@@ -5,16 +5,14 @@ export const Tabs = ({
   selectedTabId,
   onTabSelected,
 }) => {
-  const selectTab = tabs.find(tab => tab.id === selectedTabId);
+  const selectTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map((tab) => {
-            const isSelected = !selectTab
-              ? tabs[0].id === tab.id
-              : selectTab.id === tab.id;
+            const isSelected = selectTab.id === tab.id;
 
             return (
               <li
@@ -42,9 +40,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectTab && (
-          selectTab.content
-        )}
+        {selectTab.content}
       </div>
     </div>
   );
