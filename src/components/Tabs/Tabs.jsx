@@ -9,16 +9,16 @@ export const Tabs = ({
     || (!selectedId && tabId === tabs[0].id))
     ? ACTIVE_STYLE : null);
 
+  const linkEventHandler = (event, id, tab) => {
+    event.preventDefault();
+    if (selectedId !== id) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     tabs.map((tab) => {
       const { id, title } = tab;
-
-      const linkEventHandler = (event) => {
-        event.preventDefault();
-        if (selectedId !== id) {
-          onTabSelected(tab);
-        }
-      };
 
       return (
         <li
@@ -29,7 +29,7 @@ export const Tabs = ({
           <a
             data-cy="TabLink"
             href={`#${id}`}
-            onClick={linkEventHandler}
+            onClick={event => linkEventHandler(event, id, tab)}
           >
             {title}
           </a>
