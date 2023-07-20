@@ -1,7 +1,18 @@
+import { useMemo } from 'react';
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+  const activeTab
+    = useMemo(
+      () => tabs.find(tab => tab.id === selectedTabId),
+      [selectedTabId],
+    ) || tabs[0];
+
+  const handleTabClick = (tab) => {
+    if (activeTab.id !== tab.id) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -16,11 +27,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (activeTab.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => handleTabClick(tab)}
               >
                 {tab.title}
               </a>
