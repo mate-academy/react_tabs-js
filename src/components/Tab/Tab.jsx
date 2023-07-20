@@ -1,11 +1,11 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs,
+export const Tab = ({ tabs,
   selectedTabId, onTabSelected }) => {
   const currentTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
-    <div data-cy="TabsComponent">
+    <div data-cy="TabComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (

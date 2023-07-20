@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import { mount } from '@cypress/react';
-import { Tabs } from './Tabs';
+import { Tabs } from './Tab';
 
 const page = {
   getByDataCy: name => cy.get(`[data-cy="${name}"]`),
