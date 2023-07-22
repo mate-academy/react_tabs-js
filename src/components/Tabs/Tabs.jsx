@@ -1,24 +1,27 @@
 import cn from 'classnames';
 
-export const Tab = ({ tab, currentTab, onTabSelected }) => (
-  <li
-    className={cn({ 'is-active': tab.id === currentTab.id })}
-    data-cy="Tab"
-    key={tab.id}
-  >
-    <a
-      href={`#${tab.id}`}
-      data-cy="TabLink"
-      onClick={() => {
-        if (tab.id !== currentTab.id) {
-          onTabSelected(tab);
-        }
-      }}
+export const Tab = ({ tab, currentTab, onTabSelected }) => {
+  const tabClick = () => {
+    if (tab.id !== currentTab.id) {
+      onTabSelected(tab);
+    }
+  };
+
+  return (
+    <li
+      className={cn({ 'is-active': tab.id === currentTab.id })}
+      data-cy="Tab"
     >
-      {tab.title}
-    </a>
-  </li>
-);
+      <a
+        href={`#${tab.id}`}
+        data-cy="TabLink"
+        onClick={tabClick}
+      >
+        {tab.title}
+      </a>
+    </li>
+  );
+};
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const currentTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
