@@ -29,7 +29,7 @@ export const App = () => {
         setSelectedTadId={setSelectedTadId}
         state={state}
         setStat={setState}
-        action={(id) => {
+        onTabSelected={(id) => {
           setState(id);
         }}
       />
