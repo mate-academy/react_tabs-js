@@ -14,7 +14,7 @@ export const tabs = [
 
 export const App = () => {
   const [selectebTadId, setSelectedTadId] = useState(tabs);
-  const [state, setState] = useState('tab-1');
+  const [state, setState] = useState(tabs[0]);
 
   return (
     <div className="section">
