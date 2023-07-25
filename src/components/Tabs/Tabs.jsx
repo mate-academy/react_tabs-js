@@ -1,13 +1,13 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, setSelectedTabs, state, setState,
+export const Tabs = ({ tabs, setSelectedTabs, selectedTabId, setSelectedTabId,
   onTabSelected }) => (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
             <li
-              className={cn({ 'is-active': state === tab.id })}
+              className={cn({ 'is-active': selectedTabId === tab.id })}
               key={tab.id}
               data-cy="Tab"
             >
@@ -26,7 +26,7 @@ export const Tabs = ({ tabs, setSelectedTabs, state, setState,
 
       <div className="block" data-cy="TabContent">
         {tabs.map(tab => (
-          `${state === tab.id ? tab.content : ''}`
+          `${selectedTabId === tab.id ? tab.content : ''}`
         ))}
       </div>
     </div>
