@@ -13,27 +13,25 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabs, setSelectedTabs] = useState(tabs);
-  const [selectedTabId, setSelectedTabId] = useState(tabs[0]);
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  const togllerClass = (id) => {
+  const handleTabToggle = (id) => {
     setSelectedTabId(id);
-  }
+  };
 
   return (
     <div className="section">
       <h1 className="title">
-        {selectedTabs.map(tab => (
+        {tabs.map(tab => (
           `${selectedTabId === tab.id ? `Selected tab is ${tab.title}` : ''}`
         ))}
       </h1>
 
       <Tabs
-        tabs={selectedTabs}
-        setSelectedTabs={setSelectedTabs}
+        tabs={tabs}
         selectedTabId={selectedTabId}
         setSelectedTabId={setSelectedTabId}
-        onTabSelected={togllerClass}
+        onTabSelected={handleTabToggle}
       />
     </div>
   );

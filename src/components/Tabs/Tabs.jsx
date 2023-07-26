@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, setSelectedTabs, selectedTabId, setSelectedTabId,
+export const Tabs = ({ tabs, selectedTabId, setSelectedTabId,
   onTabSelected }) => (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
