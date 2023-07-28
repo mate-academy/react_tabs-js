@@ -2,12 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, selectedTab, callbackTabSelected }) => (
-  // function callbackIsTabChanged (selectedTab, tab) {
-  //   if (selectedTab !== tab) {
-  //     callbackTabSelected(tab);
-  //   }
-  // }
-
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
@@ -18,7 +12,6 @@ export const Tabs = ({ tabs, selectedTab, callbackTabSelected }) => (
               { 'is-active': selectedTab === tab },
             )}
             data-cy="Tab"
-            // onClick={() => callbackTabSelected(tab)}
           >
             <a
               href={`#${tab.id}`}
