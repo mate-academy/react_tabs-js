@@ -13,24 +13,21 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  const handleTabToggle = (id) => {
-    setSelectedTabId(id);
+  const handleTabToggle = (tab) => {
+    setSelectedTab(tab);
   };
 
   return (
     <div className="section">
       <h1 className="title">
-        {tabs.map(tab => (
-          `${selectedTabId === tab.id ? `Selected tab is ${tab.title}` : ''}`
-        ))}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
       <Tabs
         tabs={tabs}
-        selectedTabId={selectedTabId}
-        setSelectedTabId={setSelectedTabId}
+        selectedTabId={selectedTab.id}
         onTabSelected={handleTabToggle}
       />
     </div>
