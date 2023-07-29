@@ -12,7 +12,8 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  const onTabSelected = tab => setSelectedTab(tab);
+
+  const handleTabSelect = tab => setSelectedTab(tab);
 
   return (
     <div className="section">
@@ -22,8 +23,8 @@ export const App = () => {
 
       <Tabs
         tabs={tabs}
-        selectedTab={selectedTab}
-        callbackTabSelected={onTabSelected}
+        selectedTabId={selectedTab.id}
+        onTabSelected={handleTabSelect}
       />
     </div>
   );
