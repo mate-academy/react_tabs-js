@@ -1,36 +1,34 @@
 import classNames from 'classnames';
+import { useMemo } from 'react';
 
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+  const selectedTab = useMemo(() => tabs
+    .find(tab => tab.id === selectedTabId) || tabs[0], [selectedTabId]);
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map((tab) => {
-            const isSelectedTab = selectedTab === tab;
-
-            return (
-              <li
-                className={classNames({
-                  'is-active': isSelectedTab,
-                })}
-                data-cy="Tab"
+          {tabs.map(tab => (
+            <li
+              className={classNames({
+                'is-active': selectedTab === tab,
+              })}
+              data-cy="Tab"
+            >
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => onTabSelected(tab)}
               >
-                <a
-                  href={`#${tab.id}`}
-                  data-cy="TabLink"
-                  onClick={() => onTabSelected(tab)}
-                >
-                  {tab.title}
-                </a>
-              </li>
-            );
-          })}
+                {tab.title}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 

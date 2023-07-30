@@ -17,10 +17,12 @@ export const App = () => {
     setSelectedTabId(tab.id);
   };
 
+  const tabTitle = tabs.find(tab => tab.id === selectedTabId).title;
+
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${tabs.find(tab => tab.id === selectedTabId)?.title}`}
+        {`Selected tab is ${tabTitle}`}
       </h1>
 
       <Tabs
