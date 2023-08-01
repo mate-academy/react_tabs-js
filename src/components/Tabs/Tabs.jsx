@@ -10,6 +10,12 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     currentTab = tabs[defaultValue];
   }
 
+  const doIfChanged = (tab) => {
+    if (tab.id !== currentTab.id) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <>
       <div data-cy="TabsComponent">
@@ -27,9 +33,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                   href={`#${tab.id}`}
                   data-cy="TabLink"
                   onClick={() => {
-                    if (tab.id !== currentTab.id) {
-                      onTabSelected(tab);
-                    }
+                    doIfChanged(tab);
                   }}
                 >
                   { tab.title }
