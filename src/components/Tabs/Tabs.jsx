@@ -7,7 +7,7 @@ export const Tabs = ({
 }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
-  const currentTab = (tab) => {
+  const selectTab = (tab) => {
     if (tab.id !== selectedTab.id) {
       onTabSelected(tab);
     }
