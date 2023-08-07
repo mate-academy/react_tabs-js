@@ -18,7 +18,16 @@ Implement the `App` and `Tabs` components to render and switch between given `ta
 1. When the user selects another tab the `h1` should be updated accordingly.
 1. The `Tabs` component should be stateless (don't have an internal state, only props).
 
+
+
+
+
+
 ## Instructions
+
+
+
+
 
 
 
