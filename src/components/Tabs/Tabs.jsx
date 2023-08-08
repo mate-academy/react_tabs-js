@@ -3,7 +3,7 @@ import cn from 'classnames';
 export const Tabs = ({
   tabs,
   selectedTabId,
-  selectedTab,
+  selectedTabContent,
   onTabSelected,
 }) => (
   <div data-cy="TabsComponent">
@@ -34,7 +34,7 @@ export const Tabs = ({
     </div>
 
     <div className="block" data-cy="TabContent">
-      {selectedTab.content}
+      {selectedTabContent}
     </div>
   </div>
 );
