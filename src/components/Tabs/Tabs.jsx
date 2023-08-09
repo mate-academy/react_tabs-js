@@ -15,16 +15,16 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(({ id, title }) => (
+          {tabs.map(({ id, title, content }) => (
             <li
-              className={cn({ 'is-active': isTabSelected(id) })}
+              className={cn({ 'is-active': activeTab.id === id })}
               data-cy="Tab"
               key={id}
             >
               <a
                 href={`#${id}`}
                 data-cy="TabLink"
-                onClick={() => changeSeletedTab({ id, title })}
+                onClick={() => changeSeletedTab({ id, title, content })}
               >
                 {title}
               </a>
