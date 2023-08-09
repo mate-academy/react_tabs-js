@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { useState } from 'react';
 import { Tabs } from './components/Tabs';
 
 export const tabs = [
@@ -22,8 +21,8 @@ export const App = () => {
 
       <Tabs
         tabs={tabs}
-        selectedTab={selectedTab.id}
-        changeTab={setSelectedTab}
+        selectedTabId={selectedTab.id}
+        onTabSelected={setSelectedTab}
       />
     </div>
   );
