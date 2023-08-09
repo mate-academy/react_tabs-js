@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { useState } from 'react';
 import { Tabs } from './components/Tabs';
 
 export const tabs = [
@@ -17,14 +16,16 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is {selectedTab.title}
+        Selected tab is
+        {' '}
+        {selectedTab.title}
       </h1>
 
-      <Tabs 
-        tabs={tabs} 
-        selectedTabId={selectedTab.id} 
-        onTabSelected={setSelectedTab} 
+      <Tabs
+        tabs={tabs}
+        selectedTabId={selectedTab.id}
+        onTabSelected={setSelectedTab}
       />
     </div>
   );
-}
+};
