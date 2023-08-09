@@ -1,11 +1,7 @@
 import React from 'react';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  let tabIdToShow = selectedTabId;
-
-  if (!tabs.some(tab => tab.id === selectedTabId)) {
-    tabIdToShow = tabs[0].id;
-  }
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -14,7 +10,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === tabIdToShow ? 'is-active' : ''}
+              className={tab.id === selectedTab.id ? 'is-active' : ''}
               data-cy="Tab"
             >
               <a
@@ -22,7 +18,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                 data-cy="TabLink"
                 onClick={(event) => {
                   event.preventDefault();
-                  if (tab.id !== tabIdToShow) {
+                  if (tab.id !== selectedTab.id) {
                     onTabSelected(tab);
                   }
                 }}
@@ -35,16 +31,14 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.map(tab => (
-          <div
-            key={tab.id}
-            id={tab.id}
-            style={{ display: tab.id === tabIdToShow ? 'block' : 'none' }}
-            data-cy="tab-content"
-          >
-            {tab.content}
-          </div>
-        ))}
+        <div
+          key={selectedTab.id}
+          id={selectedTab.id}
+          style={{ display: 'block' }}
+          data-cy="tab-content"
+        >
+          {selectedTab.content}
+        </div>
       </div>
     </div>
   );
