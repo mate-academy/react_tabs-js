@@ -35,17 +35,20 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.map(tab => (
+        {tabs.map(({ id, content, title }) => (
           <div
-            key={tab.id}
-            id={tab.id}
-            className={classNames('tab-content',
-              { 'tab-content-active':
-              tab.id === selectedTab.id,
-              'tab-content-inactive': tab.id !== selectedTab.id })}
+            key={id}
+            id={id}
+            className={classNames(
+              'tab-content',
+              {
+                'tab-content-active': id === selectedTab.id,
+                'tab-content-inactive': id !== selectedTab.id,
+              },
+            )}
             data-cy="tab-content"
           >
-            {tab.content}
+            {content}
           </div>
         ))}
       </div>
