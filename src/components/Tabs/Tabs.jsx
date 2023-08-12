@@ -27,7 +27,7 @@ export const Tabs = ({
               data-cy="Tab"
             >
               <a
-                href="#tab-1"
+                href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
                   isTabSelected(tab);
