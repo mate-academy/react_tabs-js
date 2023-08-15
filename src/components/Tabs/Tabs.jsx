@@ -1,19 +1,26 @@
-export const Tabs = ({ tab, selectedTabId, onTabSelected, setTabItem }) => (
-  <li
-    data-cy="Tab"
-    className={`${selectedTabId === tab.id && 'is-active'}`}
-  >
-    <a
-      onClick={() => {
-        onTabSelected(tab.id);
-        setTabItem(tab);
-      }
-      }
-      href={`#${tab.id}`}
-      data-cy="TabLink"
-    >
-      {tab.title}
+import cn from 'classnames';
 
-    </a>
-  </li>
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => (
+  <ul>
+    {tabs.map(tab => (
+      <li
+        key={tab.id}
+        data-cy="Tab"
+        className={cn({ 'is-active': tab.id === selectedTabId })}
+      >
+        <a
+          onClick={(event) => {
+            event.preventDefault();
+            onTabSelected(tab.id);
+          }
+    }
+          href={`#${tab.id}`}
+          data-cy="TabLink"
+        >
+          {tab.title}
+
+        </a>
+      </li>
+    ))}
+  </ul>
 );
