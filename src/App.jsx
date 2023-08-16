@@ -23,7 +23,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is 
+        Selected tab is
         {findObject.title}
       </h1>
       <Tabs
