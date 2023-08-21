@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -9,32 +9,66 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">
-      Selected tab is Tab 1
-    </h1>
+export const Tab = ({ tab, isSelected, onTabSelected }) => (
+  <li
+    className={`${isSelected(tab) ? 'is-active' : ''}`}
+    data-cy="Tab"
+  >
+    <a
+      href={`#${tab.id}`}
+      data-cy="TabLink"
+      onClick={() => {
+        if (!isSelected(tab)) {
+          onTabSelected(tab.id);
+        }
+      }}
+    >
+      {tab.title}
+    </a>
+  </li>
+);
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">Tab 1</a>
-          </li>
+export const Tabs = ({ tabsList, onTabSelected, selectedTabId }) => {
+  const isSelected = tab => selectedTabId === tab.id;
+  const selectedTab = tabsList.find(tab => tab.id === selectedTabId)
+  || tabsList[0];
 
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">Tab 2</a>
-          </li>
+  return (
+    <div className="section">
+      <h1 className="title">
+        {`Selected tab is ${selectedTab.title}`}
+      </h1>
 
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">Tab 3</a>
-          </li>
-        </ul>
-      </div>
+      <div data-cy="TabsComponent">
+        <div className="tabs is-boxed">
+          <ul>
+            {tabsList.map(tab => (
+              <Tab
+                tab={tab}
+                key={tab.id}
+                isSelected={isSelected}
+                onTabSelected={onTabSelected}
+              />
+            ))}
+          </ul>
+        </div>
 
-      <div className="block" data-cy="TabContent">
-        Some text 1
+        <div className="block" data-cy="TabContent">
+          {selectedTab.content}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+export const App = () => {
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0]);
+
+  return (
+    <Tabs
+      tabsList={tabs}
+      onTabSelected={setSelectedTabId}
+      selectedTabId={selectedTabId}
+    />
+  );
+};
