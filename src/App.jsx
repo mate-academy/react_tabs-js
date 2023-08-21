@@ -10,21 +10,28 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
+function getTitleFromSelectedTab(selectedTab) {
+  const table = tabs.find(tab => tab.id === selectedTab);
+
+  return (table ? table.title : null);
+}
+
 export const App = () => {
-  const [value, setValue] = useState(tabs[0].title);
+  const [selectedTab, setSelectedTab] = useState(tabs[0].id);
+  const selectedTabTitle = getTitleFromSelectedTab(selectedTab);
 
   return (
     <div className="section">
       <h1 className="title">
         Selected tab is
         {' '}
-        {value}
+        {selectedTabTitle}
       </h1>
 
       <Tabs
         tabs={tabs}
-        value={value}
-        setValue={setValue}
+        selectedTab={selectedTab}
+        onTabSelected={setSelectedTab}
 
       />
     </div>

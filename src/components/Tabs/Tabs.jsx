@@ -1,7 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 
-export const Tabs = ({ tabs, value, setValue }) => {
-  const activeTab = tabs.find(tab => tab.title === value);
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  const activeTab = tabs.find(tab => tab.id === selectedTab);
 
   return (
     <div data-cy="TabsComponent">
@@ -9,12 +10,14 @@ export const Tabs = ({ tabs, value, setValue }) => {
         <ul>
           {tabs.map(table => (
             <li
-              className={`${value === table.title && 'is-active'}`}
+              key={table.id}
+              className={
+                classNames('tab', { 'is-active': selectedTab === table.id })
+              }
               data-cy="Tab"
             >
               <a
-                key={table.id}
-                onClick={() => setValue(table.title)
+                onClick={() => onTabSelected(table.id)
                 }
                 href={`#${table.id}`}
                 data-cy="TabLink"
