@@ -9,6 +9,14 @@ export const Tabs = ({
     ? selectedTabId
     : tabs[0].id;
 
+  const tabContent = tabs.find(({ id }) => id === initialTabId).content;
+
+  const selectTabHandler = (tab) => {
+    if (tab.id !== initialTabId) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -24,11 +32,7 @@ export const Tabs = ({
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (tab.id !== initialTabId) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => selectTabHandler(tab)}
               >
                 {tab.title}
               </a>
@@ -38,7 +42,7 @@ export const Tabs = ({
         </ul>
       </div>
       <div className="block" data-cy="TabContent">
-        {tabs.find(({ id }) => id === initialTabId).content}
+        {tabContent}
       </div>
     </div>
   );
