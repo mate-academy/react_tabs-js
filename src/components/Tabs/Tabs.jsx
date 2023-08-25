@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { Tab } from '../Tab/Tab';
 
 export const Tabs = ({ tabsList, onTabSelected, selectedTabId }) => {
-  const isSelected = tab => selectedTabId === tab.id;
   const selectedTab = tabsList.find(tab => tab.id === selectedTabId)
   || tabsList[0];
 
@@ -18,7 +18,7 @@ export const Tabs = ({ tabsList, onTabSelected, selectedTabId }) => {
               <Tab
                 tab={tab}
                 key={tab.id}
-                isSelected={isSelected}
+                isSelected={selectedTabId === tab.id}
                 onTabSelected={onTabSelected}
               />
             ))}

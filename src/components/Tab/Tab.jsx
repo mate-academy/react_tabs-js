@@ -1,21 +1,19 @@
 export const Tab = ({ tab, isSelected, onTabSelected }) => {
-  const handleClick = (t) => {
-    if (!isSelected(t)) {
+  const handleClick = () => {
+    if (!isSelected) {
       onTabSelected(tab.id);
     }
   };
 
   return (
     <li
-      className={`${isSelected(tab) ? 'is-active' : ''}`}
+      className={`${isSelected ? 'is-active' : ''}`}
       data-cy="Tab"
     >
       <a
         href={`#${tab.id}`}
         data-cy="TabLink"
-        onClick={() => {
-          handleClick(tab);
-        }}
+        onClick={handleClick}
       >
         {tab.title}
       </a>
