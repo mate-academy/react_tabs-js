@@ -11,24 +11,20 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectElem, setSelectElem] = useState(tabs[0]);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
     <div className="section">
       <h1 className="title">
         {
-          tabs.map(tab => (
-            selectElem.id === tab.id && (
-              `Selected tab is ${tab.title}`
-            )
-          ))
+          `Selected tab is ${selectedTab.title}`
         }
       </h1>
 
       <Tabs
         tabs={tabs}
-        selectedTabId={selectElem.id}
-        onTabSelected={elem => setSelectElem(elem)}
+        selectedTabId={selectedTab.id}
+        onTabSelected={elem => setSelectedTab(elem)}
       />
     </div>
   );
