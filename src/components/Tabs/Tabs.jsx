@@ -15,7 +15,9 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => (
               data-cy="TabLink"
               onClick={(e) => {
                 e.preventDefault();
-                onTabSelected(tab.id);
+                if (tab.id !== selectedTabId) {
+                  onTabSelected(tab.id);
+                }
               }}
             >
               {tab.title}
