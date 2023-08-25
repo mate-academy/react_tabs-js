@@ -16,7 +16,6 @@ export const Tabs = ({ tabs, click, activeTab }) => (
               href={`#${tab.id}`}
               data-cy="TabLink"
               onClick={(event) => {
-                event.preventDefault();
                 click(tab.title);
               }}
             >
