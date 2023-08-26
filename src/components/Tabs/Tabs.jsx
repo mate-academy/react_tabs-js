@@ -1,34 +1,38 @@
 import cn from 'classnames';
 
+function conditionCheck(tabId, hookId) {
+  return tabId === hookId;
+}
+
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
-        {tabs.map(tab => (
+        {tabs.map(({ id, title }) => (
           <li
             className={cn({
-              'is-active': tab.id === selectedTabId,
+              'is-active': conditionCheck(id, selectedTabId),
             })}
             data-cy="Tab"
-            key={tab.id}
+            key={id}
           >
             <a
-              href={`#${tab.id}`}
+              href={`#${id}`}
               data-cy="TabLink"
               onClick={() => {
-                if (tab.id !== selectedTabId) {
-                  onTabSelected(tab.id);
+                if (!conditionCheck(id, selectedTabId)) {
+                  onTabSelected(id);
                 }
               }}
             >
-              {tab.title}
+              {title}
             </a>
           </li>
         ))}
       </ul>
     </div>
     <div className="block" data-cy="TabContent">
-      {tabs.find(tab => tab.id === selectedTabId).content}
+      {tabs.find(tab => conditionCheck(tab.id, selectedTabId)).content}
     </div>
   </div>
 );
