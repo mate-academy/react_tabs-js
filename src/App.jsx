@@ -45,6 +45,7 @@ export const App = () => {
     <div className="section">
       <h1 className="title">
         Selected tab is
+        {' '}
         {tabs.find(tab => tab.id === selectedTabId).title}
       </h1>
 
