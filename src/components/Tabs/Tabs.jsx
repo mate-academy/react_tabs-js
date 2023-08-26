@@ -1,32 +1,41 @@
 import React from 'react';
 import cn from 'classnames';
+import { findTab } from '../../utils';
 
-export const Tabs = ({ tabs, selectTabId, setSelectTabId, activeTab }) => (
-  <div data-cy="TabsComponent">
-    <div className="tabs is-boxed">
-      <ul>
-        {tabs.map(({ title, id }) => (
-          <li
-            key={id}
-            className={cn({ 'is-active': id === selectTabId })}
-            data-cy="Tab"
-          >
-            <a
-              onClick={() => setSelectTabId(id)}
-              href={`#${id}`}
-              data-cy="TabLink"
+export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
+  const currentTab = findTab(tabs, selectedTabId) || tabs[0];
+
+  return (
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul>
+          {tabs.map(({ title, id }) => (
+            <li
+              key={id}
+              className={cn({ 'is-active': currentTab.id === id })}
+              data-cy="Tab"
             >
-              {title}
-            </a>
-          </li>
-        ))}
-      </ul>
+              <a
+                onClick={() => {
+                  if (id !== selectedTabId) {
+                    onTabSelected(id);
+                  }
+                }}
+                href={`#${id}`}
+                data-cy="TabLink"
+              >
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div
+        className="block"
+        data-cy="TabContent"
+      >
+        {findTab(tabs, selectedTabId)?.content}
+      </div>
     </div>
-    <div
-      className="block"
-      data-cy="TabContent"
-    >
-      {activeTab.content}
-    </div>
-  </div>
-);
+  );
+};
