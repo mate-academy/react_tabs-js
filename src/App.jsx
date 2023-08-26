@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -13,37 +13,6 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  useEffect(() => {
-    window.location.hash = tabs[0].id;
-  }, []);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hashTabId = window.location.hash.substring(1);
-      // eslint-disable-next-line no-shadow
-      const tab = tabs.find(tab => tab.id === hashTabId);
-
-      if (tab) {
-        setSelectedTabId(hashTabId);
-      } else {
-        setSelectedTabId(tabs[0].id);
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    handleHashChange();
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
-
-  const handleTabSelected = (tabId) => {
-    setSelectedTabId(tabId);
-    window.location.hash = tabId;
-  };
-
   return (
     <div className="section">
       <h1 className="title">
@@ -55,7 +24,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onTabSelected={handleTabSelected}
+        onTabSelected={tabId => setSelectedTabId(tabId)}
       />
     </div>
   );
