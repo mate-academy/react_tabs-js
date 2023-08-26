@@ -24,8 +24,8 @@ export const App = () => {
       </h1>
       <Tabs
         tabs={tabs}
-        click={onTabSelected}
-        activeTab={selectedTabId}
+        onTabSelected={onTabSelected}
+        selectedTabId={selectedTabId}
       />
     </div>
   );
