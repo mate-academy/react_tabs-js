@@ -7,7 +7,7 @@ export const Tabs = ({ tabs, click, activeTab }) => (
         {tabs.map(tab => (
           <li
             className={cn({
-              'is-active': tab.title === activeTab,
+              'is-active': tab.id === activeTab,
             })}
             data-cy="Tab"
             key={tab.id}
@@ -16,8 +16,8 @@ export const Tabs = ({ tabs, click, activeTab }) => (
               href={`#${tab.id}`}
               data-cy="TabLink"
               onClick={(event) => {
-                if (tab.title !== activeTab) {
-                  click(tab.title);
+                if (tab.id !== activeTab) {
+                  click(tab.id);
                 }
               }}
             >
@@ -28,7 +28,7 @@ export const Tabs = ({ tabs, click, activeTab }) => (
       </ul>
     </div>
     <div className="block" data-cy="TabContent">
-      {tabs.find(tab => tab.title === activeTab).content}
+      {tabs.find(tab => tab.id === activeTab).content}
     </div>
   </div>
 );
