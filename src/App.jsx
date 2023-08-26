@@ -14,6 +14,10 @@ export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
   useEffect(() => {
+    window.location.hash = tabs[0].id;
+  }, []);
+
+  useEffect(() => {
     const handleHashChange = () => {
       const hashTabId = window.location.hash.substring(1);
       // eslint-disable-next-line no-shadow
@@ -28,7 +32,6 @@ export const App = () => {
 
     window.addEventListener('hashchange', handleHashChange);
 
-    // Call the handler once initially
     handleHashChange();
 
     return () => {
