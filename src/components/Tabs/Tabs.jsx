@@ -1,11 +1,15 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const validSelectedTabId = tabs.some(tab => tab.id === selectedTabId)
+export const Tabs = ({
+  tabs,
+  selectedTabId,
+  onTabSelected,
+}) => {
+  const validSelectedTabId = tabs.some(({ id }) => id === selectedTabId)
     ? selectedTabId
     : tabs[0].id;
 
-  const tabContent = tabs.find(tab => tab.id === validSelectedTabId).content;
+  const tabContent = tabs.find(({ id }) => id === validSelectedTabId).content;
 
   const onClickHandler = (tab) => {
     if (tab.id !== validSelectedTabId) {
