@@ -25,7 +25,7 @@ export const Tabs = ({
               key={tab.id}
               className={cn({
                 'is-active': isSelectedTab(tab),
-              })}
+              }) || null}
               data-cy="Tab"
             >
               <a
