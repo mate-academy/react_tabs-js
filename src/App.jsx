@@ -16,7 +16,7 @@ export const App = () => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId)
                    ?? tabs[0];
 
-  const onClickHandler = newTab => setSelectedTabId(newTab.id);
+  const onTabSelected = newTab => setSelectedTabId(newTab.id);
 
   return (
     <div className="section">
@@ -27,7 +27,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onTabSelected={onClickHandler}
+        onTabSelected={onTabSelected}
       />
     </div>
   );

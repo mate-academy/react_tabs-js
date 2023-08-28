@@ -10,7 +10,7 @@ export const Tabs = ({
 
   const isSelectedTab = tab => tab.id === selectedTab.id;
 
-  const onClickHandler = (tab) => {
+  const onTabClicked = (tab) => {
     if (!isSelectedTab(tab)) {
       onTabSelected(tab);
     }
@@ -30,7 +30,7 @@ export const Tabs = ({
             >
               <a
                 href={`#${tab.id}`}
-                onClick={() => onClickHandler(tab)}
+                onClick={() => onTabClicked(tab)}
                 data-cy="TabLink"
               >
                 {tab.title}
