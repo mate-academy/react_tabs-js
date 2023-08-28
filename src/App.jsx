@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
 import { useState } from 'react';
+import { findTabById } from './utils/utils';
 import { Tabs } from './components/Tabs';
 
 export const tabs = [
@@ -13,8 +14,7 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId)
-                   ?? tabs[0];
+  const selectedTab = findTabById(tabs, selectedTabId);
 
   const onTabSelected = newTab => setSelectedTabId(newTab.id);
 

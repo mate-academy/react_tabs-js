@@ -1,12 +1,12 @@
 import cn from 'classnames';
+import { findTabById } from '../../utils/utils';
 
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId)
-                   ?? tabs[0];
+  const selectedTab = findTabById(tabs, selectedTabId);
 
   const isSelectedTab = tab => tab.id === selectedTab.id;
 
