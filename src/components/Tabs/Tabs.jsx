@@ -8,8 +8,8 @@ export const Tabs = ({ value, setValue, tabs }) => (
             data-cy="Tab"
             key={x.id}
           >
-            <a 
-              href={`#${x.id}`} 
+            <a
+              href={`#${x.id}`}
               data-cy="TabLink"
               onClick={() => setValue(x)}
             >
