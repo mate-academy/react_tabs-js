@@ -1,17 +1,15 @@
 import cn from 'classnames';
 
+import { getCurrentTab, getDefaultTabId } from '../../helper';
+
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
-  const defaultTabId = tabs[0].id;
-  const getCurrentTab = () => (
-    tabs.find(({ id }) => id === selectedTabId)
-    || tabs.find(({ id }) => id === defaultTabId)
-  );
+  const defaultTabId = getDefaultTabId(tabs);
 
-  const currentTab = getCurrentTab();
+  const currentTab = getCurrentTab(tabs, selectedTabId);
 
   function handleTabClick(tab) {
     if (selectedTabId !== tab.id) {
