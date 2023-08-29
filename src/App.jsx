@@ -16,8 +16,8 @@ export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
   const selectedTabTitle = tabs
     .find(({ id }) => id === selectedTabId).title;
-  const handleTabClick = (tab) => {
-    setSelectedTabId(tab.id);
+  const handleTabClick = ({ id }) => {
+    setSelectedTabId(id);
   };
 
   return (
@@ -29,7 +29,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onTabSelected={tab => handleTabClick(tab)}
+        onTabSelected={handleTabClick}
       />
     </div>
   );
