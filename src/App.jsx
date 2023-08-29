@@ -1,8 +1,9 @@
+import { useState } from 'react';
+
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
-import { useState } from 'react';
 import { findTabById } from './utils/utils';
 import { Tabs } from './components/Tabs';
 
