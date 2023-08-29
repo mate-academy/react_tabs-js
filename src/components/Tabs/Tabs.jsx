@@ -1,11 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const confirmedTabId = tabs.some(({ id }) => id === selectedTabId)
-    ? selectedTabId
-    : tabs[0].id;
-  const selectedTabContent = tabs
-    .find(({ id }) => id === confirmedTabId).content;
+  const confirmedTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -13,7 +9,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map((tab) => {
             const { id, title } = tab;
-            const isSelected = id === confirmedTabId;
+            const isSelected = id === confirmedTab.id;
 
             return (
               <li
@@ -37,7 +33,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTabContent}
+        {confirmedTab.content}
       </div>
     </div>
   );
