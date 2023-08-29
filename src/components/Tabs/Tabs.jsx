@@ -1,5 +1,5 @@
-export const Tabs = ({ value, setValue, tabs }) => {
-  const { id, content } = value;
+export const Tabs = ({ selectedTabId, setSelectedTabId, tabs }) => {
+  const { id, content } = selectedTabId;
 
   return (
     <div data-cy="TabsComponent">
@@ -14,7 +14,7 @@ export const Tabs = ({ value, setValue, tabs }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => setValue(tab)}
+                onClick={() => setSelectedTabId(tab)}
               >
                 {tab.title}
               </a>

@@ -11,18 +11,21 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [value, setValue] = useState(tabs[0].id);
-  const { title } = value;
+  const [selectedTabId, setSelectedTabId]= useState(tabs[0].id);
 
   return (
     <div className="section">
       <h1 className="title">
         Selected tab is
         {' '}
-        {title}
+        {selectedTabId.title}
       </h1>
 
-      <Tabs value={value} setValue={setValue} tabs={tabs} />
+      <Tabs 
+        selectedTabId={selectedTabId} 
+        setSelectedTabId={setSelectedTabId} 
+        tabs={tabs} 
+      />
     </div>
   );
 };
