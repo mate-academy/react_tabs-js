@@ -1,15 +1,13 @@
 import cn from 'classnames';
 
-import { getCurrentTab, getDefaultTabId } from '../../helper';
+import { getSelectedTab } from '../../helper';
 
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
-  const defaultTabId = getDefaultTabId(tabs);
-
-  const currentTab = getCurrentTab(tabs, selectedTabId);
+  const selectedTab = getSelectedTab(tabs, selectedTabId);
 
   function handleTabClick(tab) {
     if (selectedTabId !== tab.id) {
@@ -17,11 +15,7 @@ export const Tabs = ({
     }
   }
 
-  const isActive = id => (
-    selectedTabId === currentTab.id
-      ? selectedTabId === id
-      : id === defaultTabId
-  );
+  const isActive = id => id === selectedTab.id;
 
   return (
     <div data-cy="TabsComponent">
@@ -43,14 +37,12 @@ export const Tabs = ({
                 {tab.title}
               </a>
             </li>
-          ))
-
-          }
+          ))}
         </ul>
       </div>
 
       <div className="block" data-cy="TabContent">
-        {currentTab.content}
+        {selectedTab.content}
       </div>
     </div>
   );
