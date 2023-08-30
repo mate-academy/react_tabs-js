@@ -1,8 +1,8 @@
 import cl from 'classnames';
+import { findSelectedTabById } from '../../helper';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const selectedTab = tabs.find(tab => selectedTabId === tab.id)
-    ?? tabs[0];
+  const selectedTab = findSelectedTabById(tabs, selectedTabId);
 
   function handlerOnTabSelected(tab, isActive) {
     if (!isActive) {
