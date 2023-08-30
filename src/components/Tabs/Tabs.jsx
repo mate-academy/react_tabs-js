@@ -1,10 +1,11 @@
 import cn from 'classnames';
+import { getSelectedTab } from '../../utils/utils';
 
-function getSelectedTab(tabs, selectedTabId) {
-  return tabs.find(tab => tab.id === selectedTabId) || tabs[0];
-}
-
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+export const Tabs = ({
+  tabs,
+  selectedTabId,
+  onTabSelected,
+}) => {
   const selectedTab = getSelectedTab(tabs, selectedTabId);
 
   return (
