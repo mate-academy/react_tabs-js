@@ -1,9 +1,14 @@
 import cl from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const actualTabId = tabs.some(tab => selectedTabId === tab.id)
-    ? selectedTabId
-    : tabs[0].id;
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id)
+    ?? tabs[0];
+
+  function handlerOnTabSelected(tab, isActive) {
+    if (!isActive) {
+      onTabSelected(tab);
+    }
+  }
 
   return (
     <div data-cy="TabsComponent">
@@ -11,7 +16,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map((tab) => {
             const { title, id } = tab;
-            const isActive = actualTabId === id;
+            const isActive = selectedTab.id === id;
 
             return (
               <li
@@ -22,7 +27,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={() => (isActive ? null : onTabSelected(tab))}
+                  onClick={() => handlerOnTabSelected(tab, isActive)}
                 >
                   {title}
                 </a>
@@ -33,7 +38,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => actualTabId === tab.id).content}
+        {selectedTab.content}
       </div>
     </div>
   );
