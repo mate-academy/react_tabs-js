@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const validTab = tabs.find(tab => tab.id === selectedTabId);
+  const validTab = tabs.find(tab => tab.id === selectedTabId) ?? tabs[0];
 
   return (
     <div data-cy="TabsComponent">
