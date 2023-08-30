@@ -27,7 +27,6 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               </li>
             );
           })}
-          ;
 
         </ul>
       </div>
