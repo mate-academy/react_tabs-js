@@ -1,5 +1,5 @@
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const defaultSelectedTab = tabs.find(
+  const selectedTab = tabs.find(
     tab => tab.id === selectedTabId,
   ) || tabs[0];
 
@@ -17,7 +17,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={tab.id === defaultSelectedTab.id
+              className={tab.id === selectedTab.id
                 ? 'is-active'
                 : ''
               }
@@ -35,7 +35,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === defaultSelectedTab.id)?.content}
+        {selectedTab.content}
       </div>
     </div>
   );
