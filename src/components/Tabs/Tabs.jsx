@@ -1,7 +1,8 @@
 import cn from 'classnames';
+import { GetActiveTab } from '../../utils/utils';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+  const activeTab = GetActiveTab(tabs, selectedTabId);
 
   return (
     <div data-cy="TabsComponent">
