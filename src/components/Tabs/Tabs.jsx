@@ -1,8 +1,8 @@
 import cn from 'classnames';
-import { GetActiveTab } from '../../utils/utils';
+import { getActiveTab } from '../../utils/utils';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const activeTab = GetActiveTab(tabs, selectedTabId);
+  const activeTab = getActiveTab(tabs, selectedTabId);
 
   return (
     <div data-cy="TabsComponent">
@@ -10,6 +10,11 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map((tab) => {
             const isSelectedTabId = tab.id === activeTab.id;
+            const handlerSelectedTab = (element) => {
+              if (!isSelectedTabId) {
+                onTabSelected(element);
+              }
+            };
 
             return (
               <li
@@ -20,8 +25,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => !isSelectedTabId
-                    && onTabSelected(tab)}
+                  onClick={() => handlerSelectedTab(tab)}
                 >
                   {tab.title}
                 </a>
