@@ -1,7 +1,8 @@
+import classNames from 'classnames';
+import { getSelectedTab } from '../../helper';
+
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const selectedTab = tabs.find(
-    tab => tab.id === selectedTabId,
-  ) || tabs[0];
+  const selectedTab = getSelectedTab(tabs, selectedTabId);
 
   const handleTabClick = (tab) => {
     if (tab.id !== selectedTabId) {
@@ -17,10 +18,9 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={tab.id === selectedTab.id
-                ? 'is-active'
-                : ''
-              }
+              className={classNames({
+                'is-active': tab.id === selectedTab.id,
+              })}
             >
               <a
                 href={`#${tab.id}`}
