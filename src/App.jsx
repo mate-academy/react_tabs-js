@@ -5,6 +5,9 @@ import './App.scss';
 
 import { Tabs } from './components/Tabs';
 
+export const selectTab = (tabs, selectedTabId) => tabs
+  .find(({ id }) => selectedTabId === id);
+
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
   { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
@@ -13,24 +16,20 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
-  const selectedTab = () => tabs.find(({ id }) => selectedTabId === id);
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${selectedTab().title}`}
+        {`Selected tab is ${selectTab(tabs, selectedTabId).title}`}
       </h1>
 
       <Tabs
         data-cy="tab-content"
         tabs={tabs}
         onTabSelected={(tab) => {
-          if (tab && tab.id !== selectedTabId) {
-            setSelectedTabId(tab.id);
-            selectedTab();
-          }
+          setSelectedTabId(tab.id);
         }}
-        selectedTabId={selectedTabId || tabs[0].id}
+        selectedTabId={selectedTabId}
       />
     </div>
   );

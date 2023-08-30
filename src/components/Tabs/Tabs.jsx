@@ -1,14 +1,14 @@
 import cn from 'classnames';
 
-const selectedTab = (tabs, selectedTabId) => tabs
-  .find(({ id }) => selectedTabId === id);
+// eslint-disable-next-line import/no-cycle
+import { selectTab } from '../../App';
 
 export const Tabs = ({
   tabs,
   onTabSelected,
   selectedTabId,
 }) => {
-  const initialTabId = tabs.some(({ id }) => id === selectedTabId)
+  const initialTabId = selectTab(tabs, selectedTabId)
     ? selectedTabId
     : tabs[0].id;
 
@@ -39,7 +39,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTab(tabs, initialTabId).content}
+        {selectTab(tabs, initialTabId).content}
       </div>
     </div>
   );
