@@ -12,26 +12,19 @@ const tabs = [
 ];
 
 export const App = () => {
-  const defaultTab = tabs[0];
-  const [selectedTabId, setTabId] = useState('');
-
-  const selectedTab = tabs.filter(
-    tab => tab.id.includes(selectedTabId),
-  )[0] || defaultTab;
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
     <>
       <div className="section">
         <h1 className="title">
-          {`Selected tab is
-           ${selectedTab.title}`}
+          {`Selected tab is ${selectedTab.title}`}
         </h1>
         <Tabs
-          selectedTab={selectedTab}
           tabs={tabs}
-          selectedTabId={selectedTabId}
+          selectedTabId={selectedTab.id}
           onTabSelected={(tab) => {
-            setTabId(tab.id);
+            setSelectedTab(tab);
           }}
         />
       </div>
