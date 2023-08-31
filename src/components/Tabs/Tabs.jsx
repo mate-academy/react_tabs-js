@@ -5,8 +5,8 @@ export const Tabs = ({
   selectedTabId,
   onTabSelected,
 }) => {
-  const currentTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0].id;
-  const onClickTab = (tab) => {
+  const currentTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
+  const handleTabClick = (tab) => {
     if (currentTab.id !== tab.id) {
       onTabSelected(tab);
     }
@@ -27,7 +27,7 @@ export const Tabs = ({
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => onClickTab(tab)}
+                onClick={() => handleTabClick(tab)}
               >
                 {tab.title}
               </a>
