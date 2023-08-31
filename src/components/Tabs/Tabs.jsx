@@ -1,11 +1,13 @@
 import cn from 'classnames';
 
+import { getSelectedTab } from '../../utils';
+
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
-  const selectedTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
+  const selectedTab = getSelectedTab(tabs, selectedTabId);
 
   return (
     <div data-cy="TabsComponent">
