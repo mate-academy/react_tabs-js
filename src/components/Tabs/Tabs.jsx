@@ -1,11 +1,13 @@
 export const Tabs = ({
-  tab: { id = 'tab-1', title, content }, setValue, value,
+  tab: { id, title, content }, setValue, value,
 }) => (
   <li data-cy="Tab" className={value === id ? 'is-active' : ''}>
     <a
       href={`#${id}`}
       data-cy="TabLink"
-      onClick={() => setValue(id)}
+      onClick={(event) => {
+        event.preventDefault(setValue(id));
+      }}
     >
       {title}
     </a>
