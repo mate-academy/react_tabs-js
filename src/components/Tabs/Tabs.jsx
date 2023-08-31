@@ -1,18 +1,15 @@
 import cn from 'classnames';
-import { useState } from 'react';
 
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
-  const [selectedTab, setSelectedTab]
-  = useState(tabs.find(tab => tab.id === selectedTabId) ?? tabs[0]);
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) ?? tabs[0];
 
   function onTabClick(tab) {
     if (tab !== selectedTab) {
       onTabSelected(tab);
-      setSelectedTab(tab);
     }
   }
 
@@ -37,9 +34,7 @@ export const Tabs = ({
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={() => {
-                    onTabClick(tab);
-                  }}
+                  onClick={() => onTabClick(tab)}
                 >
                   {title}
                 </a>
