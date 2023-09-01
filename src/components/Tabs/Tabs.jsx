@@ -3,6 +3,11 @@ import { findTabId } from '../utils';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const currentTab = findTabId(tabs, selectedTabId);
+  const selectTabHandler = (tab) => {
+    if (currentTab.id !== tab.id) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -19,11 +24,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (currentTab.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => selectTabHandler(tab)}
               >
                 {tab.title}
               </a>
