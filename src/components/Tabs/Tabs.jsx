@@ -7,6 +7,12 @@ function findSelectedTab(tabs, selectedTabId) {
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = findSelectedTab(tabs, selectedTabId);
+  const content = findSelectedTab(tabs, selectedTabId)?.content;
+  const handleClick = (tab) => {
+    if (selectedTabId !== tab.id) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -21,11 +27,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (selectedTabId !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => handleClick(tab)}
               >
                 {tab.title}
               </a>
@@ -35,7 +37,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {findSelectedTab(tabs, selectedTabId)?.content}
+        {content}
       </div>
     </div>
   );

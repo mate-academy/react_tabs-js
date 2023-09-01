@@ -13,6 +13,7 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const handleTabSelected = tab => setSelectedTabId(tab.id);
 
   return (
     <div className="section">
@@ -23,9 +24,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onTabSelected={(tab) => {
-          setSelectedTabId(tab.id);
-        }}
+        onTabSelected={handleTabSelected}
       />
     </div>
   );
