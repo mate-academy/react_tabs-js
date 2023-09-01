@@ -5,6 +5,7 @@ import { Tabs } from './components/Tabs';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+import { getSelectedTab } from './helper';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -15,7 +16,7 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId);
+  const selectedTab = getSelectedTab(tabs, selectedTabId);
   const selectedTabTitle = selectedTab ? selectedTab.title : '';
 
   const handleTabSelected = (tab) => {
@@ -25,8 +26,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        {'Selected tab is '}
-        {selectedTabTitle}
+        {`Selected tab is ${selectedTabTitle}`}
       </h1>
 
       <Tabs

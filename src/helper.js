@@ -1,5 +1,4 @@
+// eslint-disable-next-line arrow-body-style
 export const getSelectedTab = (tabs, selectedTabId) => {
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
-
-  return selectedTab;
+  return tabs.find(({ id }) => id === selectedTabId) || tabs[0];
 };
