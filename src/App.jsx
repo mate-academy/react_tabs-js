@@ -17,7 +17,7 @@ export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
   const selectedTab = getSelectedTab(tabs, selectedTabId);
-  const selectedTabTitle = selectedTab ? selectedTab.title : '';
+  const selectedTabTitle = selectedTab.title;
 
   const handleTabSelected = (tab) => {
     setSelectedTabId(tab.id);
