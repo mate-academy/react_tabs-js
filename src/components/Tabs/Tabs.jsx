@@ -1,7 +1,14 @@
 import cn from 'classnames';
+import { findCurent } from './helper';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const currentTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
+  const checkId = (currentTab, tab) => currentTab.id === tab.id;
+  const currentTab = findCurent(tabs, selectedTabId);
+  const selectedTab = (tab) => {
+    if (tab.id !== selectedTabId) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -9,16 +16,12 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map(tab => (
             <li
-              className={cn({ ' is-active': currentTab.id === tab.id })}
+              className={cn({ ' is-active': checkId(currentTab, tab) })}
               data-cy="Tab"
               key={tab.id}
             >
               <a
-                onClick={() => {
-                  if (tab.id !== selectedTabId) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => selectedTab(tab)}
                 href={`#${tab.id}`}
                 data-cy="TabLink"
               >
