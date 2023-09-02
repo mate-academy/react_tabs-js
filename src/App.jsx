@@ -14,7 +14,7 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
   const preparedTab = getTabById(tabs, selectedTabId);
-  const onTabSelected = tab => setSelectedTabId(tab.id);
+  const onTabSelected = ({ id }) => setSelectedTabId(id);
 
   return (
     <div className="section">

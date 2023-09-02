@@ -6,7 +6,7 @@ export const Tabs = ({
   selectedTabId,
   onTabSelected,
 }) => {
-  const selectedTab = getTabById(tabs, selectedTabId) || tabs[0];
+  const selectedTab = getTabById(tabs, selectedTabId);
 
   return (
     <div data-cy="TabsComponent">
