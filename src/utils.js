@@ -1,2 +1,2 @@
-export const findTab = (tabsArray, selectedById) => tabsArray
-  .find(({ id }) => id === selectedById) || tabsArray[0];
+export const findTabById = (tabs, tabId) => tabs
+  .find(({ id }) => id === tabId) || tabs[0];

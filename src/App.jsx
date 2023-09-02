@@ -5,7 +5,7 @@ import './App.scss';
 
 import { Tabs } from './components/Tabs/Tabs';
 
-import { findTab } from './utils';
+import { findTabById } from './utils';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -15,7 +15,7 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
-  const currentTab = findTab(tabs, selectedTabId);
+  const currentTab = findTabById(tabs, selectedTabId);
   const onTabSelected = tab => setSelectedTabId(tab.id);
 
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
-import { findTab } from '../../utils';
+import { findTabById } from '../../utils';
 
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
-  const currentTab = findTab(tabs, selectedTabId);
+  const currentTab = findTabById(tabs, selectedTabId);
 
   return (
     <div data-cy="TabsComponent">
@@ -38,7 +38,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
         className="block"
         data-cy="TabContent"
       >
-        {findTab(tabs, selectedTabId)?.content}
+        {currentTab?.content}
       </div>
     </div>
   );
