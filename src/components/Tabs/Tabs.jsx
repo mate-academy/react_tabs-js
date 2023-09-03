@@ -1,7 +1,8 @@
 import cn from 'classnames';
+import { getFindId } from '../../helper';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const selectedTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
+  const selectedTab = getFindId(tabs, selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -9,18 +10,18 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map((tab) => {
             const { id, title } = tab;
-            const hasSelectedTab = id === selectedTab.id;
+            const isSelectedTab = id === selectedTab.id;
 
             return (
               <li
                 key={id}
                 className={cn({
-                  'is-active': hasSelectedTab,
+                  'is-active': isSelectedTab,
                 })}
                 data-cy="Tab"
               >
                 <a
-                  onClick={() => !hasSelectedTab && onTabSelected(tab)}
+                  onClick={() => !isSelectedTab && onTabSelected(tab)}
                   href={`#${id}`}
                   data-cy="TabLink"
                 >
