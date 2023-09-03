@@ -4,7 +4,7 @@ import { findTab } from '../../functions';
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const currentTab = findTab(tabs, selectedTabId);
 
-  const isActive = tab => currentTab.id === tab.id;
+  const isActive = ({ id }) => currentTab.id === id;
 
   const onTabSelectedHandler = (tab) => {
     if (!isActive(tab)) {
