@@ -18,8 +18,8 @@ export const App = () => {
 
   const selectedTab = getSelectedTab(tabs, selectedTabId);
 
-  const handleTabSelected = (tab) => {
-    setSelectedTabId(tab.id);
+  const handleTabSelected = ({ id }) => {
+    setSelectedTabId(id);
   };
 
   return (

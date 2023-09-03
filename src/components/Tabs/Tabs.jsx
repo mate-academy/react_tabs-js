@@ -4,8 +4,10 @@ import { getSelectedTab } from '../../helper';
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = getSelectedTab(tabs, selectedTabId);
 
+  const ARE_IDS_EQUAL = tab => tab.id === selectedTab.id;
+
   const handleTabClick = (tab) => {
-    if (tab.id !== selectedTabId) {
+    if (!ARE_IDS_EQUAL(tab)) {
       onTabSelected(tab);
     }
   };
@@ -14,20 +16,20 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
+          {tabs.map(({ id, title, content }) => (
             <li
-              key={tab.id}
+              key={id}
               data-cy="Tab"
               className={classNames({
-                'is-active': tab.id === selectedTab.id,
+                'is-active': ARE_IDS_EQUAL({ id }),
               })}
             >
               <a
-                href={`#${tab.id}`}
+                href={`#${id}`}
                 data-cy="TabLink"
-                onClick={() => handleTabClick(tab)}
+                onClick={() => handleTabClick({ id, title, content })}
               >
-                {tab.title}
+                {title}
               </a>
             </li>
           ))}
