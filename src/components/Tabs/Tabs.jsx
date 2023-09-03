@@ -4,6 +4,14 @@ import { findTab } from '../../functions';
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const currentTab = findTab(tabs, selectedTabId);
 
+  const isActive = tab => currentTab.id === tab.id;
+
+  const onTabSelectedHandler = (tab) => {
+    if (!isActive(tab)) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -13,17 +21,13 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               data-cy="Tab"
               key={tab.id}
               className={cn({
-                'is-active': currentTab.id === tab.id,
+                'is-active': isActive(tab),
               })}
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (currentTab.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => onTabSelectedHandler(tab)}
               >
                 {tab.title}
               </a>
