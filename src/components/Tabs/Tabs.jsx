@@ -1,12 +1,12 @@
-import cn from 'classnames';
+import classnames from 'classnames';
 import { findTab } from '../../functions';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const currentTab = findTab(tabs, selectedTabId);
+  const selectedTab = findTab(tabs, selectedTabId);
 
-  const isActive = ({ id }) => currentTab.id === id;
+  const isActive = ({ id }) => selectedTab.id === id;
 
-  const onTabSelectedHandler = (tab) => {
+  const handleTabSelect = (tab) => {
     if (!isActive(tab)) {
       onTabSelected(tab);
     }
@@ -16,28 +16,32 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
-            <li
-              data-cy="Tab"
-              key={tab.id}
-              className={cn({
-                'is-active': isActive(tab),
-              })}
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={() => onTabSelectedHandler(tab)}
+          {tabs.map((tab) => {
+            const { id, title } = tab;
+
+            return (
+              <li
+                data-cy="Tab"
+                key={id}
+                className={classnames({
+                  'is-active': isActive(tab),
+                })}
               >
-                {tab.title}
-              </a>
-            </li>
-          ))}
+                <a
+                  href={`#${id}`}
+                  data-cy="TabLink"
+                  onClick={() => handleTabSelect(tab)}
+                >
+                  {title}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
       <div className="block" data-cy="TabContent">
-        {currentTab.content}
+        {selectedTab.content}
       </div>
     </div>
 
