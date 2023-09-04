@@ -1,13 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
 
-function findSelectedTab(tabs, selectedTabId) {
-  return tabs.find(tab => tab.id === selectedTabId) || tabs[0];
-}
+import { findSelectedTab } from '../../utils/utils';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = findSelectedTab(tabs, selectedTabId);
-  const content = findSelectedTab(tabs, selectedTabId)?.content;
+  const content = selectedTab?.content;
   const handleClick = (tab) => {
     if (selectedTabId !== tab.id) {
       onTabSelected(tab);
@@ -18,18 +16,18 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
+          {tabs.map(({ id, title }) => (
             <li
-              key={tab.id}
+              key={id}
               data-cy="Tab"
-              className={cn({ 'is-active': selectedTab.id === tab.id })}
+              className={cn({ 'is-active': selectedTab.id === id })}
             >
               <a
-                href={`#${tab.id}`}
+                href={`#${id}`}
                 data-cy="TabLink"
-                onClick={() => handleClick(tab)}
+                onClick={() => handleClick({ id, title })}
               >
-                {tab.title}
+                {title}
               </a>
             </li>
           ))}

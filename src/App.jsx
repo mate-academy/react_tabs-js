@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
 import { Tabs } from './components/Tabs';
+import { findSelectedTab } from './utils/utils';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -18,7 +19,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${tabs.find(tab => tab.id === selectedTabId)?.title}`}
+        {`Selected tab is ${findSelectedTab(tabs, selectedTabId)?.title}`}
       </h1>
 
       <Tabs
