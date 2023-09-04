@@ -1,8 +1,8 @@
 import cn from 'classnames';
-import { getFindId } from '../../helper';
+import { findTabById } from '../../helper';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const selectedTab = getFindId(tabs, selectedTabId) || tabs[0];
+  const selectedTab = findTabById(tabs, selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
