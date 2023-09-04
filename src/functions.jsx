@@ -1,3 +1,3 @@
-export function findSelectedTab(tabse, selectedTabId) {
-  return tabse.find(tab => selectedTabId === tab.id) || tabse[0];
+export function findSelectedTab(tabs, selectedTabId) {
+  return tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 }
