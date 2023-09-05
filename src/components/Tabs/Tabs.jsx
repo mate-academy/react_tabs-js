@@ -5,8 +5,8 @@ import { findSelectedTab } from '../../utils/utils';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = findSelectedTab(tabs, selectedTabId);
-  const content = selectedTab?.content;
-  const handleClick = (tab) => {
+  const { content } = selectedTab;
+  const handleTabSelect = (tab) => {
     if (selectedTabId !== tab.id) {
       onTabSelected(tab);
     }
@@ -16,18 +16,18 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(({ id, title }) => (
+          {tabs.map(tab => (
             <li
-              key={id}
+              key={tab.id}
               data-cy="Tab"
-              className={cn({ 'is-active': selectedTab.id === id })}
+              className={cn({ 'is-active': selectedTab.id === tab.id })}
             >
               <a
-                href={`#${id}`}
+                href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => handleClick({ id, title })}
+                onClick={() => handleTabSelect(tab)}
               >
-                {title}
+                {tab.title}
               </a>
             </li>
           ))}
