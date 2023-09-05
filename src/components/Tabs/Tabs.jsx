@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import classnames from 'classnames';
 import { findTabById } from '../../utils';
 
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
@@ -11,16 +11,17 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
         <ul>
           {tabs.map((tab) => {
             const { title, id } = tab;
+            const checkId = currentTab.id === id;
 
             return (
               <li
                 key={id}
-                className={cn({ 'is-active': currentTab.id === id })}
+                className={classnames({ 'is-active': checkId })}
                 data-cy="Tab"
               >
                 <a
                   onClick={() => {
-                    if (id !== selectedTabId) {
+                    if (!checkId) {
                       onTabSelected(tab);
                     }
                   }}
