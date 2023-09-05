@@ -1,25 +1,31 @@
-import cn from 'classnames';
+import classnames from 'classnames';
+import { getSelectedTab } from '../../helpers';
 
-export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
-  const currentTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
+export const Tabs = ({
+  tabs,
+  onTabSelected,
+  selectedTabId,
+}) => {
+  const currentTab = getSelectedTab(tabs, selectedTabId);
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map((tab) => {
-            const isSelectedTab = tab.id === currentTab.id;
+            const { id, title } = tab;
+            const isSelectedTab = id === currentTab.id;
 
             return (
               <li
-                key={tab.id}
-                className={cn({
+                key={id}
+                className={classnames({
                   'is-active': isSelectedTab,
                 })}
                 data-cy="Tab"
               >
                 <a
-                  href={`#${tab.id}`}
+                  href={`#${id}`}
                   data-cy="TabLink"
                   onClick={() => {
                     if (!isSelectedTab) {
@@ -27,7 +33,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
                     }
                   }}
                 >
-                  {tab.title}
+                  {title}
                 </a>
               </li>
             );
