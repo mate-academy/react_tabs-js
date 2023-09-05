@@ -4,11 +4,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
   const handleClick = (tab) => {
     if (selectedTab.id !== tab.id) {
-      if (tabs.some(({ id }) => tab.id === id)) {
-        onTabSelected(tabs.find(({ id }) => id === tab.id));
-      } else {
-        onTabSelected(tabs[0]);
-      }
+      onTabSelected(tab);
     }
   };
 
