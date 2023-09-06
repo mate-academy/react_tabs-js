@@ -3,7 +3,6 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { Tabs } from './components/Tabs/Tabs';
-import { findSelectedTab } from './functions';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -12,10 +11,9 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTab] = useState(tabs[0].id);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  const selectedTab = findSelectedTab(tabs, selectedTabId);
-  const onTabSelected = tab => setSelectedTab(tab.id);
+  const onTabSelected = tab => setSelectedTab(tab);
 
   return (
     <div className="section">
@@ -25,7 +23,7 @@ export const App = () => {
 
       <Tabs
         tabs={tabs}
-        selectedTabId={selectedTabId}
+        selectedTabId={selectedTab.id}
         onTabSelected={onTabSelected}
       />
 
