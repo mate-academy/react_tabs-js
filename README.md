@@ -1,6 +1,6 @@
 # React Tabs (JS)
 
-Implement the `App` and `Tabs` components to render and switch between given `tabs`.
+Implement the `App` and `Tabs` components to render and switch between given`tabs`.
 
 > Here is [the working version](https://mate-academy.github.io/react_tabs)
 
