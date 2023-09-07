@@ -5,6 +5,12 @@ import { getSelectedTab } from '../helpers/helpers';
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = getSelectedTab(tabs, selectedTabId);
 
+  const handleTabClick = (tab) => {
+    if (selectedTab.id !== tab.id) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -20,11 +26,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (selectedTab.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => handleTabClick(tab)}
               >
                 {tab.title}
               </a>
