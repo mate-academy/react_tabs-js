@@ -4,14 +4,13 @@ export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
+  selectedTab,
 }) => {
   const tabClick = (tab) => {
     if (selectedTabId !== tab.id) {
       onTabSelected(tab);
     }
   };
-
-  const isSelected = tabs.find(tab => tab.id === selectedTabId || tab[0]);
 
   return (
     <div data-cy="TabsComponent">
@@ -36,7 +35,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {isSelected.content}
+        {selectedTab.content}
       </div>
     </div>
   );
