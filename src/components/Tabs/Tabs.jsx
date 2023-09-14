@@ -1,7 +1,14 @@
 import cn from 'classnames';
+import { findTabById } from '../../utils/utilFunctions';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const validTab = tabs.find(tab => tab.id === selectedTabId) ?? tabs[0];
+  const validTab = findTabById(tabs, selectedTabId);
+
+  const onClick = (tab) => {
+    if (tab.id !== selectedTabId) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -16,11 +23,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (tab.id !== selectedTabId) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => onClick(tab)}
               >
                 {tab.title}
               </a>
