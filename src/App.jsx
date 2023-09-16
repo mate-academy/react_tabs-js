@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import cn from 'classnames';
 import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
@@ -16,38 +15,16 @@ export const App = () => {
   const [selectedTabContent, setSelectedTabContent] = useState('Some text 1');
 
   return (
-    <div className="section">
-      <h1 className="title">
-        <>Selected tab is </>
-        {selectedTabTitle}
-      </h1>
 
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            {tabs.map(tab => (
-              <li
-                data-cy="Tab"
-                className={cn('li', {
-                  'is-active': selectedTabTitle === tab.title,
-                })}
-              >
-                <a
-                  href={`#${tab.id}`}
-                  data-cy="TabLink"
-                  onClick={() => {
-                    setSelectedTabTitle(tab.title);
-                    setSelectedTabContent(tab.content);
-                  }}
-                >
-                  {tab.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Tabs content={selectedTabContent} key={tabs.id} />
-      </div>
-    </div>
+    <Tabs
+      states={(title, content) => {
+        setSelectedTabTitle(title);
+        setSelectedTabContent(content);
+      }}
+      selectedTitle={selectedTabTitle}
+      selectedContent={selectedTabContent}
+      tabs={tabs}
+      key={tabs.id}
+    />
   );
 };
