@@ -24,7 +24,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onSelectedTabIdChange={setSelectedTabId}
+        onTabSelected={(tab => setSelectedTabId(tab.id))}
         data-cy="tab-content"
       />
     </div>
