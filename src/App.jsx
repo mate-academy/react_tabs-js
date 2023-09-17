@@ -16,9 +16,7 @@ export const App = () => {
 
   const foundTab = selectTab(tabs, selectedTabId);
 
-  const handleTabClick = (tab) => {
-    setSelectedTabId(tab.id);
-  };
+  const handleTabClick = ({ id }) => setSelectedTabId(id);
 
   return (
     <div className="section">
