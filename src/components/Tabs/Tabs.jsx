@@ -7,40 +7,36 @@ export const Tabs = ({
 }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
+  const handleTabClick = (tab) => {
+    if (tab.id !== selectedTabId) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
-    <div className="section">
-      <h1 className="title">
-        {`Selected tab is ${selectedTab.title}`}
-      </h1>
-
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            {tabs.map(tab => (
-              <li
-                className={cn({ 'is-active': selectedTab.id === tab.id })}
-                data-cy="Tab"
-                key={tab.id}
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul>
+          {tabs.map(tab => (
+            <li
+              className={cn({ 'is-active': selectedTabId === tab.id })}
+              data-cy="Tab"
+              key={tab.id}
+            >
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => handleTabClick(tab)}
               >
-                <a
-                  href={`#${tab.id}`}
-                  data-cy="TabLink"
-                  onClick={() => {
-                    if (tab.id !== selectedTab.id) {
-                      onTabSelected(tab.id);
-                    }
-                  }}
-                >
-                  {`${tab.title}`}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+                {`${tab.title}`}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-        <div className="block" data-cy="TabContent">
-          {`${selectedTab.content}`}
-        </div>
+      <div className="block" data-cy="TabContent">
+        {`${selectedTab.content}`}
       </div>
     </div>
   );
