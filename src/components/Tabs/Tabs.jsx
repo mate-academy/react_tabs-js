@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import { Tab } from '../Tab/Tab';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selected = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
@@ -8,21 +8,13 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
-            <li
-              data-cy="Tab"
-              className={
-                classnames({ 'is-active': tab.id === selected.id })
-              }
+            <Tab
+              tab={tab}
+              selectedTabId={selectedTabId}
+              selected={selected}
+              onTabSelected={onTabSelected}
               key={tab.id}
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={() => selectedTabId !== tab.id && onTabSelected(tab)}
-              >
-                {tab.title}
-              </a>
-            </li>
+            />
           ))}
         </ul>
       </div>
