@@ -22,7 +22,9 @@ export const App = () => {
         tabs={tabs}
         selectedTabId={selectedTab.id}
         onTabSelected={(newTab) => {
-          setSelectedTab(newTab);
+          if (selectedTab !== newTab) {
+            setSelectedTab(newTab);
+          }
         }}
       />
     </div>
