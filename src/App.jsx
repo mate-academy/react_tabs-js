@@ -11,10 +11,10 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTab] = useState(tabs[0]);
-  const onTabSelected = (newTabId) => {
-    if (selectedTabId !== newTabId) {
-      setSelectedTab(newTabId);
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const onTabSelected = (newTab) => {
+    if (selectedTabId !== newTab.id) {
+      setSelectedTabId(newTab.id);
     }
   };
 
@@ -27,7 +27,6 @@ export const App = () => {
       </h1>
       <Tabs
         tabs={tabs}
-        selectedTab={selectedTab}
         selectedTabId={selectedTabId}
         onTabSelected={onTabSelected}
       />
