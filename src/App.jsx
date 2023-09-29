@@ -16,7 +16,7 @@ export const App = () => {
   return (
 
     <Tabs
-      states={(tab) => {
+      onTabSelect={(tab) => {
         setSelectedTab(tab);
       }}
       selectedTab={selectedTab}
