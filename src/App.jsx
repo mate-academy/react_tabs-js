@@ -11,18 +11,15 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabTitle, setSelectedTabTitle] = useState('Tab 1');
-  const [selectedTabContent, setSelectedTabContent] = useState('Some text 1');
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
 
     <Tabs
-      states={(title, content) => {
-        setSelectedTabTitle(title);
-        setSelectedTabContent(content);
+      states={(tab) => {
+        setSelectedTab(tab);
       }}
-      selectedTitle={selectedTabTitle}
-      selectedContent={selectedTabContent}
+      selectedTab={selectedTab}
       tabs={tabs}
       key={tabs.id}
     />
