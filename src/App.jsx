@@ -14,6 +14,11 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState('tab-1');
   const currentTab = tabs.find(item => item.id === selectedTabId);
+  const handleTabChange = (newTabId) => {
+    if (currentTab.id !== newTabId) {
+      setSelectedTabId(newTabId);
+    }
+  };
 
   return (
     <div className="section">
@@ -25,11 +30,7 @@ export const App = () => {
         tabs={tabs}
         selectedTabId={selectedTabId}
         currentTab={currentTab}
-        onTabSelected={(newTabId) => {
-          if (currentTab.id !== newTabId) {
-            setSelectedTabId(newTabId);
-          }
-        }}
+        onTabSelected={handleTabChange}
       />
     </div>
   );
