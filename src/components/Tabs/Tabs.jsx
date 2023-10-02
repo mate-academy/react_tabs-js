@@ -3,7 +3,9 @@ import { TabContent } from './TabContent/TabContent';
 
 export const Tabs = ({ onTabSelect, tabs, selectedTab }) => {
   const sendTab = (tab) => {
-    onTabSelect(tab);
+    if (tab.title !== selectedTab.title) {
+      onTabSelect(tab);
+    }
   };
 
   return (
@@ -16,6 +18,7 @@ export const Tabs = ({ onTabSelect, tabs, selectedTab }) => {
           <ul>
             {tabs.map(tab => (
               <li
+                key={tab.id}
                 data-cy="Tab"
                 className={cn('li', {
                   'is-active': selectedTab.title === tab.title,
@@ -24,11 +27,7 @@ export const Tabs = ({ onTabSelect, tabs, selectedTab }) => {
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={(e) => {
-                    if (tab.title !== selectedTab.title) {
-                      sendTab(tab);
-                    }
-                  }}
+                  onClick={e => sendTab(tab)}
                 >
                   {tab.title}
                 </a>
