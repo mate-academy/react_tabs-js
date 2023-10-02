@@ -38,7 +38,6 @@ export const Tabs = ({ onTabSelect, tabs, selectedTab }) => {
 
         <TabContent
           content={selectedTab.content}
-          key={tabs.id}
         />
 
       </div>

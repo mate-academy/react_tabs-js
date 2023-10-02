@@ -16,12 +16,9 @@ export const App = () => {
   return (
 
     <Tabs
-      onTabSelect={(tab) => {
-        setSelectedTab(tab);
-      }}
+      onTabSelect={setSelectedTab}
       selectedTab={selectedTab}
       tabs={tabs}
-      key={tabs.id}
     />
   );
 };
