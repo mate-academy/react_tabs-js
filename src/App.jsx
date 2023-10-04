@@ -11,10 +11,10 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('tab-1');
+  const [selectedTab, setSelectedTab] = useState('tab-1');
 
   const handleTabSelected = (tab) => {
-    setSelectedTabId(tab.id);
+    setSelectedTab(tab.id);
   };
 
   return (
@@ -22,12 +22,12 @@ export const App = () => {
       <h1 className="title">
         Selected tab is
         {' '}
-        {tabs.find(tab => tab.id === selectedTabId)?.title}
+        {tabs.find(tab => tab.id === selectedTab)?.title}
       </h1>
 
       <Tabs
         tabs={tabs}
-        selectedTabId={selectedTabId}
+        selectedTab={selectedTab}
         onTabSelected={handleTabSelected}
       />
     </div>

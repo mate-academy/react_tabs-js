@@ -1,6 +1,6 @@
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const handleTabClick = (tabId) => {
-    if (tabId !== selectedTabId) {
+    if (tabId !== selectedTab) {
       onTabSelected(tabs.find(tab => tab.id === tabId));
     }
   };
@@ -11,7 +11,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map(tab => (
             <li
-              className={selectedTabId === tab.id ? 'is-active' : ''}
+              className={selectedTab === tab.id ? 'is-active' : ''}
               data-cy="Tab"
               key={tab.id}
             >
@@ -27,13 +27,9 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         </ul>
       </div>
 
-      {tabs
-        .filter(content => content.id === selectedTabId)
-        .map(filteredContent => (
-          <div className="block" data-cy="TabContent" key={`tab-${filteredContent.id}`}>
-            {filteredContent.content}
-          </div>
-        ))}
+      <div className="block" data-cy="TabContent">
+        {selectedTab.content}
+      </div>
     </div>
   );
 };
