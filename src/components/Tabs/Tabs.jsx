@@ -40,9 +40,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.reduce((text, tab) => (
-          tab.id === selectedTabId ? tab.content : text
-        ), '')}
+        {selectTab.content}
       </div>
     </div>
   );
