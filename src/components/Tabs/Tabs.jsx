@@ -17,23 +17,15 @@ export const Tabs = ({
               key={tab.id}
               className={cn({ 'is-active': selectTab.id === tab.id })}
             >
-              {selectedTabId === tab.id ? (
-                <a
-                  href={`#${tab.id}`}
-                  data-cy="TabLink"
-                >
-                  {tab.title}
-                </a>
-              ) : (
-                <a
-                  href={`#${tab.id}`}
-                  data-cy="TabLink"
-                  onClick={() => onTabSelected(tab)}
-
-                >
-                  {tab.title}
-                </a>
-              )}
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => (
+                  selectTab.id === tab.id ? '' : onTabSelected(tab)
+                )}
+              >
+                {tab.title}
+              </a>
             </li>
           ))}
         </ul>
