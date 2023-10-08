@@ -46,5 +46,5 @@ export const Tabs = ({
         {selectedTab.content}
       </div>
     </div>
-  )
+  );
 };
