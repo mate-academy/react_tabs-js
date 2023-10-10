@@ -1,3 +1,6 @@
+import React from 'react';
+import classnames from 'classnames';
+
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === selectedTab.id) || tabs[0];
 
@@ -8,7 +11,9 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === activeTab.id ? 'is-active' : ''}
+              className={classnames({
+                'is-active': tab.id === activeTab.id,
+              })}
               data-cy="Tab"
             >
               <a
