@@ -1,6 +1,5 @@
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const isValidTab = tabs.some(tab => tab.id === selectedTabId);
-  const activeTabId = isValidTab ? selectedTabId : tabs[0].id;
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  const activeTab = tabs.find(tab => tab.id === selectedTab.id) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -9,7 +8,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === activeTabId ? 'is-active' : ''}
+              className={tab.id === activeTab.id ? 'is-active' : ''}
               data-cy="Tab"
             >
               <a
@@ -17,7 +16,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                 data-cy="TabLink"
                 onClick={(e) => {
                   e.preventDefault();
-                  if (tab.id !== activeTabId) {
+                  if (tab.id !== activeTab.id) {
                     onTabSelected(tab);
                   }
                 }}
@@ -30,7 +29,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId)?.content}
+        {activeTab.content}
       </div>
     </div>
   );
