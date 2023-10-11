@@ -13,12 +13,6 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  function onTabSelected(tab) {
-    const title = `Selected tab is ${tab.title}`;
-
-    return title;
-  }
-
   return (
     <div className="section">
       <h1 className="title">
