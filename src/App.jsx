@@ -1,4 +1,3 @@
-// import React from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -13,19 +12,16 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId);
 
   return (
     <div className="section">
-      <h1 className="title">
-        {`Selected tab is ${
-          tabs.find(tab => tab.id === selectedTabId).title
-        }`}
-      </h1>
+      <h1 className="title">{`Selected tab is ${selectedTab?.title}`}</h1>
 
       <Tabs
         tabs={tabs}
         selectedId={selectedTabId}
-        setSelectedId={id => setSelectedTabId(id)}
+        onTabSelected={id => setSelectedTabId(id)}
       />
     </div>
   );
