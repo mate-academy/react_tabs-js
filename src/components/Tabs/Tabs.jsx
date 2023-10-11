@@ -1,14 +1,9 @@
 import cn from 'classnames';
 import 'bulma/css/bulma.css';
-import { tabSelectHendler } from '../../utils/tabSelectHendler';
 
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
-  const DEFAULT_TAB_ID = tabs[0].id;
-  let selectedTab = tabs.find(tab => tab.id === selectedTabId);
-
-  if (!selectedTab) {
-    selectedTab = tabs.find(tab => tab.id === DEFAULT_TAB_ID);
-  }
+  const DEFAULT_TAB = tabs[0];
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || DEFAULT_TAB;
 
   return (
     <div data-cy="TabsComponent">
@@ -25,9 +20,8 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  tabSelectHendler(tab.id, tabs, onTabSelected, selectedTabId);
-                }
+                onClick={() => selectedTab.id !== tab.id
+                  && onTabSelected(tab)
                 }
               >
                 {tab.title}
