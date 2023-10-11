@@ -17,13 +17,11 @@ export const App = () => {
 
   return (
     <div className="section">
-      <h1 className="title">
-        {`Selected tab is ${curentTab.title}`}
-      </h1>
+      <h1 className="title">{`Selected tab is ${curentTab.title}`}</h1>
       <Tabs
         tabs={tabs}
         selectedTabId={curentTab.id}
-        handleSelectedTab={handleSelectedTab}
+        onTabSelected={handleSelectedTab}
       />
     </div>
   );
