@@ -3,6 +3,12 @@ import cn from 'classnames';
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
+  const handleTabSelected = (tab) => {
+    if (tab.id !== activeTab.id) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -17,11 +23,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => {
-                    if (tab.id !== activeTab.id) {
-                      onTabSelected(tab);
-                    }
-                  }}
+                  onClick={() => handleTabSelected(tab)}
                 >
                   {tab.title}
                 </a>
