@@ -14,18 +14,16 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  const selectedTabTitle = tabs.find(tab => tab.id === selectedTabId).title;
-
   const handleTabSelection = (newTab) => {
     if (selectedTabId !== newTab.id) {
-      setSelectedTabId(newTab);
+      setSelectedTabId(newTab.id);
     }
   };
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${selectedTabTitle}`}
+        {`Selected tab is ${tabs.find(tab => tab.id === selectedTabId).title}`}
       </h1>
 
       <Tabs
