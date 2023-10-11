@@ -15,8 +15,8 @@ export const App = () => {
 
   const selectedTab = tabs.find(tab => tab.id === selectedTabId);
 
-  const onTabSelected = (data) => {
-    setSelectedTabId(data.id);
+  const onTabSelected = (tabData) => {
+    setSelectedTabId(tabData.id);
   };
 
   return (
