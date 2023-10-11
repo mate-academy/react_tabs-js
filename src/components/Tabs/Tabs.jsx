@@ -8,7 +8,9 @@ export const Tabs = ({ tabs, selectedTabId, setSelectedTabId }) => (
           key={tab.id}
           data-cy="Tab"
           className={cn(
-            { 'is-active': selectedTabId === tab.id },
+            { 'is-active': selectedTabId === tab.id
+              || (tab.id === tabs[0].id
+                && !tabs.find(el => el.id === selectedTabId)) },
           )}
         >
           <a
