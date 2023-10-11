@@ -13,7 +13,6 @@ export const Tabs = ({
         <ul>
           {tabs.map((tab) => {
             const { id, title } = tab;
-            // const isActive = activeTab.id === id;
 
             return (
               <li
