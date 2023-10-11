@@ -19,11 +19,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (table.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => table.id !== tab.id && onTabSelected(tab)}
               >
                 {tab.title}
               </a>
