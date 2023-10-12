@@ -19,15 +19,18 @@ export const App = () => {
     setselectedTabId(tab.id);
   };
 
+  const selectedTitle = tabs.find(tab => tab.id === selectedTab.id).title;
+
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${(tabs.find(tab => tab.id === selectedTab.id)).title}`}
+        {`Selected tab is ${selectedTitle}`}
       </h1>
 
       <Tabs
         tabs={tabs}
-        selectedTabId={selectedTabId}
+        selectedTab={selectedTab}
+        // selectedTabId={selectedTabId}
         setselectedTabId={setselectedTabId}
         onTabSelected={onTabSelected}
       />

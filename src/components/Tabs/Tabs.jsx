@@ -2,10 +2,17 @@ import cn from 'classnames';
 
 export const Tabs = ({
   tabs,
-  selectedTabId,
+  // selectedTabId,
+  selectedTab,
   onTabSelected,
 }) => {
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+  const selectedContent = tabs.find(tab => tab.id === selectedTab.id).content;
+
+  // function startOnTabSelected(tab) {
+  //   if (tab.id !== selectedTab.id) {
+  //     onTabSelected(tab);
+  //   }
+  // }
 
   return (
     <div data-cy="TabsComponent">
@@ -36,7 +43,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {(tabs.find(tab => tab.id === selectedTab.id)).content}
+        {selectedContent}
       </div>
     </div>
   );
