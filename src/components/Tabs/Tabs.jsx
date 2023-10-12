@@ -1,9 +1,15 @@
 import cn from 'classnames';
 
+function selectTab(selectedTab, currentTab, onTabSelected) {
+  // Function for onClick event
+  return () => {
+    if (selectedTab.id !== currentTab.id) {
+      onTabSelected(currentTab);
+    }
+  };
+}
+
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  // got rid of checkers, now just assigning the active tab via OR construction
-  // also tabs[0] at the end is mandatory to set a default in case find returns undefined
-  // Which is necessary as one of the tests checks for
   const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 
   return (
@@ -19,11 +25,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${currentTab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (selectedTab.id !== currentTab.id) {
-                    onTabSelected(currentTab);
-                  }
-                }}
+                onClick={selectTab(selectedTab, currentTab, onTabSelected)}
               >
                 {currentTab.title}
               </a>
