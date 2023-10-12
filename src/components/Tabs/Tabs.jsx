@@ -2,16 +2,11 @@ import React from 'react';
 
 export const Tabs = ({
   tabs,
-  setSelectedTabId,
   selectedTabId,
-  setCurrentTab,
+  onTabSelected,
 }) => {
-  const findCurrentTab = tabs.find(item => (item.id === selectedTabId));
-
-  const onTabSelected = (tab) => {
-    setSelectedTabId(tab.id);
-    setCurrentTab(tab);
-  };
+  const findCurrentTab = tabs.find(item => (item.id === selectedTabId))
+    || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -24,7 +19,11 @@ export const Tabs = ({
               data-cy="Tab"
             >
               <a
-                onClick={() => onTabSelected(tab)}
+                onClick={() => {
+                  if (tab.id !== selectedTabId) {
+                    onTabSelected(tab);
+                  }
+                }}
                 href={`#${tab.id}`}
                 data-cy="TabLink"
               >
