@@ -1,19 +1,18 @@
+import cn from 'classnames';
+
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  let checkedTabId = selectedTabId;
-
-  if (tabs.find(searchedTab => searchedTab.id === checkedTabId) === undefined) {
-    checkedTabId = tabs[0].id;
-  }
-
-  const activeTab = tabs.find(searchedTab => searchedTab.id === checkedTabId);
+  // got rid of checkers, now just assigning the active tab via OR construction
+  // also tabs[0] at the end is mandatory to set a default in case find returns undefined
+  // Which is necessary as one of the tests checks for
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map((currentTab, i) => (
-            <li
-              className={(checkedTabId === currentTab.id) ? 'is-active' : ''}
+            <li // added classnames as requested
+              className={cn({ 'is-active': selectedTab.id === currentTab.id })}
               data-cy="Tab"
               key={currentTab.id}
             >
@@ -21,7 +20,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
                 href={`#${currentTab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (checkedTabId !== currentTab.id) {
+                  if (selectedTab.id !== currentTab.id) {
                     onTabSelected(currentTab);
                   }
                 }}
@@ -34,7 +33,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {activeTab.content}
+        {selectedTab.content}
       </div>
     </div>
   );

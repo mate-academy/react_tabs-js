@@ -11,26 +11,23 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-function setOpenedTab(listOfTabs, { tabSelector }) {
-  return listOfTabs.find(tab => tab.id === tabSelector).id;
-}
-
 export const App = () => {
-  const [tabSelector, setTabSelector] = useState(tabs[0].id);
-  const selectedTabId = setOpenedTab(tabs, { tabSelector });
-  const activeTab = tabs.find(tab => tab.id === selectedTabId);
+  // the function was redundant, got rid of it and just using the selectedTabId
+  // also has to be called selectedTabId due to README
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${activeTab.title}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
         onTabSelected={(openTab) => {
-          setTabSelector(openTab.id);
+          setSelectedTabId(openTab.id);
         }}
       />
     </div>
