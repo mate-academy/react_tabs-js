@@ -7,8 +7,6 @@ export const Tabs = ({
 }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
-  const selectedContent = tabs.find(tab => tab.id === selectedTab.id).content;
-
   const startOnTabSelected = tab => () => {
     if (tab.id !== selectedTab.id) {
       onTabSelected(tab);
@@ -40,7 +38,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedContent}
+        {selectedTab.content}
       </div>
     </div>
   );
