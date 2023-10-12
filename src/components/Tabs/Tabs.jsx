@@ -2,7 +2,7 @@ import 'bulma/css/bulma.css';
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const table = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -11,7 +11,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               className={cn({
-                'is-active': table.id === tab.id,
+                'is-active': selectedTab.id === tab.id,
               })}
               data-cy="Tab"
               key={tab.id}
@@ -19,7 +19,8 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => table.id !== tab.id && onTabSelected(tab)}
+                onClick={() => selectedTab.id !== tab.id
+                  && onTabSelected(tab)}
               >
                 {tab.title}
               </a>
@@ -29,7 +30,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {table.content}
+        {selectedTab.content}
       </div>
     </div>
   );
