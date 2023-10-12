@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Tabs = ({ tabs, setSelectedTabId, selectedTabId, setCurrentTab }) => {
+const Tabs = ({
+  tabs,
+  setSelectedTabId,
+  selectedTabId,
+  setCurrentTab,
+}) => {
   const findCurrentTab = tabs.find(item => (item.id === selectedTabId));
 
   const onTabSelected = (tab) => {
