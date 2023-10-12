@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Tabs = ({
+export const Tabs = ({
   tabs,
   setSelectedTabId,
   selectedTabId,
@@ -41,5 +41,3 @@ const Tabs = ({
     </div>
   );
 };
-
-export default Tabs;
