@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -10,37 +10,25 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">
-      {`Selected tab is ${tabs.title}`}
-    </h1>
+export const App = () => {
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id);
 
-    <Tabs />
+  const handleTabSelected = (tab) => {
+    setSelectedTabId(tab.id);
+  };
 
-    {/* {tabs.map(tab => (
-        <Tabs tabs={tab} />
-      ))} */}
-  </div>
-);
+  return (
+    <div className="section">
+      <h1 className="title">
+        {`Selected tab is ${selectedTab.title}`}
+      </h1>
 
-// export const App = () => {
-//   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
-
-//   return (
-//     <div className="section">
-//       <h1 className="title">
-//         {`Selected tab is ${tabs.title}`}
-//       </h1>
-
-//       <Tabs
-//         onTabSelected={newSelectedTabId => setSelectedTabId(newSelectedTabId.id)
-//         }
-//       />
-
-//       {/* {tabs.map(tab => (
-//         <Tabs tabs={tab} />
-//       ))} */}
-//     </div>
-//   );
-// };
+      <Tabs
+        tabs={tabs}
+        selectedTabId={selectedTabId}
+        onTabSelected={handleTabSelected}
+      />
+    </div>
+  );
+};
