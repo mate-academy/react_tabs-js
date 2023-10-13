@@ -13,7 +13,11 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(({ id, title, content }) => (
+          {tabs.map(({
+            id,
+            title,
+            content,
+          }) => (
             <li
               key={id}
               data-cy="Tab"
