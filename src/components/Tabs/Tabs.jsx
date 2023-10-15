@@ -1,12 +1,12 @@
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const isActiveTabPresent = tabs.some(tab => tab.id === selectedTabId);
-  const verifiedSelectedTabId = isActiveTabPresent ? selectedTabId : tabs[0].id;
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId);
+  const verifiedSelectedTabId = selectedTab ? selectedTab.id : tabs[0].id;
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map((tab, index) => (
+          {tabs.map(tab => (
             <li
               data-cy="Tab"
               key={tab.id}
