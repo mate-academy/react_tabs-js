@@ -1,17 +1,16 @@
-export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
-  const hasTabId = tabs.some(el => el.id === selectedTabId);
-  let correctSelectedTabId = selectedTabId;
+import cn from 'classnames';
 
-  if (!hasTabId) {
-    correctSelectedTabId = tabs[0].id;
-  }
+export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
+  const tabId = tabs.find(el => el.id === selectedTabId) === undefined
+    ? tabs[0].id
+    : selectedTabId;
 
   return (
     <>
       <h1 className="title">
         Selected tab is
         {' '}
-        {tabs.find(el => el.id === correctSelectedTabId).title}
+        {tabs.find(el => el.id === tabId).title}
       </h1>
 
       <div data-cy="TabsComponent">
@@ -20,7 +19,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
             {
               tabs.map(tab => (
                 <li
-                  className={correctSelectedTabId === tab.id ? 'is-active' : ''}
+                  className={cn({ 'is-active': tabId === tab.id })}
                   data-cy="Tab"
                   key={tab.id}
                 >
@@ -29,7 +28,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
                     data-cy="TabLink"
                     onClick={(event) => {
                       event.preventDefault();
-                      if (tab.id !== correctSelectedTabId) {
+                      if (tab.id !== tabId) {
                         onTabSelected(tab);
                       }
                     }}
@@ -42,7 +41,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
           </ul>
         </div>
         <div className="block" data-cy="TabContent">
-          {tabs.find(el => el.id === correctSelectedTabId).content}
+          {tabs.find(el => el.id === tabId).content}
         </div>
       </div>
     </>
