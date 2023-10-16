@@ -1,5 +1,11 @@
 import cn from 'classnames';
 
+function click(tab, selectedTabId, onTabSelected) {
+  if (tab.id !== selectedTabId) {
+    onTabSelected(tab);
+  }
+}
+
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
@@ -16,11 +22,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (tab.id !== selectedTabId) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => click(tab, selectedTabId, onTabSelected)}
               >
                 {tab.title}
               </a>
