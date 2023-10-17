@@ -11,13 +11,9 @@ export const tabs = [
 ];
 
 function selectTheTab(recievedTabs, { selectedTabId }) {
-  let preparedTabs = [...recievedTabs];
+  const preparedTabs = [...recievedTabs];
 
-  if (selectedTabId) {
-    preparedTabs = preparedTabs.find(tab => tab.id === selectedTabId);
-  }
-
-  return preparedTabs;
+  return preparedTabs.find(tab => tab.id === selectedTabId);
 }
 
 export const App = () => {
