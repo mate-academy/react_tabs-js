@@ -1,8 +1,9 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
-  const tabId = tabs.find(el => el.id === selectedTabId) === undefined
-    ? tabs[0].id
+
+  const visibleTab = tabs.find(el => el === selectedTabId) === undefined
+    ? tabs[0]
     : selectedTabId;
 
   return (
@@ -10,7 +11,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
       <h1 className="title">
         Selected tab is
         {' '}
-        {tabs.find(el => el.id === tabId).title}
+        {visibleTab.title}
       </h1>
 
       <div data-cy="TabsComponent">
@@ -19,7 +20,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
             {
               tabs.map(tab => (
                 <li
-                  className={cn({ 'is-active': tabId === tab.id })}
+                  className={cn({ 'is-active': visibleTab.id === tab.id })}
                   data-cy="Tab"
                   key={tab.id}
                 >
@@ -28,7 +29,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
                     data-cy="TabLink"
                     onClick={(event) => {
                       event.preventDefault();
-                      if (tab.id !== tabId) {
+                      if (tab.id !== visibleTab.id) {
                         onTabSelected(tab);
                       }
                     }}
@@ -41,7 +42,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => {
           </ul>
         </div>
         <div className="block" data-cy="TabContent">
-          {tabs.find(el => el.id === tabId).content}
+          {visibleTab.content}
         </div>
       </div>
     </>

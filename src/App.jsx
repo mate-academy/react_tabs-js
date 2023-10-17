@@ -11,13 +11,13 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('tab-444');
+  const [selectedTabId, setSelectedTabId] = useState('abcd');
 
   return (
     <div className="section">
       <Tabs
         tabs={tabs}
-        onTabSelected={tab => setSelectedTabId(tab.id)}
+        onTabSelected={tab => setSelectedTabId(tab)}
         selectedTabId={selectedTabId}
       />
     </div>
