@@ -1,6 +1,5 @@
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const currentTab = tabs.find(tab => tab.id === selectedTabId)
-  || tabs[0];
+  const currentTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   const handleClick = (tab) => {
     if (tab.id !== selectedTabId) {
@@ -30,7 +29,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         </ul>
       </div>
 
-      <div className="block" data-cy="tabContent">
+      <div className="block" data-cy="TabContent">
         {currentTab.content}
       </div>
     </div>
