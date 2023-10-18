@@ -1,10 +1,5 @@
-/*eslint-disable*/
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  if (selectedTabId === 'asdasd') {
-    selectedTabId = tabs[0].id;
-  }
-
-  const activeTab = tabs.find(tab => tab.id === selectedTabId);
+  const activeTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -15,14 +10,10 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={selectedTabId === tab.id ? 'is-active' : ''}
+              className={activeTab.id === tab.id ? 'is-active' : ''}
             >
               <a
-                onClick={() => {
-                  if (selectedTabId !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => selectedTabId !== tab.id && onTabSelected(tab)}
                 href={`#${tab.id}`}
                 data-cy="TabLink"
               >
