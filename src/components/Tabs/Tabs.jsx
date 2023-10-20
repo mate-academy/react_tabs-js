@@ -1,15 +1,25 @@
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const newSelectedTabId = selectedTabId
-    && tabs.some(tab => tab.id === selectedTabId) ? selectedTabId : tabs[0].id;
+import { useState } from 'react';
+import classnames from 'classnames';
 
-  const findTab = tabs.find(tab => tab.id === newSelectedTabId);
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const [localSelectedTabId, setLocalSelectedTabId] = useState(selectedTabId);
+  const findTab = tabs.find(tab => tab.id === localSelectedTabId) || tabs[0];
+
+  const handleTabClick = (tab) => {
+    if (tab.id !== localSelectedTabId) {
+      setLocalSelectedTabId(tab.id);
+      onTabSelected(tab);
+    }
+  };
+
+  if (!tabs.some(tab => tab.id === localSelectedTabId)) {
+    setLocalSelectedTabId(tabs[0].id);
+  }
 
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is
-        {' '}
-        {findTab.title}
+        {`Selected tab is ${findTab.title}`}
       </h1>
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
@@ -18,16 +28,14 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <li
                 key={tab.id}
                 data-cy="Tab"
-                className={tab.id === newSelectedTabId ? 'is-active' : ''}
+                className={classnames(
+                  { 'is-active': tab.id === localSelectedTabId },
+                )}
               >
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => {
-                    if (tab.id !== newSelectedTabId) {
-                      onTabSelected(tab);
-                    }
-                  }}
+                  onClick={() => handleTabClick(tab)}
                 >
                   {tab.title}
                 </a>
