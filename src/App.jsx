@@ -18,17 +18,10 @@ export const App = () => {
   };
 
   return (
-    <div className="section">
-      <h1 className="title">
-        Selected tab is
-        {' '}
-        {tabs.find(tab => tab.id === selectedTabId).title}
-      </h1>
-      <Tabs
-        tabs={tabs}
-        selectedTabId={selectedTabId}
-        onTabSelected={handleTabSelected}
-      />
-    </div>
+    <Tabs
+      tabs={tabs}
+      selectedTabId={selectedTabId}
+      onTabSelected={handleTabSelected}
+    />
   );
 };
