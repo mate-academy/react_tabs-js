@@ -1,14 +1,9 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, currentTab, onTabSelected }) => {
-  let selectedTab = tabs.find(tab => tab.id === currentTab.id) || tabs[0];
+  const selectedTab = tabs.find(tab => tab.id === currentTab.id) || tabs[0];
 
-  if (selectedTab === undefined) {
-    // eslint-disable-next-line prefer-destructuring
-    selectedTab = tabs[0];
-  }
-
-  const HandleClick = (tab) => {
+  const handleClick = (tab) => {
     if (tab.id !== selectedTab) {
       onTabSelected(tab);
     }
@@ -29,7 +24,7 @@ export const Tabs = ({ tabs, currentTab, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => HandleClick(tab)}
+                onClick={() => handleClick(tab)}
               >
                 {tab.title}
               </a>
