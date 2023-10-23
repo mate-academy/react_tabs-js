@@ -27,6 +27,6 @@ export const App = () => {
           setSelectedTabId(data.id);
         }}
       />
-  </div>
+    </div>
   );
 };
