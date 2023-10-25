@@ -12,11 +12,6 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
-
-  // if (tabs.every(tab => tab.id !== selectedTabId)) {
-  //   setSelectedTabId(tabs[0].id);
-  // }
-
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (

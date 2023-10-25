@@ -1,8 +1,7 @@
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
-
-  const HandleClick = (tab) => {
+  const handleClick = (tab) => {
     if (tab.id !== selectedTab.id) {
       onTabSelected(tab);
     }
@@ -18,15 +17,14 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {tabs.map(tab => (
             <li
-              className={tab.id === selectedTab.id ? ('is-active') : null}
+              className={tab.id === selectedTab.id && 'is-active'}
               key={tab.id}
-          // {tab.id === selectedTabId.id && (className='is-active')}
               data-cy="Tab"
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => HandleClick(tab)}
+                onClick={() => handleClick(tab)}
               >
                 {tab.title}
               </a>
