@@ -1,15 +1,12 @@
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+
   const handleClick = (tab) => {
     if (tab.id !== selectedTab.id) {
       onTabSelected(tab);
     }
   };
-
-  if (selectedTabId === undefined) {
-    onTabSelected(tabs[0].id);
-  }
 
   return (
     <div data-cy="TabsComponent">
