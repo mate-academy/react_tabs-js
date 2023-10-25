@@ -2,15 +2,19 @@ export const Tabs = ({ tabs,
   selectedTabId,
   setSelectedTabId,
   onTabSelected }) => {
-  const click = (tabId, selectedId, tabsList) => {
-    if (tabId !== selectedId) {
-      onTabSelected(tabsList.find(tab => tabId === tab.id));
+  const handleClick = (tab) => {
+    if (tab.id !== selectedTabId) {
+      onTabSelected(tabs.find(tabsTab => tabsTab.id === tab.id));
     }
   };
 
-  const getIsActive = (tabsList, tabId, selectedId) => {
-    if (tabId === selectedId
-        || tabsList.find(tab => tab.id === selectedId) === undefined) {
+  const getIsActive = (tab) => {
+    if (tabs.find(tabsTab => tabsTab.id === selectedTabId) === undefined
+    && tab.id === tabs[0].id) {
+      return 'is-active';
+    }
+
+    if (tab.id === selectedTabId) {
       return 'is-active';
     }
 
@@ -23,12 +27,12 @@ export const Tabs = ({ tabs,
         <li
           key={tab.id}
           data-cy="Tab"
-          className={getIsActive(tabs, tab.id, selectedTabId)}
+          className={getIsActive(tab)}
         >
           <a
             href={`#${tab.id}`}
             data-cy="TabLink"
-            onClick={() => click(tab.id, selectedTabId, tabs)}
+            onClick={() => handleClick(tab)}
           >
             {tab.title}
           </a>
