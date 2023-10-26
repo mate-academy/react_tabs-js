@@ -1,3 +1,4 @@
+import React from 'react';
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
@@ -29,7 +30,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         </ul>
       </div>
 
-      <div className="block" data-cy="TabContent">
+      <div className="block" data-cy="tab-content">
         {currentTab.content}
       </div>
     </div>
