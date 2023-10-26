@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { Tabs } from './components/Tabs';
+import { tabs } from './constants';
 
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState('1');
@@ -17,7 +18,7 @@ export const App = () => {
         {`Selected tab is Tab ${selectedTabId.replace('tab-', '')}`}
       </h1>
 
-      <Tabs onTabSelect={tabSelected} />
+      <Tabs tabs={tabs} onTabSelect={tabSelected} />
     </div>
   );
 };
