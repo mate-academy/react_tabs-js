@@ -1,16 +1,18 @@
+import React, { useState } from 'react';
 import cn from 'classnames';
-import { useState } from 'react';
 import { tabs } from '../../constants';
 
-export const Tabs = () => {
-  const [activeTab, setActiveTab] = useState(null);
+export const Tabs = ({ onTabSelect }) => {
+  const initialTab = tabs.find(tab => tab.title === 'Tab 1');
+  const [activeTab, setActiveTab] = useState(initialTab.id);
 
-  const handleTabClick = (tab) => {
+  const tabClick = (tab) => {
     if (activeTab === tab.id) {
-      setActiveTab(null); // Если текущая вкладка уже активна, деактивируем её
-    } else {
-      setActiveTab(tab.id); // Иначе, устанавливаем новую активную вкладку
+      return;
     }
+
+    setActiveTab(tab.id);
+    onTabSelect(tab.id);
   };
 
   return (
@@ -24,9 +26,9 @@ export const Tabs = () => {
               className={cn({ 'is-active': activeTab === tab.id })}
             >
               <a
-                href={tab.id}
+                href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => handleTabClick(tab)}
+                onClick={() => tabClick(tab)}
               >
                 {tab.title}
               </a>
