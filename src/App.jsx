@@ -16,7 +16,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${selectedTab.title || tabs[0].title}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
       <Tabs
         tabs={tabs}
