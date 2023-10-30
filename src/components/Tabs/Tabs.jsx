@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, onTabSelect }) => {
-  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+export const Tabs = ({ tabs, onTabSelect, selectedTabId }) => {
 
   const tabClick = (tab) => {
     if (activeTabId === tab.id) {

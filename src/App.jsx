@@ -6,7 +6,7 @@ import { Tabs } from './components/Tabs';
 import { tabs } from './constants';
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('1');
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
   const tabSelected = (tabId) => {
     setSelectedTabId(tabId);
@@ -18,7 +18,7 @@ export const App = () => {
         {`Selected tab is Tab ${selectedTabId.replace('tab-', '')}`}
       </h1>
 
-      <Tabs tabs={tabs} onTabSelect={tabSelected} />
+      <Tabs tabs={tabs} onTabSelect={tabSelected} selectedTabId={selectedTabId} />
     </div>
   );
 };
