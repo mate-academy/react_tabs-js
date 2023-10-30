@@ -18,7 +18,11 @@ export const App = () => {
         {`Selected tab is Tab ${selectedTabId.replace('tab-', '')}`}
       </h1>
 
-      <Tabs tabs={tabs} onTabSelect={tabSelected} selectedTabId={selectedTabId} />
+      <Tabs
+        tabs={tabs}
+        onTabSelect={tabSelected}
+        selectedTabId={selectedTabId}
+      />
     </div>
   );
 };

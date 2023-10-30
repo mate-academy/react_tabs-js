@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, onTabSelect, selectedTabId }) => {
-
   const tabClick = (tab) => {
-    if (activeTabId === tab.id) {
-      return;
-    }
-
-    setActiveTabId(tab.id);
     onTabSelect(tab.id);
   };
 
@@ -20,7 +13,7 @@ export const Tabs = ({ tabs, onTabSelect, selectedTabId }) => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={cn({ 'is-active': activeTabId === tab.id })}
+              className={cn({ 'is-active': tab.id })}
             >
               <a
                 href={`#${tab.id}`}
@@ -35,7 +28,7 @@ export const Tabs = ({ tabs, onTabSelect, selectedTabId }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId)?.content}
+        {tabs.find(tab => tab.id)?.content}
       </div>
     </div>
   );
