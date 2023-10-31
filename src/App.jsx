@@ -6,22 +6,22 @@ import { Tabs } from './components/Tabs';
 import { tabs } from './constants';
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   const tabSelected = (tabId) => {
-    setSelectedTabId(tabId);
+    setSelectedTab(tabId);
   };
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is Tab ${selectedTabId.replace('tab-', '')}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
       <Tabs
         tabs={tabs}
+        selectedTabId={selectedTab.id}
         onTabSelect={tabSelected}
-        selectedTabId={selectedTabId}
       />
     </div>
   );
