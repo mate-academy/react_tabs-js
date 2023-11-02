@@ -1,4 +1,4 @@
-export const Tabs = ({ tabs, selectedTabId, onTabSelected, chooseTab }) => (
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
@@ -11,10 +11,10 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected, chooseTab }) => (
             <a
               href={`#${tab.id}`}
               data-cy="TabLink"
-              onClick={selectedTabId !== tab.id ? () => {
-                onTabSelected(tab.id);
-              } : () => {
-                onTabSelected(selectedTabId);
+              onClick={() => {
+                if (selectedTabId !== undefined && selectedTabId !== tab.id) {
+                  onTabSelected(tab);
+                }
               }
               }
             >
@@ -29,7 +29,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected, chooseTab }) => (
       className="block"
       data-cy="TabContent"
     >
-      {chooseTab.content}
+      {tabs.find(tab => tab.id === selectedTabId)}
     </div>
   </div>
 );
