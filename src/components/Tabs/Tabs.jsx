@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const findTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -12,7 +12,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <li
                 key={tab.id}
                 className={cn({
-                  'is-active': findTab.id === tab.id,
+                  'is-active': selectedTab.id === tab.id,
                 })}
                 data-cy="Tab"
               >
@@ -34,7 +34,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {findTab.content}
+        {selectedTab.content}
       </div>
     </div>
   );
