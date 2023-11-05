@@ -18,6 +18,9 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
           </a>
         </li>
       ))}
+      <div className="block" data-cy="TabContent">
+        {selectedTab.content}
+      </div>
     </>
   );
 };

@@ -30,10 +30,6 @@ export const App = () => {
             />
           </ul>
         </div>
-
-        <div className="block" data-cy="TabContent">
-          {currentSelectedTab.content}
-        </div>
       </div>
     </div>
   );
