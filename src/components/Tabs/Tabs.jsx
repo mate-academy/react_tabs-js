@@ -1,9 +1,22 @@
-export const Tabs = ({ tabs, selectedTabId, onTabSelected, tabContent }) => {
-  const handleClickTab = (tabId) => {
-    if (tabId !== selectedTabId) {
-      onTabSelected(tabId);
+import cn from 'classnames';
+
+export const TAB_ID = 'id';
+export const TAB_TITLE = 'title';
+export const TAB_CONTENT = 'content';
+
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const handleClickTab = (tab) => {
+    if (tab[TAB_ID] !== tabId) {
+      onTabSelected(tab);
     }
   };
+
+  const tabId = !tabs.find(tabItem => tabItem[TAB_ID] === selectedTabId)
+    ? tabs[0][TAB_ID]
+    : selectedTabId;
+
+  const tabContent = tabs
+    .find(tabItem => tabItem[TAB_ID] === tabId)[TAB_CONTENT];
 
   return (
     <div data-cy="TabsComponent">
@@ -14,12 +27,19 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected, tabContent }) => {
 
             return (
               <li
-                className={selectedTabId === id ? 'is-active' : ''}
+                className={cn({ 'is-active': tabId === id })}
                 data-cy="Tab"
                 key={id}
-                onClick={() => handleClickTab(id)}
               >
-                <a href={`#${id}`} data-cy="TabLink">{title}</a>
+                <a
+                  href={`#${id}`}
+                  data-cy="TabLink"
+                  onClick={() => {
+                    handleClickTab(tab);
+                  }}
+                >
+                  {title}
+                </a>
               </li>
             );
           })}
