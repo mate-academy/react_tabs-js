@@ -11,24 +11,20 @@ export const tabs = [
 ];
 
 function findTab(items, { selectedTabId }) {
-  const findedTab = items.filter(item => item.id === selectedTabId);
+  const findedTab = items.find(item => item.id === selectedTabId);
 
   return findedTab;
 }
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('asdsas');
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
   const chooseTab = findTab(tabs, { selectedTabId });
-
-  if (chooseTab.length === 0) {
-    setSelectedTabId(tabs[0].id);
-  }
 
   return (
     <div className="section">
       <h1 className="title">
         Selected tab is
-        {` ${chooseTab[0].title}`}
+        {` ${chooseTab.title}`}
       </h1>
 
       <Tabs
