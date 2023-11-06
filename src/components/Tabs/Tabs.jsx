@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const selectedTab = tabs.find(tab => tab.id === selectedTabId);
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
   const handleTabClick = tab => () => {
     if (selectedTabId !== tab.id) {
       onTabSelected(tab);
