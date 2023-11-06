@@ -22,14 +22,15 @@ export const App = () => {
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
-          <ul>
-            <Tabs
-              tabs={tabs}
-              selectedTabId={selectedTabId}
-              onTabSelected={tab => setSelectedTabId(tab.id)}
-            />
-          </ul>
+          <Tabs
+            tabs={tabs}
+            selectedTabId={selectedTabId}
+            onTabSelected={tab => setSelectedTabId(tab.id)}
+          />
         </div>
+        {/* <div className="block" data-cy="TabContent">
+          {currentSelectedTab.content}
+        </div> */}
       </div>
     </div>
   );
