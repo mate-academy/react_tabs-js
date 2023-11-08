@@ -2,10 +2,16 @@ export const Tabs = ({ selectedTabId, tabs, onTabSelected }) => {
   let [selectedTab] = tabs.filter(tab => tab.id === selectedTabId);
 
   if (!selectedTab) {
-    [selectedTab] = tabs;
+    [selectedTab] = [tabs[0]];
   }
 
   const selectedTabContent = selectedTab.content;
+
+  const handleTabClick = (tab) => {
+    if (tab.id !== selectedTab.id) {
+      onTabSelected(tab.id);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -20,11 +26,7 @@ export const Tabs = ({ selectedTabId, tabs, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (tab.id !== selectedTab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => handleTabClick(tab)}
               >
                 {tab.title}
               </a>
