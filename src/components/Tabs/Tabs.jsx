@@ -2,14 +2,14 @@ export const Tabs = ({ selectedTabId, tabs, onTabSelected }) => {
   let [selectedTab] = tabs.filter(tab => tab.id === selectedTabId);
 
   if (!selectedTab) {
-    [selectedTab] = [tabs[0]];
+    [selectedTab] = tabs;
   }
 
   const selectedTabContent = selectedTab.content;
 
   const handleTabClick = (tab) => {
     if (tab.id !== selectedTab.id) {
-      onTabSelected(tab.id);
+      onTabSelected(tab);
     }
   };
 

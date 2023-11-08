@@ -14,9 +14,9 @@ export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
   const selectedTabTitle = tabs.find(tab => tab.id === selectedTabId).title;
 
-  const onTabSelected = (tabId) => {
-    if (selectedTabId !== tabId) {
-      setSelectedTabId(tabId);
+  const onTabSelected = (tab) => {
+    if (selectedTabId !== tab.id) {
+      setSelectedTabId(tab.id);
     }
   };
 
