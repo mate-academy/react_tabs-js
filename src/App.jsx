@@ -16,7 +16,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is
+        Selected tab is&nbsp;
         {tabs.find(tab => tab.id === selectedTabId)?.title}
       </h1>
 
