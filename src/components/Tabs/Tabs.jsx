@@ -22,7 +22,7 @@ export const Tabs = ({ tabs, selectedTabId, setSelectedTabId }) => (
       </ul>
     </div>
 
-    <div className="block" data-cy="tab-content">
+    <div className="block" data-cy="tabContent">
       {tabs.find(tab => tab.id === selectedTabId)?.content}
     </div>
   </div>
