@@ -1,10 +1,14 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTab, setTab }) => {
-  const newSelectedTab = tabs.find(tab => tab.id === selectedTab || tab[0]);
+export const Tabs = ({
+  tabs,
+  selectedTabId,
+  setTabOn,
+}) => {
+  const newSelectedTab = tabs.find(tab => tab.id === selectedTabId || tab[0]);
   const chengeTab = (tab) => {
-    if (tab.id !== selectedTab) {
-      setTab(tab);
+    if (tab.id !== selectedTabId) {
+      setTabOn(tab);
     }
   };
 
