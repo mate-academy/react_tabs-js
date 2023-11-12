@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 function getTabContent(tabs, selectedTabId) {
   return tabs.find(tab => tab.id === selectedTabId)?.content
-    ?? tabs.find((tab, index) => index === 0).content;
+    || tabs[0].content;
 }
 
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => (
