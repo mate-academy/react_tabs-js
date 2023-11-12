@@ -1,5 +1,10 @@
 import cn from 'classnames';
 
+function getTabContent(tabs, selectedTabId) {
+  return tabs.find(tab => tab.id === selectedTabId)?.content
+    ?? tabs.find((tab, index) => index === 0).content;
+}
+
 export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => (
   <>
     <div className="tabs is-boxed">
@@ -27,8 +32,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTabId }) => (
     </div>
 
     <div className="block" data-cy="TabContent">
-      {tabs.find(tab => tab.id === selectedTabId)?.content
-      ?? tabs.find((tab, index) => index === 0).content}
+      {getTabContent(tabs, selectedTabId)}
     </div>
   </>
 );
