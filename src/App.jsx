@@ -12,7 +12,6 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  // const currentTab = tabs.find(tab => tab.id === selectedTabId);
 
   return (
     <div className="section">
