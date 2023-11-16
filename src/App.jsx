@@ -15,9 +15,9 @@ export const App = () => {
     const newTab = tabs.find(tab => tab.id === tabID);
 
     if (!newTab) {
-      setSelectedTabId('tab-1');
+      setSelectedTabId(tabs[0].id);
 
-      return getCurrentTab('tab-1');
+      return getCurrentTab(tabs[0].id);
     }
 
     return newTab;
@@ -27,26 +27,18 @@ export const App = () => {
     setSelectedTabId(tab.id);
   };
 
-  const [selectedTabId, setSelectedTabId] = useState('tab-1');
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
   const currentTab = getCurrentTab(selectedTabId);
 
   return (
     <div className="section">
       <h1 className="title">{`Selected tab is ${currentTab.title}`}</h1>
 
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <Tabs
-            tabs={tabs}
-            onTabSelected={tab => setNewTab(tab)}
-            currentTabId={selectedTabId}
-          />
-        </div>
-
-        <div className="block" data-cy="TabContent">
-          {currentTab.content}
-        </div>
-      </div>
+      <Tabs
+        tabs={tabs}
+        onTabSelected={tab => setNewTab(tab)}
+        selectedTabId={selectedTabId}
+      />
     </div>
   );
 };
