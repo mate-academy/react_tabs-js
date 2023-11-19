@@ -1,31 +1,46 @@
 import cn from 'classnames';
 
-export const Tabs = ({ selectTab, allTab, byClick }) => (
-  <>
-    <div className="tabs is-boxed">
-      <ul>
-        {allTab.map(tab => (
-          <li
-            key={tab.id}
-            className={cn({
-              'is-active': selectTab === tab.id,
-            })}
-            data-cy="Tab"
-          >
-            <a
-              href={`#${tab.id}`}
-              data-cy="TabLink"
-              onClick={() => byClick(tab.id)}
-            >
-              {tab.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
 
-    <div className="block" data-cy="TabContent">
-      {allTab.find(tab => tab.id === selectTab)?.content}
-    </div>
-  </>
-);
+  return (
+    <>
+      <div className="tabs is-boxed">
+
+        <ul>
+
+          {tabs.map((tab, index) => (
+            <li
+              key={tab.id}
+              className={cn({
+                'is-active': selectedTab.id === tab.id,
+              })}
+              data-cy="Tab"
+            >
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={(event) => {
+                  if (selectedTabId !== tab.id) {
+                    onTabSelected(tab);
+                  }
+
+                  event.preventDefault();
+                }}
+              >
+                {tab.title}
+              </a>
+            </li>
+          ))}
+
+        </ul>
+
+      </div>
+
+      <div className="block" data-cy="TabContent">
+        {tabs.find(tab => tab.id === selectedTabId)?.content}
+      </div>
+
+    </>
+  );
+};

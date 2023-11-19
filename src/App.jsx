@@ -11,26 +11,25 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectTab, setSelectTab] = useState(tabs[0].id);
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
 
-  const handleTabClick = (tabId) => {
-    if (selectTab !== tabId) {
-      setSelectTab(tabId);
+  const onTabSelected = (tab) => {
+    if (selectedTabId !== tab.id) {
+      setSelectedTabId(tab.id);
     }
   };
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is 
-        ${tabs.find(tab => tab.id === selectTab)?.title}`}
+        {`Selected tab is ${tabs.find(tab => tab.id === selectedTabId)?.title}`}
       </h1>
 
       <div data-cy="TabsComponent">
         <Tabs
-          selectTab={selectTab}
-          allTab={tabs}
-          byClick={handleTabClick}
+          tabs={tabs}
+          selectedTabId={selectedTabId}
+          onTabSelected={onTabSelected}
         />
       </div>
     </div>
