@@ -22,7 +22,7 @@ export function App() {
       <div data-cy="TabsComponent">
         <Tabs
           tabs={tabs}
-          selectedTabId="fdl"
+          selectedTabId={selectedTabId.id}
           onTabSelected={setSelectedTabId}
         />
       </div>
