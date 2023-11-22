@@ -20,13 +20,11 @@ export const App = () => {
         {`Selected tab is ${selectedTab.title}`}
       </h1>
 
-      <div data-cy="TabsComponent">
-        <Tabs
-          tabs={tabs}
-          selectedTabId={selectedTab.id}
-          onTabSelected={setSelectedTab}
-        />
-      </div>
+      <Tabs
+        tabs={tabs}
+        selectedTabId={selectedTab.id}
+        onTabSelected={setSelectedTab}
+      />
     </div>
   );
 };
