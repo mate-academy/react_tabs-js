@@ -10,8 +10,8 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const tabsById = tabs.reduce((accumulator, currentTab) => ({
-  ...accumulator,
+export const tabsById = tabs.reduce((acc, currentTab) => ({
+  ...acc,
   [currentTab.id]: currentTab,
 }), {});
 
@@ -27,7 +27,6 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">{`Selected tab is ${currentTab.title}`}</h1>
-
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
