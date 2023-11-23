@@ -24,9 +24,7 @@ export const Tabs = ({
         <div className="tabs is-boxed">
           <ul>
             {tabs.map((tab) => {
-              const {
-                id, title,
-              } = tab;
+              const { id, title } = tab;
 
               return (
                 <li
@@ -49,10 +47,7 @@ export const Tabs = ({
           </ul>
         </div>
 
-        <div
-          className="block"
-          data-cy="TabContent"
-        >
+        <div className="block" data-cy="TabContent">
           {selectedTab.content}
         </div>
       </div>
