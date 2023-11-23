@@ -8,6 +8,8 @@ export const Tabs = ({
   const isSelectedTabIdCorrect = tabs
     .some(tab => tab.id === selectedTabId) ? selectedTabId : tabs[0].id;
 
+  const selectedTab = tabs.find(tab => tab.id === isSelectedTabIdCorrect);
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -35,7 +37,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === isSelectedTabIdCorrect).content}
+        {selectedTab.content}
       </div>
     </div>
   );
