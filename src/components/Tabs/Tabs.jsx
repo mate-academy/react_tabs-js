@@ -9,6 +9,10 @@ export const Tabs = ({
     .find(tab => tab.id === selectedTabId)
     || tabs[0];
 
+  const checkIfTabChanged = tab => (
+    (tab.id !== selectedTabId) && onTabSelected(tab)
+  );
+
   return (
     <div className="section">
       <h1 className="title">
@@ -18,22 +22,20 @@ export const Tabs = ({
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <ul>
-            {tabs.map(tab => (
+            {tabs.map(({ id, title, content }) => (
               <li
-                className={cn({ 'is-active': tab.id === selectedTabId })}
+                className={cn({ 'is-active': id === selectedTabId })}
                 data-cy="Tab"
-                key={tab.id}
+                key={id}
               >
                 <a
-                  href={`#${tab.id}`}
+                  href={`#${id}`}
                   data-cy="TabLink"
                   onClick={() => {
-                    if (tab.id !== selectedTabId) {
-                      onTabSelected(tab);
-                    }
+                    checkIfTabChanged({ id, title, content });
                   }}
                 >
-                  {tab.title}
+                  {title}
                 </a>
               </li>
             ))}
