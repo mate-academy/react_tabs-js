@@ -31,9 +31,7 @@ export const Tabs = ({
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={() => {
-                    checkIfTabChanged({ id, title, content });
-                  }}
+                  onClick={() => checkIfTabChanged({ id, title, content })}
                 >
                   {title}
                 </a>
