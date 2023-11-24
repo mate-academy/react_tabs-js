@@ -9,26 +9,21 @@ export const tabs = [
   { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
-const initialId = () => {
-  const hash = window.location.hash.replace('#', '');
-
-  return tabs.find(el => el.id === hash) || tabs[0];
-};
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState(initialId);
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const currentTitle = tabs.find(el => el.id === selectedTabId).title;
 
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${selectedTabId.title}`}
+        {`Selected tab is ${currentTitle}`}
       </h1>
 
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onTabSelected={data => setSelectedTabId(data)}
-        data-cy="tab-content"
+        onTabSelected={data => setSelectedTabId(data.id)}
       />
     </div>
   );
