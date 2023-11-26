@@ -1,4 +1,4 @@
-// import React from 'react';
+
 import 'bulma/css/bulma.css';
 import { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -24,7 +24,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        onChange={tab => setSelectedTabId(tab.id)}
+        onTabSelected={tab => setSelectedTabId(tab.id)}
       />
     </div>
   );

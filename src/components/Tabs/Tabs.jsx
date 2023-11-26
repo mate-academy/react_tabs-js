@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTabId, onChange }) => {
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
@@ -16,7 +16,7 @@ export const Tabs = ({ tabs, selectedTabId, onChange }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => selectedTab !== tab && onChange(tab)}
+                onClick={() => selectedTab !== tab && onTabSelected(tab)}
               >
                 {tab.title}
               </a>
