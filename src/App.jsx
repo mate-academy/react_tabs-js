@@ -14,6 +14,7 @@ export const tabs = [
 export const App = () => {
   const [selectedTabId, setSelectedTabId] = useState('tab-1');
   const [selectedTabTitle, setSelectedTabTitle] = useState(`Tab 1`);
+  const [selectContent, setSelectContent] = useState('Some text 1');
 
   return (
     <div className="section">
@@ -29,6 +30,8 @@ export const App = () => {
         selectTitle={(title) => {
           setSelectedTabTitle(title);
         }}
+        selectContent={selectContent}
+        setSelectContent={setSelectContent}
       />
     </div>
   );
