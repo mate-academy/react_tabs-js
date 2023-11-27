@@ -1,10 +1,12 @@
-export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
+import cn from 'classnames';
+
+export const Tabs = ({ tabs, selectedTab, onTabSelected, selectedTabId }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed" data-cy="tab-content">
       <ul>
         {tabs.map(tab => (
           <li
-            className={tab.id === selectedTab ? 'is-active' : ''}
+            className={cn({ 'is-active': selectedTabId === tab.id })}
             data-cy="Tab"
           >
             <a
@@ -20,7 +22,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
     </div>
 
     <div className="block" data-cy="TabContent">
-      {tabs.find(tab => tab.id === selectedTab).content}
+      {selectedTab.content}
     </div>
   </div>
 );
