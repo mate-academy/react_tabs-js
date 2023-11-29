@@ -29,6 +29,7 @@ export const Tabs = (props) => {
           ))}
         </ul>
       </div>
+
       <div className="block" data-cy="TabContent">
         {selectedTab.content}
       </div>
