@@ -1,0 +1,21 @@
+.content {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.surprise {
+  &__text {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__link {
+
+  }
+
+  &__image {
+    border-radius: 15%;
+    width: 50%;
+  }
+}
