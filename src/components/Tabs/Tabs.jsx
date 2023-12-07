@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const isCorrectId = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   const newSelectedTab = (tab) => {
     if (selectedTabId !== tab.id) {
@@ -16,7 +16,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={cn({ 'is-active': tab.id === isCorrectId.id })}
+              className={cn({ 'is-active': tab.id === selectedTab.id })}
               data-cy="Tab"
             >
               <a
@@ -32,7 +32,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {isCorrectId.content}
+        {selectedTab.content}
       </div>
     </div>
   );
