@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 export const Tabs = ({ setTab, tab, tabs }) => {
   const { content } = tabs.find(el => el.id === tab);
 
@@ -6,7 +8,9 @@ export const Tabs = ({ setTab, tab, tabs }) => {
       <div className="tabs is-boxed">
         <ul>
           <li
-            className={tab === 'tab-1' ? `is-active` : ''}
+            className={cn({
+              'is-active': tab === 'tab-1',
+            })}
             data-cy="Tab"
           >
             <a
@@ -20,7 +24,9 @@ export const Tabs = ({ setTab, tab, tabs }) => {
 
           <li
             data-cy="Tab"
-            className={tab === 'tab-2' ? `is-active` : ''}
+            className={cn({
+              'is-active': tab === 'tab-2',
+            })}
           >
             <a
               href="#tab-2"
@@ -33,7 +39,9 @@ export const Tabs = ({ setTab, tab, tabs }) => {
 
           <li
             data-cy="Tab"
-            className={tab === 'tab-3' ? `is-active` : ''}
+            className={cn({
+              'is-active': tab === 'tab-3',
+            })}
           >
             <a
               href="#tab-3"
