@@ -1,11 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const isCorrectId = tabs.find(tab => tab.id === selectedTabId)
-    ? selectedTabId
-    : tabs[0].id;
-
-  const selectedTab = tabs.find(tab => tab.id === isCorrectId);
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId);
 
   const changeTab = (tab) => {
     if (tab.id !== selectedTab.id) {
