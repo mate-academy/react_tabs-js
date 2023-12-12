@@ -7,30 +7,41 @@ export function Tabs({
 }) {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
+  function hasSameTabId(tabId, selTabId) {
+    return tabId === selTabId;
+  }
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
-            <li
-              key={tab.id}
-              className={cn({ 'is-active': tab.id === selectedTab.id })
-            }
-              data-cy="Tab"
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={() => {
-                  if (selectedTabId !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+          {tabs.map((tab) => {
+            const { id, title } = tab;
+
+            return (
+              <li
+                key={tab.id}
+                className={cn({
+                  'is-active':
+                    hasSameTabId(id, selectedTab.id),
+                })
+                }
+                data-cy="Tab"
               >
-                {tab.title}
-              </a>
-            </li>
-          ))}
+                <a
+                  href={`#${tab.id}`}
+                  data-cy="TabLink"
+                  onClick={() => {
+                    if (!hasSameTabId(id, selectedTabId)) {
+                      onTabSelected(tab);
+                    }
+                  }}
+                >
+                  {title}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
