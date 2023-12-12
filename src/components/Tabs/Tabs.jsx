@@ -11,6 +11,12 @@ export function Tabs({
     return tabId === selTabId;
   }
 
+  function handleClickTab(tab) {
+    if (!hasSameTabId(tab.id, selectedTabId)) {
+      onTabSelected(tab);
+    }
+  }
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -22,8 +28,7 @@ export function Tabs({
               <li
                 key={tab.id}
                 className={cn({
-                  'is-active':
-                    hasSameTabId(id, selectedTab.id),
+                  'is-active': hasSameTabId(id, selectedTab.id),
                 })
                 }
                 data-cy="Tab"
@@ -31,11 +36,7 @@ export function Tabs({
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => {
-                    if (!hasSameTabId(id, selectedTabId)) {
-                      onTabSelected(tab);
-                    }
-                  }}
+                  onClick={() => handleClickTab(tab)}
                 >
                   {title}
                 </a>
