@@ -13,6 +13,7 @@ export const Tabs = ({ setTab, tab, tabs }) => {
                 'is-active': tab === id,
               })}
               data-cy="Tab"
+              key={id}
             >
               <a
                 href={`#${id}`}
