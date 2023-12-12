@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -13,15 +12,21 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState(tabs[0].id);
+  const [selectedTabId, setSelectedTabId] = useState(tabs[0].id);
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId);
+  const onTabSelected = tab => setSelectedTabId(tab.id);
 
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is Tab 1
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
-      <Tabs tabs={tabs} />
+      <Tabs
+        tabs={tabs}
+        selectedTabId={selectedTabId}
+        onTabSelected={onTabSelected}
+      />
     </div>
   );
 };
