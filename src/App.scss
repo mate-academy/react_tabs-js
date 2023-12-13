@@ -1,3 +1,40 @@
 iframe {
   display: none;
 }
+
+html {
+  background-color: #09142c;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #c0c1c2;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #c0c1c2;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #808080;
+}
+
+.title {
+  color: #fff;
+}
+
+.tabs ul {
+  border-color: #239b79;
+}
+
+[classnames="is-active"] {
+  background-color: #377c73;
+}
+
+.tabs a {
+  color: #fff;
+}
+
+.block {
+  color: #fff;
+}
