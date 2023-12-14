@@ -1,11 +1,13 @@
-export const Tabs = ({ tabs, selectedTabId, onTabSelected, selectedTab }) => {
-  const handleTabSelected = (tab) => {
-    if (tab.id === selectedTabId) {
-      return;
-    }
+import classNames from 'classnames';
 
-    onTabSelected(tab);
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const handleTabSelected = (tab) => {
+    if (tab.id !== selectedTabId) {
+      onTabSelected(tab);
+    }
   };
+
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -14,7 +16,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected, selectedTab }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === selectedTabId ? 'is-active' : ''}
+              className={classNames({ 'is-active': tab.id === selectedTabId })}
               data-cy="Tab"
             >
               <a

@@ -33,7 +33,6 @@ export const App = () => {
         tabs={tabs}
         selectedTabId={selectedTabId}
         onTabSelected={onTabSelected}
-        selectedTab={selectedTab}
       />
     </div>
   );
