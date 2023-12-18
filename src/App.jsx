@@ -5,9 +5,9 @@ import './App.scss';
 import { Tabs } from './components/Tabs';
 
 export const tabs = [
-  { id: ' Tab 1', title: 'Tab 1', content: 'Some text 1' },
-  { id: ' Tab 2', title: 'Tab 2', content: 'Some text 2' },
-  { id: ' Tab 3', title: 'Tab 3', content: 'Some text 3' },
+  { id: 'Tab 1', title: 'Tab 1', content: 'Some text 1' },
+  { id: 'Tab 2', title: 'Tab 2', content: 'Some text 2' },
+  { id: 'Tab 3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
 export const App = () => {
