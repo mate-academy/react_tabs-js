@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-
+import { useState } from 'react';
+import { Tabs } from './components/Tabs';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { Tabs } from './components/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -12,30 +11,21 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [query, setQuery] = useState(tabs[0].id);
-
-  const visibleContent = tabs.find(tab => tab.id === query) || tabs[0];
-
-  const onTabSelected = (tabToSelect) => {
-    if (tabs.map(tab => tab.id).includes(tabToSelect.id)) {
-      setQuery(tabToSelect.id);
-
-      return;
-    }
-
-    setQuery(tabs[0].id);
-  };
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
+
     <div className="section">
       <h1 className="title">
-        {`Selected tab is ${visibleContent.title}`}
+        {`Selected tab is ${selectedTab.title}`}
       </h1>
 
       <Tabs
         tabs={tabs}
-        selectedTabId={query}
-        onTabSelected={onTabSelected}
+        selectedTabId={selectedTab.id}
+        onTabSelected={(tab) => {
+          setSelectedTab(tab);
+        }}
       />
     </div>
   );
