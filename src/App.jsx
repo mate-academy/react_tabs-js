@@ -49,7 +49,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
-        selectedTab={(title) => {
+        onTabSelected={(title) => {
           updateTabId(title);
         }}
       />
