@@ -9,8 +9,8 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
     onTabSelected(tab);
   };
 
-  const getSelectedTab =
-    tabs.find((tab) => tab.id === selectedTabId) || tabs[0];
+  const getSelectedTab
+    = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
