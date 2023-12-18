@@ -7,8 +7,13 @@ export const Tabs = ({
   selectedTabId,
   onTabSelected,
 }) => {
-  const activeTab = selectedTabId
-    && tabs.find(tab => tab.id === selectedTabId)?.content;
+  const activeTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+
+  const handleTabClick = (tab) => {
+    if (activeTab.id !== tab.id) {
+      onTabSelected(tab);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -18,14 +23,16 @@ export const Tabs = ({
             <li
               key={tab.id}
               data-cy="Tab"
-              className={cn({ 'is-active': selectedTabId === tab.id })}
+              className={cn({
+                'is-active': activeTab.id === tab.id,
+              })}
             >
               <a
-                href={`#${selectedTabId}`}
+                href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => onTabSelected(tab.title)}
+                onClick={() => handleTabClick(tab)}
               >
-                {onTabSelected && tab.title}
+                {tab.title}
               </a>
             </li>
           ))}
@@ -36,34 +43,9 @@ export const Tabs = ({
         className="block"
         data-cy="TabContent"
       >
-        <>
-          <p className="content">
-            {activeTab}
-          </p>
-
-          {selectedTabId === tabs[3]?.id && (
-            <div className="surprise">
-              <p className="surprise__text">
-                Click on the picture and listen to this legendary song: `People
-                are Strange` by The Doors
-              </p>
-              {/* eslint-disable-next-line max-len */}
-              <a
-                href="https://www.youtube.com/watch?v=AgHaGrZkkv4"
-                className="surprise__link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  /* eslint-disable-next-line max-len */
-                  src="https://i.ytimg.com/vi/AgHaGrZkkv4/maxresdefault.jpg"
-                  alt="Album Cover"
-                  className="surprise__image"
-                />
-              </a>
-            </div>
-          )}
-        </>
+        <p className="content">
+          {activeTab.content}
+        </p>
       </div>
     </div>
   );
