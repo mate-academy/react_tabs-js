@@ -32,7 +32,15 @@ export const App = () => {
         />
       </div>
 
-      <div className="block" data-cy="TabContent">
+      <div
+        className="block"
+        data-cy="TabContent"
+      />
+
+      <div
+        className="block"
+        data-cy="TabContent"
+      >
         {tabs.find(tab => tab.id === selectedTabId)?.content}
       </div>
     </div>

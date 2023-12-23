@@ -1,4 +1,3 @@
-
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => (
   <div className="tabs is-boxed">
     <ul>
@@ -9,9 +8,14 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => (
           data-cy="Tab"
         >
           <a
-            href={`#${tab.id}`}
-            onClick={() => onTabSelected(tab)}
             data-cy="TabLink"
+            href={`#${tab.id}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (selectedTabId !== tab.id) {
+                onTabSelected(tab);
+              }
+            }}
           >
             {tab.title}
           </a>
