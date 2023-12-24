@@ -1,7 +1,8 @@
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const realTabId = checkSelectedTabId(tabs, selectedTabId);
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+
   const changeTab = (neededTab) => {
-    if (neededTab.id !== selectedTabId) {
+    if (neededTab.id !== selectedTab.id) {
       onTabSelected(neededTab);
     }
   };
@@ -12,7 +13,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         <ul>
           {
             tabs.map(tab => (
-              <li data-cy="Tab" key={tab.id} className={tab.id === realTabId ? `is-active` : ''}>
+              <li data-cy="Tab" key={tab.id} className={tab.id === selectedTab.id ? `is-active` : ''}>
                 <a href={`#${tab.id}`} data-cy="TabLink" onClick={() => changeTab(tab)}>{tab.title}</a>
               </li>
             ))
@@ -22,21 +23,9 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
 
       <div className="block" data-cy="TabContent">
         {
-          tabs.filter(tab => tab.id === realTabId)[0].content
+          tabs.filter(tab => tab.id === selectedTab.id)[0].content
         }
       </div>
     </div>
   );
 };
-
-function checkSelectedTabId(tabs, selectedTabId) {
-  const realIds = [];
-
-  tabs.forEach(tab => realIds.push(tab.id));
-
-  if (realIds.includes(selectedTabId)) {
-    return selectedTabId;
-  }
-
-  return tabs[0].id;
-}
