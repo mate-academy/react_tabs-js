@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('tab-13');
+  const [selectedTabId, setSelectedTabId] = useState('');
 
   const onTabSelected = (neededTab) => {
     if (neededTab.id !== selectedTabId) {
@@ -33,6 +33,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTabId={selectedTabId}
+        // selectedTabId="t"
         onTabSelected={onTabSelected}
       />
     </div>

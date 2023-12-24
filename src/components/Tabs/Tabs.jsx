@@ -1,6 +1,5 @@
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const realTabId = checkSelectedTabId(tabs, selectedTabId);
-
   const changeTab = (neededTab) => {
     if (neededTab.id !== selectedTabId) {
       onTabSelected(neededTab);
@@ -39,5 +38,5 @@ function checkSelectedTabId(tabs, selectedTabId) {
     return selectedTabId;
   }
 
-  return 'tab-1';
+  return tabs[0].id;
 }
