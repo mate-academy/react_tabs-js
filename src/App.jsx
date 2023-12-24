@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTabId, setSelectedTabId] = useState('tab-1');
+  const [selectedTabId, setSelectedTabId] = useState('tab-13');
 
   const onTabSelected = (neededTab) => {
     if (neededTab.id !== selectedTabId) {
@@ -23,7 +23,11 @@ export const App = () => {
     <div className="section">
       <h1 className="title">
         {`Selected tab is `}
-        {tabs.filter(tab => tab.id === selectedTabId)[0].title}
+        {
+          tabs.filter(tab => tab.id === selectedTabId).length
+          === 0 ? tabs[0].title
+            : tabs.filter(tab => tab.id === selectedTabId)[0].title
+        }
       </h1>
 
       <Tabs
