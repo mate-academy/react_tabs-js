@@ -17,15 +17,13 @@ export const App = () => {
     setSelectedTabId(neededTab.id);
   };
 
+  const headerTabTitle = tabs.filter(tab => tab.id === selectedTabId).length
+  === 0 ? tabs[0].title : tabs.filter(tab => tab.id === selectedTabId)[0].title;
+
   return (
     <div className="section">
       <h1 className="title">
-        {`Selected tab is `}
-        {
-          tabs.filter(tab => tab.id === selectedTabId).length
-          === 0 ? tabs[0].title
-            : tabs.filter(tab => tab.id === selectedTabId)[0].title
-        }
+        {`Selected tab is ${headerTabTitle}`}
       </h1>
 
       <Tabs
