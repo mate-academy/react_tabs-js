@@ -29,7 +29,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
 
       <div className="block" data-cy="TabContent">
         {
-          tabs.filter(tab => tab.id === selectedTab.id)[0].content
+          selectedTab.content
         }
       </div>
     </div>
