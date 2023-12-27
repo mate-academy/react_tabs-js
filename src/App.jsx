@@ -12,9 +12,17 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [selectedTab, setSelectedTab] = useState(tabs[0].id);
 
-  const activeTab = tabs.find(tab => tab === selectedTab)
+  function getActiveTab(tabId) {
+    if (tabs.some(tab => tab.id === tabId.id)) {
+      setSelectedTab(tabId.id);
+    } else {
+      setSelectedTab(tabs[0].id);
+    }
+  }
+
+  const activeTab = tabs.find(tab => tab.id === selectedTab)
   || tabs[0];
 
   return (
@@ -26,7 +34,9 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTab={selectedTab}
-        setSelectedTab={setSelectedTab}
+        setSelectedTab={(tabId) => {
+          getActiveTab(tabId);
+        }}
         activeTab={activeTab}
       />
     </div>

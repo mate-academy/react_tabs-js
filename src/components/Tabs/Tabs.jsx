@@ -16,8 +16,8 @@ export const Tabs = ({
             data-cy="Tab"
           >
             <a
-              onClick={() => setSelectedTab(tab.id)}
-              href={`#${tab.id}`}
+              onClick={() => setSelectedTab(tab)}
+              href={`#${activeTab.id}`}
               data-cy="TabLink"
             >
               {tab.title}
