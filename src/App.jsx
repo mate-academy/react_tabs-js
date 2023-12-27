@@ -41,7 +41,8 @@ export const App = () => {
         className="block"
         data-cy="TabContent"
       >
-        {tabs.find(tab => tab.id === selectedTabId)?.content}
+        {(tabs.find(tab => tab.id === selectedTabId)
+          || tabs[0])?.content}
       </div>
     </div>
   );
