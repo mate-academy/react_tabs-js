@@ -21,7 +21,7 @@ describe('Tabs component', () => {
       mount((
         <Tabs
           tabs={tabs}
-          selectedTabId="tab-20"
+          selectedTab={tabs[1]}
           onTabSelected={cy.spy().as('onTabSelected')}
         />
       ));
@@ -82,31 +82,6 @@ describe('Tabs component', () => {
       page.tabs().eq(1).find('a').click();
 
       cy.get('@onTabSelected').should('not.be.called');
-    });
-  });
-
-  describe('', () => {
-    it('should highlight the first tab if selectedTabId is wrong', () => {
-      const tabs = [
-        { id: 'tab-10', title: 'Tab 10', content: 'Some text 10' },
-        { id: 'tab-20', title: 'Tab 20', content: 'Some text 20' },
-        { id: 'tab-30', title: 'Tab 30', content: 'Some text 30' },
-        { id: 'tab-40', title: 'Tab 40', content: 'Some text 40' },
-      ];
-
-      mount((
-        <Tabs
-          tabs={tabs}
-          selectedTabId="asdasd"
-          onTabSelected={() => { }}
-        />
-      ));
-
-      page.tabs().eq(0)
-        .should('have.class', 'is-active');
-
-      page.tabs().eq(1)
-        .should('not.have.class', 'is-active');
     });
   });
 });
