@@ -1,13 +1,7 @@
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const getActiveTabId = () => {
-    const selectedTab = tabs.find(tab => tab.id === selectedTabId);
-
-    return selectedTab || tabs[0];
-  };
-
-  const currentTab = getActiveTabId();
+  const currentTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   const handleTabClick = (tab) => {
     if (currentTab.id !== tab.id) {
