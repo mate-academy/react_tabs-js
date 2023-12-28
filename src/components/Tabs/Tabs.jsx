@@ -2,9 +2,10 @@ export const Tabs = ({ tabsArr, onTabSelected, selected }) => {
   const selectedTab = tabsArr.find(t => t.id === selected) || tabsArr[0];
 
   const selectTabHadler = (nId) => {
-    const selTab = tabsArr.find(t => t.id === nId);
-
-    onTabSelected(selTab || tabsArr[0]);
+    const selTab = tabsArr.find(t => t.id === nId) || tabsArr[0];
+    if (selTab.id !== selected) {
+      onTabSelected(selTab);
+    }
   };
 
   return (
