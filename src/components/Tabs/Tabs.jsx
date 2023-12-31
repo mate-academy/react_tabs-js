@@ -1,18 +1,20 @@
 import cn from 'classnames';
 
+function handleTabClick(event, currentTab, activeTabId, callback) {
+  event.preventDefault();
+
+  if (activeTabId !== currentTab.id) {
+    callback(currentTab);
+  }
+}
+
 export const Tabs = ({
   tabs,
   selectedTabId,
   onTabSelected,
 }) => {
   const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
-  const { id: currentTabId, content: currentTabContent } = selectedTab;
-
-  const handleTabClick = (tab) => {
-    if (currentTabId !== tab.id) {
-      onTabSelected(tab);
-    }
-  };
+  const { id: activeTabId, content: activeTabContent } = selectedTab;
 
   return (
     <div data-cy="TabsComponent">
@@ -25,15 +27,14 @@ export const Tabs = ({
               <li
                 key={id}
                 data-cy="Tab"
-                className={cn({ 'is-active': id === currentTabId })
+                className={cn({ 'is-active': id === activeTabId })
                 }
               >
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
                   onClick={(event) => {
-                    event.preventDefault();
-                    handleTabClick(tab);
+                    handleTabClick(event, tab, activeTabId, onTabSelected);
                   }}
                 >
                   {title}
@@ -45,7 +46,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {currentTabContent}
+        {activeTabContent}
       </div>
     </div>
   );
