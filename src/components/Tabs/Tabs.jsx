@@ -17,7 +17,7 @@ export const Tabs = ({
   const { id: activeTabId, content: activeTabContent } = selectedTab;
 
   return (
-    <div data-cy="tab-content">
+    <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map((tab) => {
@@ -27,8 +27,7 @@ export const Tabs = ({
               <li
                 key={id}
                 data-cy="Tab"
-                className={cn({ 'is-active': id === activeTabId })
-                }
+                className={cn({ 'is-active': id === activeTabId })}
               >
                 <a
                   href={`#${id}`}
