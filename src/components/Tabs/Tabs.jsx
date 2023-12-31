@@ -17,7 +17,7 @@ export const Tabs = ({
   const { id: activeTabId, content: activeTabContent } = selectedTab;
 
   return (
-    <div data-cy="TabsComponent">
+    <div data-cy="tab-content">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map((tab) => {
