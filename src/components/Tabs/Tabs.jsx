@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, activeTab, setActiveTab }) => (
+export const Tabs = ({ tabs, activeTab, setAndValidateTab }) => (
   <ul>
     {tabs.map(tab => (
       <li
@@ -10,7 +10,7 @@ export const Tabs = ({ tabs, activeTab, setActiveTab }) => (
           'is-active': tab.id === activeTab.id,
         })}
       >
-        <a href={`#${tab.id}`} data-cy="TabLink" onClick={() => setActiveTab(tab)}>
+        <a href={`#${tab.id}`} data-cy="TabLink" onClick={() => setAndValidateTab(tab)}>
           {tab.title}
         </a>
       </li>
