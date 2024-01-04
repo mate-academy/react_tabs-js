@@ -4,7 +4,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const setOnClick = tab => selectedTab.id !== tab.id && onTabSelected(tab);
 
   return (
-    <>
+    <div>
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
@@ -30,6 +30,6 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
           {selectedTab.content}
         </div>
       </div>
-    </>
+    </div>
   );
 };
