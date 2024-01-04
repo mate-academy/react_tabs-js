@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import { mount } from '@cypress/react';
-import { Tabs } from './Tabs';
+import { Tab } from './Tab';
 
 const page = {
   getByDataCy: name => cy.get(`[data-cy="${name}"]`),
@@ -8,7 +8,7 @@ const page = {
   content: () => page.getByDataCy('TabContent'),
 };
 
-describe('Tabs component', () => {
+describe('Tab component', () => {
   describe('by default', () => {
     beforeEach(() => {
       const tabs = [
@@ -19,7 +19,7 @@ describe('Tabs component', () => {
       ];
 
       mount((
-        <Tabs
+        <Tab
           tabs={tabs}
           selectedTab={tabs[1]}
           onTabSelected={cy.spy().as('onTabSelected')}
