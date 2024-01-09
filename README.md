@@ -6,7 +6,8 @@ Implement the `App` and `Tabs` components to render and switch between given `ta
 
 1. Save the `selectedTab` in the `App` (the first `tab` is selected by default);
 1. Implement the `Tabs` component accepting `tabs` as a prop and displaying a link per each `tab` and the content of the selected tab.
-1. Each link should have a href with a `#tab-id` (see the markup).
+1. Each link should have a `data-cy="Tab"`.
+1. Each link should have a `href` with a `#tab-id` (see the markup).
 1. Pass the `selectedTab` as a prop to the `Tabs`, the specified tab should be selected if possible
   (otherwise, the first tab is selected).
 1. The `Tabs` should show the content of the selected tab (add an attribute `data-cy="TabContent"` for testing). Content should be rendered inside the `Tabs` component.
