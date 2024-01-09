@@ -3,6 +3,12 @@ import clsx from 'clsx';
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const { content } = selectedTab;
 
+  function handleClick(tab) {
+    if (tab !== selectedTab) {
+      onTabSelected(tab);
+    }
+  }
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -19,11 +25,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={() => {
-                    if (tab !== selectedTab) {
-                      onTabSelected(tab);
-                    }
-                  }}
+                  onClick={() => handleClick(tab)}
                 >
                   {title}
                 </a>
