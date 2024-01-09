@@ -15,6 +15,12 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
+  const onTabSelected = (tab) => {
+    if (tab !== selectedTab) {
+      setSelectedTab(tab);
+    }
+  };
+
   return (
     <div className="section">
       <h1 className="title">
@@ -22,9 +28,10 @@ export const App = () => {
       </h1>
 
       <Tabs
+        data-cy="tab-content"
         tabs={tabs}
-        selectedTab={selectedTab.id}
-        onTabSelected={setSelectedTab}
+        selectedTab={selectedTab}
+        onTabSelected={onTabSelected}
       />
     </div>
   );

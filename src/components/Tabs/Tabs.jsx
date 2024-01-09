@@ -1,46 +1,41 @@
-import cn from 'classnames';
-
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const currTab = tabs.find(tab => tab.id === selectedTabId || tab[0]);
-
-  const handleTabClick = (isTabCurr, tab) => {
-    if (!isTabCurr) {
-      onTabSelected(tab);
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  function handleTabClick(activeTab) {
+    if (activeTab !== selectedTab) {
+      onTabSelected(activeTab);
     }
-  };
+  }
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map((tab) => {
-            const { id, title } = tab;
-            const isTabCurr = id === currTab.id;
-
-            return (
+          {
+            tabs.map(tab => (
               <li
-                className={cn({
-                  'is-actice': isTabCurr,
-                })}
+                key={tab.id}
+                className={
+                  selectedTab === tab
+                    ? 'is-active'
+                    : ''
+                }
                 data-cy="Tab"
-                key={id}
               >
                 <a
-                  href={`#${id}`}
+                  href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() =>
-                    handleTabClick(isTabCurr, tab)}
+                  onClick={() => {
+                    handleTabClick(tab);
+                  }}
                 >
-                  {title}
+                  {tab.title}
                 </a>
               </li>
-            );
-          })}
+            ))
+          }
         </ul>
       </div>
-
       <div className="block" data-cy="TabContent">
-        {currTab.content}
+        {selectedTab.content}
       </div>
     </div>
   );
