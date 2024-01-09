@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const handleClick = tab => selectedTab.id !== tab.id && onTabSelected(tab);
 
@@ -8,7 +10,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === selectedTab.id ? 'is-active' : null}
+              className={cn({ 'is-active': tab.id === selectedTab.id })}
               data-cy="Tab"
             >
               <a
@@ -24,7 +26,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTab && selectedTab.content}
+        {selectedTab.content}
       </div>
 
     </div>
