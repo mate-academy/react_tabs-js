@@ -1,6 +1,7 @@
 export const Tab = ({ tab, selectedTab, onTabSelected }) => {
   const { title, id } = tab;
   const isCurrentTabSelected = selectedTab === tab;
+  const setNewTabSelected = () => !isCurrentTabSelected && onTabSelected(tab);
 
   return (
     <li
@@ -8,11 +9,7 @@ export const Tab = ({ tab, selectedTab, onTabSelected }) => {
       data-cy="Tab"
     >
       <a
-        onClick={() => {
-          if (!isCurrentTabSelected) {
-            onTabSelected(tab);
-          }
-        }}
+        onClick={setNewTabSelected}
         href={`#${id}`}
         data-cy="TabLink"
       >
