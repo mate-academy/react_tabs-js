@@ -28,7 +28,6 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       <div className="block" data-cy="TabContent">
         {selectedTab.content}
       </div>
-
     </div>
   );
 };
