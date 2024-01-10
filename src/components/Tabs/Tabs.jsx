@@ -1,5 +1,3 @@
-// import { tabs } from '../../App';
-
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   function handleClick(tab) {
     if (selectedTab.id !== tab.id) {
@@ -28,6 +26,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
           ))}
         </ul>
       </div>
+
       <div className="block" data-cy="TabContent">
         {selectedTab.content}
       </div>
