@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-export const Tabs = ({ tabs, onTabSelected, currentTab }) => (
+export const Tabs = ({ tabs, setCurrentTab, currentTab }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
@@ -18,7 +18,7 @@ export const Tabs = ({ tabs, onTabSelected, currentTab }) => (
                 data-cy="TabLink"
                 onClick={() => {
                   if (currentTab !== tab) {
-                    onTabSelected(tab);
+                    setCurrentTab(tab);
                   }
                 }}
               >

@@ -13,19 +13,17 @@ export const tabs = [
 export const App = () => {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
 
-  const onTabSelected = tab => setCurrentTab(tab);
+  // const onTabSelected = tab => setCurrentTab(tab);
 
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is
-        {' '}
-        {currentTab.title}
+        {`Selected tab is ${currentTab.title}`}
       </h1>
 
       <Tabs
         tabs={tabs}
-        onTabSelected={onTabSelected}
+        setCurrentTab={setCurrentTab}
         currentTab={currentTab}
       />
     </div>
