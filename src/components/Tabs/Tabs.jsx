@@ -32,14 +32,6 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
               </li>
             );
           })}
-
-          {/* <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">Tab 2</a>
-          </li>
-
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">Tab 3</a>
-          </li> */}
         </ul>
       </div>
 
