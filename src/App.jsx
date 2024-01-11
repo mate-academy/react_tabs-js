@@ -14,10 +14,6 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  const onTabSelected = (tab) => {
-    setSelectedTab(tab);
-  };
-
   return (
     <div className="section">
       <h1 className="title">
@@ -26,7 +22,9 @@ export const App = () => {
 
       <Tabs
         tabsProp={tabs}
-        onTabSelected={onTabSelected}
+        onTabSelected={(tab) => {
+          setSelectedTab(tab);
+        }}
         selectedTab={selectedTab}
       />
     </div>
