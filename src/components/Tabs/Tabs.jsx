@@ -1,13 +1,19 @@
-export const Tabs = ({ tabs, selectedTab, setSelectedTab }) => (
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
   <div className="tabs is-boxed">
     <ul>
       {tabs.map(tab => (
         <li
           className={selectedTab.id === tab.id && 'is-active'}
           data-cy="Tab"
+          key={tab.id}
         >
           <a
-            onClick={() => (setSelectedTab(tab))}
+            onClick={() => {
+              if (selectedTab.id !== tab.id) {
+                onTabSelected(tab);
+              }
+            }
+            }
             href={`#${tab.id}`}
             data-cy="TabLink"
           >
@@ -16,5 +22,9 @@ export const Tabs = ({ tabs, selectedTab, setSelectedTab }) => (
         </li>
       ))}
     </ul>
+
+    <div className="block" data-cy="TabContent">
+      {selectedTab.content}
+    </div>
   </div>
 );
