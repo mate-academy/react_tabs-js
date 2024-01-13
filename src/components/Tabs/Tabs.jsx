@@ -1,13 +1,9 @@
 export const Tabs = ({
   tabs,
   selectedTab,
-  clickedTab,
+  onTabSelected,
 }) => {
-  function handleClick(activeTab) {
-    if (activeTab !== selectedTab) {
-      clickedTab(activeTab);
-    }
-  }
+  const handleClick = tab => selectedTab.id !== tab.id && onTabSelected(tab);
 
   return (
     <div data-cy="TabsComponent">

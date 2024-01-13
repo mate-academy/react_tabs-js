@@ -13,7 +13,7 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelect] = useState(tabs[0]);
 
-  const clickedTab = (tab) => {
+  const onTabSelected = (tab) => {
     if (tab !== selectedTab) {
       setSelect(tab);
     }
@@ -29,7 +29,7 @@ export const App = () => {
         data-cy="tab-content"
         tabs={tabs}
         selectedTab={selectedTab}
-        clickedTab={clickedTab}
+        onTabSelected={onTabSelected}
       />
 
     </div>
