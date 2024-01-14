@@ -1,37 +1,41 @@
 import classNames from 'classnames';
 
-export const Tabs = ({ tabs, setCurrentTab, currentTab }) => (
-  <div data-cy="TabsComponent">
-    <div className="tabs is-boxed">
-      <ul>
-        {tabs.map((tab) => {
-          const isCurrent = tab === currentTab;
+export const Tabs = ({ tabs, onTabSelected, currentTab }) => {
+  const clickEventSetCurrentTab = (clickedTab) => {
+    if (currentTab.id !== clickedTab.id) {
+      onTabSelected(clickedTab);
+    }
+  };
 
-          return (
-            <li
-              className={classNames({ 'is-active': isCurrent })}
-              data-cy="Tab"
-              key={tab.id}
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={() => {
-                  if (currentTab !== tab) {
-                    setCurrentTab(tab);
-                  }
-                }}
+  return (
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul>
+          {tabs.map((tab) => {
+            const isCurrentTabSelected = tab.id === currentTab.id;
+
+            return (
+              <li
+                className={classNames({ 'is-active': isCurrentTabSelected })}
+                data-cy="Tab"
+                key={tab.id}
               >
-                {tab.title}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+                <a
+                  href={`#${tab.id}`}
+                  data-cy="TabLink"
+                  onClick={() => clickEventSetCurrentTab(tab)}
+                >
+                  {tab.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
-    <div className="block" data-cy="TabContent">
-      {currentTab.content}
+      <div className="block" data-cy="TabContent">
+        {currentTab.content}
+      </div>
     </div>
-  </div>
-);
+  );
+};
