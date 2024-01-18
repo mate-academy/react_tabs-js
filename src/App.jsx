@@ -19,7 +19,7 @@ export default function App() {
       <Tabs
         tabs={tabs}
         selectedTab={selectedTab}
-        onTabSelected={setSelectedTab}
+        onSelectedTab={setSelectedTab}
       />
     </div>
   );
