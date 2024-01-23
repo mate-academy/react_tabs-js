@@ -13,6 +13,11 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const handleTabClick = (tab) => {
+    if (tab.id !== selectedTab.id) {
+      setSelectedTab(tab);
+    }
+  };
 
   return (
     <div className="section">
@@ -22,8 +27,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTab={selectedTab}
-        onTabSelected={field => field !== selectedTab
-          && setSelectedTab(field)}
+        onTabSelected={handleTabClick}
       />
     </div>
   );
