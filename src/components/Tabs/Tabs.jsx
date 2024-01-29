@@ -8,6 +8,7 @@ export const Tabs = ({ selectedTab, tabs, onTabSelected }) => (
           <li
             className={cn(null, { 'is-active': tab.id === selectedTab.id })}
             data-cy="Tab"
+            key={tab.id}
           >
             <a
               href={`#${tab.id}`}
