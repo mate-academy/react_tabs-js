@@ -2,7 +2,7 @@ import React from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { Tabs } from './components/Tabs/Tabs';
+import { Tabs } from './components/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -22,7 +22,8 @@ const TakeTab = (tab) => {
 export const App = () => (
   <div className="section">
     <h1 className="title">
-      Selected tab is Tab 1
+      Selected tab is
+      {` ${tabs[0].title}`}
     </h1>
 
     <div data-cy="TabsComponent">
@@ -31,7 +32,7 @@ export const App = () => (
       </div>
 
       <div className="block" data-cy="TabContent">
-        Some text 1
+        {tabs[0].content}
       </div>
     </div>
   </div>
