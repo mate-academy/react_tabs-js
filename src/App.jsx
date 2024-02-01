@@ -21,7 +21,7 @@ export const App = () => {
 
       <div data-cy="TabsComponent">
         <Tabs
-          onTabSelected={query => setSelectedTab(query)}
+          onTabSelected={setSelectedTab}
           tabs={tabs}
           selectedTab={selectedTab}
         />
