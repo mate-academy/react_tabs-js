@@ -27,10 +27,10 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
             </li>
           ))}
         </ul>
+      </div>
 
-        <div className="block" data-cy="TabContent">
-          {selectedTab.content}
-        </div>
+      <div className="block" data-cy="TabContent">
+        {selectedTab.content}
       </div>
     </div>
   );
