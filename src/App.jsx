@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -10,30 +10,25 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-const TakeTab = (tab) => {
-  const tabContent = document.querySelector('.block');
-  const tabTitle = document.querySelector('.title');
-  const { title, content } = tabs.find(elem => elem.id === tab.id);
+export const App = () => {
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  tabContent.innerText = content;
-  tabTitle.innerText = `Selected tab is ${title}`;
-};
+  const onTabSelected = (tab) => {
+    setSelectedTab(tab);
+  };
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">
-      Selected tab is
-      {` ${tabs[0].title}`}
-    </h1>
+  return (
+    <div className="section">
+      <h1 className="title">
+        Selected tab is
+        {` ${selectedTab.title}`}
+      </h1>
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <Tabs tabs={tabs} onTabSelected={TakeTab} />
-      </div>
-
-      <div className="block" data-cy="TabContent">
-        {tabs[0].content}
-      </div>
+      <Tabs
+        tabs={tabs}
+        selectedTab={selectedTab}
+        onTabSelected={onTabSelected}
+      />
     </div>
-  </div>
-);
+  );
+};

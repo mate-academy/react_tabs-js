@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export const Tabs = ({ tabs, onTabSelected }) => {
-  const [isActiveTab, setIsActiveTab] = useState(tabs[0]);
-
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const handleTabClick = (tab) => {
-    setIsActiveTab(tab);
     onTabSelected(tab);
   };
 
@@ -15,20 +12,32 @@ export const Tabs = ({ tabs, onTabSelected }) => {
   };
 
   return (
-    <ul>
-      {tabs.map(tab => (
-        <li
-          key={tab.id}
-          className={`${tab.id === isActiveTab.id ? 'is-active' : ''}`}
-          data-cy="Tab"
-          role="tab"
-          tabIndex={0}
-          onClick={() => handleTabClick(tab)}
-          onKeyDown={e => handleKeyDown(e, tab)}
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul
+          tabs={tabs}
+          selectedTab={selectedTab}
+          onTabSelected={onTabSelected}
         >
-          <a href={`#${tab.id}`} data-cy="TabLink">{tab.title}</a>
-        </li>
-      ))}
-    </ul>
+          {tabs.map(tab => (
+            <li
+              key={tab.id}
+              className={`${tab.id === selectedTab.id ? 'is-active' : ''}`}
+              data-cy="Tab"
+              role="tab"
+              tabIndex={0}
+              onClick={() => handleTabClick(tab)}
+              onKeyDown={e => handleKeyDown(e, tab)}
+            >
+              <a href={`#${tab.id}`} data-cy="TabLink">{tab.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="block" data-cy="TabContent">
+        {selectedTab.content}
+      </div>
+    </div>
   );
 };
