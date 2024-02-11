@@ -1,6 +1,3 @@
-import 'bulma/css/bulma.css';
-import '@fortawesome/fontawesome-free/css/all.css';
-
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
