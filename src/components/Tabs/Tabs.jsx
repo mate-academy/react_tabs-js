@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
@@ -29,5 +29,5 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
     <div className="block" data-cy="TabContent">
       {selectedTab.content}
     </div>
-  </div>;
-};
+  </div>
+);
