@@ -13,7 +13,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTab, onTabSelected] = useState(tabs[0]);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
     <div className="section">
@@ -23,7 +23,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         selectedTab={selectedTab}
-        onTabSelected={onTabSelected}
+        setSelectedTab={setSelectedTab}
       />
     </div>
   );

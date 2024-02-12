@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
+export const Tabs = ({ tabs, selectedTab, setSelectedTab }) => (
   <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
@@ -13,7 +13,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
             <a
               onClick={() => {
                 if (selectedTab.id !== tab.id) {
-                  onTabSelected(tab);
+                  setSelectedTab(tab);
                 }
               }}
               href={`#${tab.id}`}
@@ -26,7 +26,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
       </ul>
     </div>
     <div className="block" data-cy="TabContent">
-      {selectedTab ? selectedTab.content : ''}
+      {selectedTab?.content}
     </div>
   </div>
 );

@@ -22,7 +22,7 @@ describe('Tabs component', () => {
         <Tabs
           tabs={tabs}
           selectedTab={tabs[1]}
-          onTabSelected={cy.spy().as('onTabSelected')}
+          setSelectedTab={cy.spy().as('setSelectedTab')}
         />
       ));
     });
@@ -56,17 +56,17 @@ describe('Tabs component', () => {
       page.content().should('have.text', 'Some text 20');
     });
 
-    it('should not invoke onTabSelected callback before click', () => {
-      cy.get('@onTabSelected').should('not.be.called');
+    it('should not invoke setSelectedTab callback before click', () => {
+      cy.get('@setSelectedTab').should('not.be.called');
     });
 
-    it('should invoke onTabSelected if another tab is clicked', () => {
+    it('should invoke setSelectedTab if another tab is clicked', () => {
       page.tabs().eq(3).find('a').click();
 
-      cy.get('@onTabSelected').should('be.calledOnce');
+      cy.get('@setSelectedTab').should('be.calledOnce');
     });
 
-    it('should invoke onTabSelected with tab data', () => {
+    it('should invoke setSelectedTab with tab data', () => {
       page.tabs().eq(3).find('a').click();
 
       const tabData = {
@@ -75,13 +75,13 @@ describe('Tabs component', () => {
         content: 'Some text 40',
       };
 
-      cy.get('@onTabSelected').should('be.calledWith', tabData);
+      cy.get('@setSelectedTab').should('be.calledWith', tabData);
     });
 
-    it('should not invoke onTabSelected if the current tab is clicked', () => {
+    it('should not invoke setSelectedTab if the current tab is clicked', () => {
       page.tabs().eq(1).find('a').click();
 
-      cy.get('@onTabSelected').should('not.be.called');
+      cy.get('@setSelectedTab').should('not.be.called');
     });
   });
 });
