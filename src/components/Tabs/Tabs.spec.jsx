@@ -18,13 +18,13 @@ describe('Tabs component', () => {
         { id: 'tab-40', title: 'Tab 40', content: 'Some text 40' },
       ];
 
-      mount((
+      mount(
         <Tabs
           tabs={tabs}
           selectedTab={tabs[1]}
           onTabSelected={cy.spy().as('onTabSelected')}
-        />
-      ));
+        />,
+      );
     });
 
     it('should render all tabs', () => {
@@ -37,11 +37,17 @@ describe('Tabs component', () => {
     });
 
     it('should have a link in each tab', () => {
-      page.tabs().eq(0).find('a')
+      page
+        .tabs()
+        .eq(0)
+        .find('a')
         .should('have.text', 'Tab 10')
         .and('have.attr', 'href', '#tab-10');
 
-      page.tabs().eq(3).find('a')
+      page
+        .tabs()
+        .eq(3)
+        .find('a')
         .should('have.text', 'Tab 40')
         .and('have.attr', 'href', '#tab-40');
     });
