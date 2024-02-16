@@ -11,23 +11,27 @@ export const tabs = [
 
 export const App = () => (
   <div className="section">
-    <h1 className="title">
-      Selected tab is Tab 1
-    </h1>
+    <h1 className="title">Selected tab is Tab 1</h1>
 
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">Tab 1</a>
+            <a href="#tab-1" data-cy="TabLink">
+              Tab 1
+            </a>
           </li>
 
           <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">Tab 2</a>
+            <a href="#tab-2" data-cy="TabLink">
+              Tab 2
+            </a>
           </li>
 
           <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">Tab 3</a>
+            <a href="#tab-3" data-cy="TabLink">
+              Tab 3
+            </a>
           </li>
         </ul>
       </div>
