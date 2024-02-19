@@ -13,10 +13,6 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  // function onTabSelected(tselectedTab) {
-  //   return selectedTab;
-  // }
-
   return (
     <div className="section">
       <h1 className="title">
