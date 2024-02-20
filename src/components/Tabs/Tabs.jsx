@@ -3,7 +3,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
     <div className="tabs is-boxed">
       <ul>
         {tabs.map(tab => {
-          const isActive = tab.title === selectedTab.title;
+          const isActive = tab.id === selectedTab.id;
 
           return (
             <li className={isActive && 'is-active'} data-cy="Tab" key={tab.id}>
