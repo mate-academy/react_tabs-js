@@ -6,18 +6,20 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
           const isActive = selectedTab === tab;
 
           return (
-            // eslint-disable-next-line
             <li
               className={isActive ? 'is-active' : ''}
               data-cy="Tab"
               key={tab.id}
-              onClick={() => {
-                if (!isActive) {
-                  onTabSelected(tab);
-                }
-              }}
             >
-              <a href={`#${tab.id}`} data-cy="TabLink">
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => {
+                  if (!isActive) {
+                    onTabSelected(tab);
+                  }
+                }}
+              >
                 {tab.title}
               </a>
             </li>
