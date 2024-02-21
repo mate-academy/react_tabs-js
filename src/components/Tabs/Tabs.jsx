@@ -1,10 +1,12 @@
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  const validTab = tabs.find(tab => tab.id === selectedTab.id) || tabs[0];
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => {
-            const isSelected = tab.id === selectedTab.id;
+            const isSelected = tab.id === validTab.id;
 
             return (
               <li
