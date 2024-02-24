@@ -1,22 +1,16 @@
 import { Tab } from '../Tab';
-import { getActiveTabContent } from '../../helpers/getActiveTabContent';
 
-export const Tabs = ({ tabs, tabActiveIdVar, changeTabFromTabs }) => {
-  const contentActive = getActiveTabContent(tabs, tabActiveIdVar);
-
+export const Tabs = ({ tabs, activeTab, changeTabFromTabs }) => {
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => {
-            const { id, title } = tab;
-
             return (
               <Tab
-                key={id}
-                id={id}
-                title={title}
-                tabActiveIdVar={tabActiveIdVar}
+                key={tab.id}
+                tab={tab}
+                activeTab={activeTab}
                 changeTabFromTab={e => {
                   changeTabFromTabs(e);
                 }}
@@ -27,7 +21,7 @@ export const Tabs = ({ tabs, tabActiveIdVar, changeTabFromTabs }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {contentActive}
+        {activeTab.content}
       </div>
     </div>
   );

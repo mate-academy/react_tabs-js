@@ -1,24 +1,22 @@
 import cn from 'classnames';
 import 'bulma/css/bulma.css';
 
-export const Tab = ({ id, title, tabActiveIdVar, changeTabFromTab }) => {
-  const tabActiveIdVarFromApp = tabActiveIdVar;
-
+export const Tab = ({ tab, activeTab, changeTabFromTab }) => {
   return (
     <button
       type="button"
       onClick={() => {
-        changeTabFromTab(id);
+        changeTabFromTab(tab);
       }}
     >
       <li
         className={cn({
-          'is-active': id === tabActiveIdVarFromApp,
+          'is-active': tab.id === activeTab.id,
         })}
         data-cy="Tab"
       >
-        <a href={`#${id}`} data-cy="TabLink">
-          {title}
+        <a href={`#${tab.id}`} data-cy="TabLink">
+          {tab.title}
         </a>
       </li>
     </button>

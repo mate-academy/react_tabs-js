@@ -4,23 +4,18 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { tabs } from './constants/constants';
 import { Tabs } from './components/Tabs';
-import { getActiveTabTitle } from './helpers/getActiveTabTitle';
-
-const startRendTabsId = tabs[0].id;
 
 export const App = () => {
-  const [tabActiveId, setTabActiveId] = useState(startRendTabsId);
-  const tabActiveIdVar = tabActiveId;
-  const activeTabTitle = getActiveTabTitle(tabs, tabActiveIdVar);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {activeTabTitle}</h1>
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
       <Tabs
         tabs={tabs}
-        tabActiveIdVar={tabActiveIdVar}
-        changeTabFromTabs={tabId => {
-          setTabActiveId(tabId);
+        activeTab={activeTab}
+        changeTabFromTabs={tab => {
+          setActiveTab(tab);
         }}
       />
     </div>
