@@ -11,9 +11,7 @@ export const Tabs = ({ tabs, activeTab, changeTabFromTabs }) => {
                 key={tab.id}
                 tab={tab}
                 activeTab={activeTab}
-                changeTabFromTab={e => {
-                  changeTabFromTabs(e);
-                }}
+                onTabSelected={changeTabFromTabs}
               />
             );
           })}

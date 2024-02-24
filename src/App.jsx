@@ -14,9 +14,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTab={activeTab}
-        changeTabFromTabs={tab => {
-          setActiveTab(tab);
-        }}
+        changeTabFromTabs={setActiveTab}
       />
     </div>
   );
