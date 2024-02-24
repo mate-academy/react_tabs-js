@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import { mount } from '@cypress/react';
+
 import { Tabs } from './Tabs';
 
 const page = {
