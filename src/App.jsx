@@ -17,11 +17,7 @@ export const App = () => {
     <div className="section">
       <h1 className="title">{`Selected tab is ${selected.title}`}</h1>
 
-      <Tabs
-        tabs={tabs}
-        selectedTab={selected}
-        onTabSelected={setSelected}
-      />
+      <Tabs tabs={tabs} selectedTab={selected} onTabSelected={setSelected} />
     </div>
   );
 };

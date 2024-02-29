@@ -5,7 +5,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
     if (!isTabActive) {
       onTabSelected(tab);
     }
-  }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -13,10 +13,11 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
         <ul>
           {tabs.map(tab => {
             const isTabActive = tab.id === selectedTab.id;
+
             return (
               <li
                 key={tab.id}
-                className={cn({ 'is-active': isTabActive})}
+                className={cn({ 'is-active': isTabActive })}
                 data-cy="Tab"
               >
                 <a
@@ -27,7 +28,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
                   {tab.title}
                 </a>
               </li>
-            )
+            );
           })}
         </ul>
       </div>
