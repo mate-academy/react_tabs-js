@@ -6,7 +6,6 @@ import './App.scss';
 import { Tabs } from './components/Tabs';
 // import { set } from 'cypress/types/lodash';
 
-
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
   { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
@@ -14,35 +13,30 @@ export const tabs = [
 ];
 
 export const App = () => {
-
   const defaultTab = tabs.find(tab => tab.id === 'tab-1');
-  const [someTitle, setSomeTitle] = useState(defaultTab.title);
-  const [someID, setSomeID] = useState(defaultTab.id)
-  const [someContent, setSomeContent] = useState(defaultTab.content)
-
-  const handleTabClick = (title, ID, content) => {
-    setSomeTitle(title)
-    setSomeID(ID)
-    setSomeContent(content)
+  const [selectedTab, setSelectedTab] = useState(defaultTab);
+ 
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
   };
 
-  
-
   return (
-    < div className="section" >
+    <div className="section">
       <h1 className="title">
-        Selected tab is {someTitle}
+        Selected tab is
+        {' '}
+        {selectedTab.title}
       </h1>
 
       <Tabs
         tabs={tabs}
+        selectedTab={selectedTab}
         onTabClick={handleTabClick}
-        someID={someID}
-        someContent={someContent}
       />
 
       <div className="block" data-cy="TabContent">
-        {someContent}
+        {selectedTab.content}
       </div>
-    </div >)
+    </div>
+  );
 };
