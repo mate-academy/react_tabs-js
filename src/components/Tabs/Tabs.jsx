@@ -16,7 +16,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               className={cn('', {
-                'is-active': selectedTab.id === tab.id,
+                'is-active': activeTab.id === tab.id,
               })}
               data-cy="Tab"
               key={tab.id}
@@ -34,7 +34,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTab.content}
+        {activeTab.content}
       </div>
     </div>
   );
