@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const currentTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+  const activeTab = tabs.find(({ id }) => id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -16,7 +16,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => tab.id !== currentTab.id && onTabSelected(tab)}
+                onClick={() => tab.id !== selectedTabId && onTabSelected(tab)}
               >
                 {tab.title}
               </a>
@@ -25,7 +25,7 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
         </ul>
       </div>
       <div className="block" data-cy="TabContent">
-        {currentTab.content}
+        {activeTab.content}
       </div>
     </div>
   );
