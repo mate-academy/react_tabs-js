@@ -1,8 +1,8 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabs, onSelectedTabs }) => {
-  const selectTab = (isTabActive, tab) => {
-    if (!isTabActive) {
+  const selectTab = (isTabSelected, tab) => {
+    if (!isTabSelected) {
       onSelectedTabs(tab);
     }
   };
@@ -12,18 +12,18 @@ export const Tabs = ({ tabs, selectedTabs, onSelectedTabs }) => {
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => {
-            const isTabActive = tab.id === selectedTabs.id;
+            const isTabSelected = tab.id === selectedTabs.id;
 
             return (
               <li
                 key={tab.id}
-                className={cn({ 'is-active': isTabActive })}
+                className={cn({ 'is-active': isTabSelected })}
                 data-cy="Tab"
               >
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => selectTab(isTabActive, tab)}
+                  onClick={() => selectTab(isTabSelected, tab)}
                 >
                   {tab.title}
                 </a>
