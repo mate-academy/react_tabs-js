@@ -6,7 +6,7 @@ export const Tabs = ({ tabs, selectedTabs, onSelectedTabs }) => {
       onSelectedTabs(tab);
     }
   };
-
+  
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
