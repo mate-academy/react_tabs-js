@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
 import { Tabs } from './components/Tabs';
-// import { set } from 'cypress/types/lodash';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -15,9 +14,11 @@ export const tabs = [
 export const App = () => {
   const defaultTab = tabs.find(tab => tab.id === 'tab-1');
   const [selectedTab, setSelectedTab] = useState(defaultTab);
- 
+
   const handleTabClick = (tab) => {
-    setSelectedTab(tab);
+    if (selectedTab.id !== tab.id) {
+      setSelectedTab(tab);
+    }
   };
 
   return (
