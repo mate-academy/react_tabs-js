@@ -19,8 +19,8 @@ export const App = () => {
 
       <Tabs
         tabs={tabs}
-        selectedTabs={selectedTab}
-        onSelectedTabs={setSelectedTabs}
+        selectedTab={selectedTab}
+        onTabSelected={setSelectedTabs}
       />
     </div>
   );
