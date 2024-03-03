@@ -1,10 +1,8 @@
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   function handleTabClick(tab) {
-    if (selectedTab.title === tab.title) {
-      return null;
+    if (selectedTab.title !== tab.title) {
+      onTabSelected(tab);
     }
-
-    return onTabSelected(tab);
   }
 
   return (
