@@ -1,9 +1,9 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, selectedTabs, onSelectedTabs }) => {
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const selectTab = (isTabSelected, tab) => {
     if (!isTabSelected) {
-      onSelectedTabs(tab);
+      onTabSelected(tab);
     }
   };
 
@@ -12,7 +12,7 @@ export const Tabs = ({ tabs, selectedTabs, onSelectedTabs }) => {
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => {
-            const isTabSelected = tab.id === selectedTabs.id;
+            const isTabSelected = tab.id === selectedTab.id;
 
             return (
               <li
@@ -34,7 +34,7 @@ export const Tabs = ({ tabs, selectedTabs, onSelectedTabs }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTabs.content}
+        {selectedTab.content}
       </div>
     </div>
   );
