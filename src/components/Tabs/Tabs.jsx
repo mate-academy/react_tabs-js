@@ -1,22 +1,10 @@
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
-  function activeTab(currentTab) {
-    if (selectedTab.title !== currentTab.title) {
-      return (
-        <a
-          href={`#${currentTab.id}`}
-          data-cy="TabLink"
-          onClick={() => onTabSelected(currentTab)}
-        >
-          {currentTab.title}
-        </a>
-      );
+  function handleTabClick(tab) {
+    if (selectedTab.title === tab.title) {
+      return null;
     }
 
-    return (
-      <a href={`#${currentTab.id}`} data-cy="TabLink">
-        {currentTab.title}
-      </a>
-    );
+    return onTabSelected(tab);
   }
 
   return (
@@ -29,7 +17,13 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
               className={selectedTab.title === tab.title ? 'is-active' : ''}
               data-cy="Tab"
             >
-              {activeTab(tab)}
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => handleTabClick(tab)}
+              >
+                {tab.title}
+              </a>
             </li>
           ))}
         </ul>
