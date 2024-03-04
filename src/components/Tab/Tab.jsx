@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { checkIfTabIsSelected } from '../../functions';
 
 export const Tab = ({ tab, selectedTab, onTabSelected }) => {
   return (
@@ -10,9 +11,7 @@ export const Tab = ({ tab, selectedTab, onTabSelected }) => {
         href={`#${tab.id}`}
         data-cy="TabLink"
         onClick={() => {
-          if (selectedTab.title !== tab.title) {
-            onTabSelected({ ...tab });
-          }
+          checkIfTabIsSelected(tab, selectedTab, onTabSelected);
         }}
       >
         {tab.title}
