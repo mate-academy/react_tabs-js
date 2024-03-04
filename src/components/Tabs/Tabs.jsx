@@ -25,7 +25,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => selectedTab.id === tab.id).content}
+        {selectedTab.content}
       </div>
     </div>
   );
