@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import { tabs } from '../../constants';
 
-export const Tabs = ({ selectedTab, setTab }) => {
+export const Tabs = ({ selectedTab, onTabSelected }) => {
   return (
-    <ul>
+    <ul data-cy="TabContent">
       {tabs.map(tab => {
         return (
           <li
@@ -12,7 +12,11 @@ export const Tabs = ({ selectedTab, setTab }) => {
             })}
             data-cy="Tab"
           >
-            <a href="#tab-1" data-cy="TabLink" onClick={() => setTab(tab)}>
+            <a
+              href={`#${tab.id}`}
+              data-cy="TabLink"
+              onClick={() => onTabSelected(tab)}
+            >
               {tab.title}
             </a>
           </li>
