@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import 'bulma/css/bulma.css';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './App.scss';
 
 import { Tabs } from './components/Tabs/Tabs';
+
+import '@fortawesome/fontawesome-free/css/all.css';
+import 'bulma/css/bulma.css';
+import './App.scss';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -14,20 +15,14 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  const handleTabSelection = tab => {
-    setSelectedTab(tab);
-  };
-
-  const title = `Selected tab is ${selectedTab.title}`;
-
   return (
     <div className="section">
-      <h1 className="title">{title}</h1>
+      <h1 className="title">Selected tab is {selectedTab.title}</h1>
 
       <Tabs
         tabs={tabs}
         selectedTab={selectedTab}
-        onTabSelected={handleTabSelection}
+        onTabSelected={setSelectedTab}
       />
     </div>
   );
