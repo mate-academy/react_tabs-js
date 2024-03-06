@@ -10,6 +10,13 @@ export const Tabs = ({ tabs, onTabSelected, selectedTab }) => {
     activeTab = tabs.find(tabItem => tabItem.id === selectedTab.id);
   }
 
+  const clickHandler = (isSelected, tab) => {
+    if (!isSelected) {
+      window.location.hash = tab.id;
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -25,12 +32,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTab }) => {
                 key={tab.id}
                 className={classNames({ 'is-active': isSelected })}
                 data-cy="Tab"
-                onClick={event => {
-                  if (!isSelected) {
-                    window.location.hash = tab.id;
-                    onTabSelected(tab);
-                  }
-                }}
+                onClick={() => clickHandler(isSelected, tab)}
               >
                 <a href={`#${tab.id}`} data-cy="TabLink">
                   {tab.title}
