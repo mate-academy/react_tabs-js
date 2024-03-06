@@ -1,4 +1,4 @@
-export const Tabs = ({ tabs, selectedTab, setSelectedTab }) => {
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -17,7 +17,7 @@ export const Tabs = ({ tabs, selectedTab, setSelectedTab }) => {
                   data-cy="TabLink"
                   onClick={() => {
                     if (!isSelected) {
-                      setSelectedTab(tab);
+                      onTabSelected(tab);
                     }
                   }}
                 >
