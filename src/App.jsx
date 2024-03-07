@@ -8,7 +8,6 @@ import { Tabs } from './components/Tabs/Tabs';
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  // const numOfTab = selectedTab.title[selectedTab.title.length - 1];
 
   return (
     <div className="section">
@@ -17,7 +16,6 @@ export const App = () => {
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <Tabs
-            key={selectedTab.id}
             selectedTab={selectedTab}
             onTabSelected={tabName => {
               setSelectedTab(tabName);

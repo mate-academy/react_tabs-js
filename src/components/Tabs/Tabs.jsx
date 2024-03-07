@@ -4,24 +4,23 @@ import { tabs } from '../../constants';
 export const Tabs = ({ selectedTab, onTabSelected }) => {
   return (
     <ul data-cy="TabContent">
-      {tabs.map(tab => {
-        return (
-          <li
-            className={cn({
-              'is-active': selectedTab.title === tab.title,
-            })}
-            data-cy="Tab"
+      {tabs.map(tab => (
+        <li
+          key={tab.id}
+          className={cn({
+            'is-active': selectedTab.id === tab.id,
+          })}
+          data-cy="Tab"
           >
-            <a
-              href={`#${tab.id}`}
-              data-cy="TabLink"
-              onClick={() => onTabSelected(tab)}
-            >
-              {tab.title}
-            </a>
-          </li>
-        );
-      })}
+          <a
+            onClick={() => onTabSelected(tab)}
+            href={`#${tab.id}`}
+            data-cy="TabLink"
+          >
+            {tab.title}
+          </a>
+        </li>
+      ))}
     </ul>
   );
 };
