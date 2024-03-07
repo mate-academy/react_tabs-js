@@ -1,26 +1,33 @@
 import cn from 'classnames';
-import { tabs } from '../../constants';
 
-export const Tabs = ({ selectedTab, onTabSelected }) => {
+export const Tabs = ({ selectedTab, onTabSelected, tabs }) => {
   return (
-    <ul data-cy="TabContent">
-      {tabs.map(tab => (
-        <li
-          key={tab.id}
-          className={cn({
-            'is-active': selectedTab.id === tab.id,
-          })}
-          data-cy="Tab"
-          >
-          <a
-            onClick={() => onTabSelected(tab)}
-            href={`#${tab.id}`}
-            data-cy="TabLink"
-          >
-            {tab.title}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul data-cy="TabContent">
+          {tabs.map(tab => (
+            <li
+              key={tab.id}
+              className={cn({
+                'is-active': selectedTab.id === tab.id,
+              })}
+              data-cy="Tab"
+            >
+              <a
+                onClick={() => tab.id !== selectedTab.id && onTabSelected(tab)}
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+              >
+                {tab.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="block" data-cy="TabContent">
+        {selectedTab.content}
+      </div>
+    </div>
   );
 };
