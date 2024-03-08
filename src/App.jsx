@@ -11,8 +11,10 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
+const FIRST_TABS = tabs[0];
+
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [selectedTab, setSelectedTab] = useState(FIRST_TABS);
 
   return (
     <div className="section">
