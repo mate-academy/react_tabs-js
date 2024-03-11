@@ -12,12 +12,13 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
                   'is-active': selectedTab === tab,
                 })}
                 data-cy="Tab"
+                key={tab.id}
               >
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
                   onClick={() => {
-                    if (selectedTab !== tab) {
+                    if (selectedTab.id !== tab.id) {
                       onTabSelected(tab);
                     }
                   }}
