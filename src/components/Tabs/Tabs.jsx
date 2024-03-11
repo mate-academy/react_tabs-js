@@ -7,18 +7,18 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
         <ul>
           {tabs.map(tab => {
             const { title, id } = tab;
-            const isCurrentTab = selectedTab.id === tab.id;
+            const isCurrentTabSelected = selectedTab.id === tab.id;
 
             return (
               <li
-                className={cn({ 'is-active': isCurrentTab })}
+                className={cn({ 'is-active': isCurrentTabSelected })}
                 data-cy="Tab"
                 key={id}
               >
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={() => !isCurrentTab && onTabSelected(tab)}
+                  onClick={() => !isCurrentTabSelected && onTabSelected(tab)}
                 >
                   {title}
                 </a>
