@@ -5,25 +5,29 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
-            <li
-              data-cy="Tab"
-              key={tab.id}
-              className={cn({ 'is-active': selectedTab.id === tab.id })}
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={() => {
-                  if (selectedTab.id !== tab.id) {
-                    onTabSelected(tab);
-                  }
-                }}
+          {tabs.map(tab => {
+            const isTabId = selectedTab.id === tab.id;
+
+            return (
+              <li
+                data-cy="Tab"
+                key={tab.id}
+                className={cn({ 'is-active': isTabId })}
               >
-                {tab.title}
-              </a>
-            </li>
-          ))}
+                <a
+                  href={`#${tab.id}`}
+                  data-cy="TabLink"
+                  onClick={() => {
+                    if (!isTabId) {
+                      onTabSelected(tab);
+                    }
+                  }}
+                >
+                  {tab.title}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
