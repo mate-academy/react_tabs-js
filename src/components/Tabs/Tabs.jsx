@@ -5,15 +5,13 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
     <div className="tabs is-boxed">
       <ul>
         {tabs.map(tab => {
-          const isSelected = () => {
-            return tab.id === selectedTab.id;
-          };
+          const isSelectedTab = tab.id === selectedTab.id;
 
           return (
             <li
               key={tab.id}
               className={classNames({
-                'is-active': isSelected(),
+                'is-active': isSelectedTab,
               })}
               data-cy="Tab"
             >
