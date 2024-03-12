@@ -1,9 +1,9 @@
 import 'bulma/css/bulma.css';
 
-export const Tabs = ({ tabs, selectedTab, setSelectedTab }) => {
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
   const handleSelected = tab => {
     if (selectedTab.id !== tab.id) {
-      setSelectedTab(tab);
+      onTabSelected(tab);
     }
   };
 
