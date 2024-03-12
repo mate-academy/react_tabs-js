@@ -13,31 +13,15 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  const handleTabClick = tab => {
-    if (tab !== selectedTab) {
-      setSelectedTab(tab);
-    }
-  };
-
   return (
     <div className="section">
       <h1 className="title">Selected tab is {selectedTab.title}</h1>
 
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            <Tabs
-              tabs={tabs}
-              onTabSelected={handleTabClick}
-              selectedTab={selectedTab}
-            />
-          </ul>
-        </div>
-
-        <div className="block" data-cy="TabContent">
-          {selectedTab.content}
-        </div>
-      </div>
+      <Tabs
+        tabs={tabs}
+        onTabSelected={setSelectedTab}
+        selectedTab={selectedTab}
+      />
     </div>
   );
 };
