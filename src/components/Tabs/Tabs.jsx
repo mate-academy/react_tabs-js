@@ -5,19 +5,19 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => (
     <div className="tabs is-boxed">
       <ul>
         {tabs.map(tab => {
-          const isAction = tab === selectedTab;
+          const isTabAction = tab.id === selectedTab.id;
 
           return (
             <li
               key={tab.id}
-              className={cn({ 'is-active': isAction })}
+              className={cn({ 'is-active': isTabAction })}
               data-cy="Tab"
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (!isAction) {
+                  if (!isTabAction) {
                     onTabSelected(tab);
                   }
                 }}
