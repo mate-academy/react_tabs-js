@@ -11,8 +11,9 @@ export const Tabs = ({
         <ul>
           {tabs.map(tab => (
             <li
-              className={selectedTab === tab.title && 'is-active'}
+              className={selectedTab === tab.title ? 'is-active' : undefined}
               data-cy="Tab"
+              key={tab.id}
             >
               <a
                 href={`#${tab.id}`}
