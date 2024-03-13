@@ -1,5 +1,3 @@
-import cn from 'classnames';
-
 export const Tabs = ({
   tabs,
   selectedTab,
@@ -10,7 +8,7 @@ export const Tabs = ({
   return (
     <ul>
       {tabs.map(tab => (
-        <li className={cn} data-cy="Tab">
+        <li className={selectedTab === tab.title && 'is-active'} data-cy="Tab">
           <a
             href={`#${tab.id}`}
             data-cy="TabLink"
