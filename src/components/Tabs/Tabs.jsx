@@ -1,6 +1,8 @@
 export const Tabs = ({ tabs, onTabSelected, selectedTab }) => {
-  const tabClick = title => {
-    onTabSelected(title);
+  const tabClick = tab => {
+    if (selectedTab !== tab) {
+      onTabSelected(tab);
+    }
   };
 
   return (
@@ -11,12 +13,12 @@ export const Tabs = ({ tabs, onTabSelected, selectedTab }) => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={selectedTab === tab.title ? 'is-active' : ''}
+              className={selectedTab === tab ? 'is-active' : ''}
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => tabClick(tab.title)}
+                onClick={() => tabClick(tab)}
               >
                 {tab.title}
               </a>
@@ -26,7 +28,7 @@ export const Tabs = ({ tabs, onTabSelected, selectedTab }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.title === selectedTab)?.content}
+        {selectedTab.content}
       </div>
     </div>
   );
