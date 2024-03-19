@@ -1,6 +1,12 @@
 import classnames from 'classnames';
 
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  function handleClick(tab) {
+    if (selectedTab !== tab) {
+      onTabSelected(tab);
+    }
+  }
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -12,12 +18,10 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
               key={tab.id}
             >
               <a
-                href={`#${tab - 1}`}
+                href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (selectedTab !== tab) {
-                    onTabSelected(tab);
-                  }
+                  handleClick(tab);
                 }}
               >
                 {tab.title}

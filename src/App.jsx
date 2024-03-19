@@ -18,7 +18,6 @@ export const App = () => {
       <h1 className="title">Selected tab is {selectedTab.title}</h1>
       <Tabs
         tabs={tabs}
-        key={tabs.id}
         selectedTab={selectedTab}
         onTabSelected={setSelectedTab}
       />
