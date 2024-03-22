@@ -5,25 +5,25 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => {
-            const isSelected = tab.id === selectedTab.id;
+          {tabs.map(({ id, title, content }) => {
+            const isSelected = id === selectedTab.id;
 
             return (
               <li
                 className={cn({ 'is-active': isSelected })}
                 data-cy="Tab"
-                key={tab.id}
+                key={id}
               >
                 <a
                   onClick={() => {
                     if (!isSelected) {
-                      onTabSelected(tab);
+                      onTabSelected({ id, title, content });
                     }
                   }}
-                  href={`#${tab.id}`}
+                  href={`#${id}`}
                   data-cy="TabLink"
                 >
-                  {tab.title}
+                  {title}
                 </a>
               </li>
             );
@@ -37,5 +37,3 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
     </div>
   );
 };
-
-export default Tabs;
