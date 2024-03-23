@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+
 import { Tabs } from './components/Tabs';
 
 export const tabsFromServer = [
@@ -11,23 +12,21 @@ export const tabsFromServer = [
 ];
 
 export const App = () => {
-  const selectedTab = [...tabsFromServer];
-  const [activeTab, setActiveTab] = useState(selectedTab[0].id);
-  const currTabInfo = tabsFromServer.find(tab => tab.id === activeTab);
+  const [selectedTab, setSelectedTab] = useState(tabsFromServer[0]);
 
   return (
     <div className="section">
-      <h1 className="title">{`Selected tab is ${currTabInfo.title}`}</h1>
+      <h1 className="title">{`Selected tab is ${selectedTab.title}`}</h1>
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <Tabs
-            tabs={selectedTab}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
+            tabs={tabsFromServer}
+            activeTab={selectedTab}
+            setActiveTab={setSelectedTab}
           />
         </div>
         <div className="block" data-cy="TabContent">
-          {currTabInfo.content}
+          {selectedTab.content}
         </div>
       </div>
     </div>
