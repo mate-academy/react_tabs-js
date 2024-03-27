@@ -14,8 +14,6 @@ export const tabs = [
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
-  console.log(selectedTab);
-
   return (
     <div className="section">
       <h1 className="title">Selected tab is {selectedTab.title}</h1>
@@ -24,34 +22,6 @@ export const App = () => {
         onTabSelected={currentTab => setSelectedTab(currentTab)}
         tabs={tabs}
       />
-
-      {/* <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            <li className="is-active" data-cy="Tab">
-              <a href="#tab-1" data-cy="TabLink">
-                Tab 1
-              </a>
-            </li>
-
-            <li data-cy="Tab">
-              <a href="#tab-2" data-cy="TabLink">
-                Tab 2
-              </a>
-            </li>
-
-            <li data-cy="Tab">
-              <a href="#tab-3" data-cy="TabLink">
-                Tab 3
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="block" data-cy="TabContent">
-          Some text 1
-        </div>
-      </div> */}
     </div>
   );
 };
