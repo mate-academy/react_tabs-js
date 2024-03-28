@@ -1,8 +1,9 @@
 export const Tabs = ({ selectedTabId, onTabSelected, tabs }) => {
+  let validSelectedTabId = selectedTabId;
   const isValidSelectedTab = tabs.some(tab => tab.id === selectedTabId);
 
   if (!isValidSelectedTab && tabs.length > 0) {
-    selectedTabId = tabs[0].id;
+    validSelectedTabId = tabs[0].id;
   }
 
   return (
@@ -12,12 +13,12 @@ export const Tabs = ({ selectedTabId, onTabSelected, tabs }) => {
           {tabs.map(tab => {
             const { title, id } = tab;
             const handleClick = () => {
-              if (selectedTabId !== id) {
+              if (validSelectedTabId !== id) {
                 onTabSelected(tab);
               }
             };
 
-            const activeClass = selectedTabId === id && 'is-active';
+            const activeClass = validSelectedTabId === id && 'is-active';
 
             return (
               <li key={id} className={`${activeClass}`} data-cy="Tab">
@@ -31,7 +32,7 @@ export const Tabs = ({ selectedTabId, onTabSelected, tabs }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        Some text {selectedTabId.split('-')[1]}
+        Some text {validSelectedTabId.split('-')[1]}
       </div>
     </div>
   );
