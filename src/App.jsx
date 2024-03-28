@@ -17,7 +17,7 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is {selectedTab.title || `Tab ${tabs[0].id.split('-')[1]}`}
+        Selected tab is {selectedTab.title}
       </h1>
       <Tabs
         onTabSelected={setSelectedTab}
