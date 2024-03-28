@@ -1,6 +1,6 @@
-export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   const handleClick = tab => {
-    if (tab.id !== selectedTab.id) {
+    if (tab.id !== selectedTabId) {
       onTabSelected(tab);
     }
   };
@@ -13,7 +13,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
             <li
               key={tab.id}
               className={
-                selectedTab && tab.id === selectedTab.id ? 'is-active' : ''
+                selectedTabId && tab.id === selectedTabId ? 'is-active' : ''
               }
               data-cy="Tab"
             >
@@ -30,7 +30,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTab?.content}
+        {tabs.find(tab => tab.id === selectedTabId)?.content}
       </div>
     </div>
   );
