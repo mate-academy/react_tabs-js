@@ -1,4 +1,10 @@
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  const handleClick = tab => {
+    if (tab.id !== selectedTab.id) {
+      onTabSelected(tab);
+    }
+  };
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -14,7 +20,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => onTabSelected(tab)}
+                onClick={() => handleClick(tab)}
               >
                 {tab.title}
               </a>
@@ -24,7 +30,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTab && selectedTab.content}
+        {selectedTab?.content}
       </div>
     </div>
   );
