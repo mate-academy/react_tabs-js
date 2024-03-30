@@ -11,46 +11,16 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [tab, setTab] = useState(tabs[0]);
-  const [content, setContent] = useState(tabs[0].content);
+  const [tabSelected, onTabSelected] = useState(tabs[0]);
 
   return (
     <div className="section">
-      <h1 className="title">{`Selected tab is ${tab.title}`}</h1>
+      <h1 className="title">{`Selected tab is ${tabSelected.title}`}</h1>
       <Tabs
         tabs={tabs}
-        currentTab={tab.id}
-        setTab={setTab}
-        content={content}
-        setContent={setContent}
+        selectedTabId={tabSelected.id}
+        onTabSelected={onTabSelected}
       />
-      {/* <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
-
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
-
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="block" data-cy="TabContent">
-        Some text 1
-      </div>
-    </div> */}
     </div>
   );
 };

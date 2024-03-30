@@ -59,7 +59,7 @@ describe('Tabs component', () => {
     });
 
     it('should show the content of the selected tab', () => {
-      page.content().should('have.text', 'Some text 1');
+      page.content().should('have.text', 'Some text 20');
     });
 
     it('should not invoke onTabSelected callback before click', () => {
