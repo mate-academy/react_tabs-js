@@ -1,18 +1,22 @@
-export const Tabs = ({ setTab, tabs, currentTab }) => {
+import classNames from 'classnames';
+
+export const Tabs = ({ setTab, tabs, currentTab, content, setContent }) => {
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map((tab, index) => (
+          {tabs.map(tab => (
             <li
-              className={`${currentTab === tab.id ? 'is-active' : ''}`}
+              key={tab.id}
+              className={classNames({ 'is-active': currentTab === tab.id })}
               data-cy="Tab"
             >
               <a
-                href={tab.id}
+                href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  setTab(index);
+                  setTab(tab);
+                  setContent(tab.content);
                 }}
               >
                 {tab.title}
@@ -20,6 +24,10 @@ export const Tabs = ({ setTab, tabs, currentTab }) => {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="block" data-cy="TabContent">
+        {content}
       </div>
     </div>
   );
