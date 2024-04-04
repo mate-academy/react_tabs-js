@@ -22,6 +22,7 @@ export const App = () => {
 
       <Tabs
         selectedTab={selectedTab}
+        selectedTabId={selectedTab.id}
         onTabSelected={setSelectedTab}
         tabs={tabs}
       />
