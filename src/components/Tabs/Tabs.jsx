@@ -1,7 +1,5 @@
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
-  const isSelectedTabNotFound = !tabs.some(
-    tab => tab.id === `tab-${selectedTab}`,
-  );
+  const isSelectedTabNotFound = !tabs.some(tab => tab.id === selectedTab.id);
 
   return (
     <ul role="tablist">
@@ -10,13 +8,13 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
           role="tab"
           aria-selected={
             (isSelectedTabNotFound && tab.id === 'tab-1') ||
-            tab.id.slice(-1) === selectedTab
+            tab.id === selectedTab.id
               ? 'true'
               : 'false'
           }
           className={
             (isSelectedTabNotFound && tab.id === 'tab-1') ||
-            tab.id.slice(-1) === selectedTab
+            tab.id === selectedTab.id
               ? 'is-active'
               : ''
           }
@@ -27,7 +25,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
             href={`#${tab.id}`}
             data-cy="TabLink"
             onClick={() => {
-              onTabSelected(tab.id.slice(-1));
+              onTabSelected(tab.id);
             }}
           >
             {tab.title}
