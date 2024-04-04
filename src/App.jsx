@@ -12,28 +12,30 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  console.log("🚀 ~ App ~ selectedTab:", selectedTab.id.slice(-1))
 
   const onTabSelected = id => {
-    setSelectedTab(id);
+    const tab = tabs.find(tab => tab.id.slice(-1) === id);
+    setSelectedTab(tab);
   };
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is Tab {selectedTab}</h1>
+      <h1 className="title">Selected tab is {selectedTab.id.slice(-1)}</h1>
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <ul>
             <Tabs
               tabs={tabs}
-              selectedTab={selectedTab}
+              selectedTab={selectedTab.id.slice(-1)}
               onTabSelected={onTabSelected}
             />
           </ul>
         </div>
 
         <div className="block" data-cy="TabContent">
-          Some text {selectedTab}
+          {selectedTab.content}
         </div>
       </div>
     </div>
