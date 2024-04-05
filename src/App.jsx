@@ -15,12 +15,13 @@ export const App = () => {
 
   const onTabSelected = id => {
     const tabber = tabs.find(tab => tab.id === id) || tabs[0];
+
     setSelectedTab(tabber);
   };
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {selectedTab.id.slice(-1)}</h1>
+      <h1 className="title">Selected tab is {selectedTab.title}</h1>
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
