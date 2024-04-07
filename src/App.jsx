@@ -8,7 +8,6 @@ import { tabs } from './consts';
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="section">
@@ -16,14 +15,9 @@ export const App = () => {
 
       <Tabs
         tabs={tabs}
-        setSelectedTab={setSelectedTab}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        onTabSelected={setSelectedTab}
+        selectedTabId={selectedTab.id}
       />
-
-      <div className="block" data-cy="TabContent">
-        {selectedTab.content}
-      </div>
     </div>
   );
 };
