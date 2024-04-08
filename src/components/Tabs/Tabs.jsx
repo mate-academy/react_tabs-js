@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
-  const currentTab = selectedTab || tabs[0];
+  const currentTab = !selectedTab ? tabs[0] : selectedTab;
 
   const onClickTab = obj => {
     if (selectedTab.id !== obj.id) {
