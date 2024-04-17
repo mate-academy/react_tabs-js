@@ -1,13 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  let selectedTab;
-
-  if (tabs.some(tab => tab.id === selectedTabId)) {
-    selectedTab = tabs.find(tab => tab.id === selectedTabId);
-  } else {
-    [selectedTab] = tabs; // taking first element of an array
-  }
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
