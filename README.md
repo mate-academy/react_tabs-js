@@ -1,27 +1,30 @@
 # React Tabs (JS)
 
-Implement the `App` and `Tabs` components to render and switch between given `tabs`.
+Implement the `Tabs` component that renders several tabs and allows the user to switch between them.
 
 > Here is [the working version](https://mate-academy.github.io/react_tabs)
 
-1. Save the `selectedTab` in the `App` (the first `tab` is selected by default);
-1. Implement the `Tabs` component accepting `tabs` via props and displaying then as <ul> with a link per each `tab` and the content of the selected tab.
-1. Each `<li>` should have a `data-cy="Tab"`.
-1. Each link should have a `data-cy="TabLink"` and a `href` with a `#tab-id` (see the markup).
-1. Pass the `selectedTab` as a prop to the `Tabs`, the specified tab should be selected if possible
-  (otherwise, the first tab is selected).
-1. The `Tabs` should show the content of the selected tab (add an attribute `data-cy="TabContent"` for testing). Content should be rendered inside the `Tabs` component.
-1. The selected tab (`li`) should have an `is-active` class.
-1. Pass the `onTabSelected` callback to the `Tabs`, it should be called whenever the user selects another tab.
-   (Don't call the callback if the tab was not changed)
-1. The callback should receive the data of the selected tab (an object from the array)
-1. The `App` title (`h1`) should show a text saying `Selected tab is Tab 1` (show the title of the selected tab).
-1. When the user selects another tab the `h1` should be updated accordingly.
-1. The `Tabs` component should be stateless (don't have an internal state, only props).
+The `App` should communicate with the `Tabs` component using the following props:
+
+- `tabs` - an array of tab objects to be rendered as `Tabs`;
+- `activeTabId` - the `id` of the tab that should be active;
+- `onTabSelected` - a callback executed with the `id` of a just selected tab when the user clicks on it.
+
+The `Tabs` component should be stateless (does not have an internal state, only props).
+
+Follow the next requirements to pass the tests:
+1. Render tabs in a list (`<ul>`);
+2. Each `<li>` should have a `data-cy="Tab"`.
+3. The `<li>` of an active tab should have the `is-active` class.
+4. If `activeTabId` does not match any object in the `tabs` array, the first one should be active.
+5. Add a link with `data-cy="TabLink"` and a `href` to `#tab-id` inside every `<li>` (see the markup).
+6. The `Tabs` component should render the content of the active tab in the element with `data-cy="TabContent"`.
+7. Call `onTabSelected` only when the user selects a non-active tab.
+8. Use the title of the active tab in the `<h1>` of the `App` component in the following format: `Selected tab is Tab 1`.
 
 ## Instructions
 
-- Install Prettier Extention and use this [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
-- Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
+- Install the Prettier Extension and use these [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
+- Implement a solution following the [React task guidelines](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
 - Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_tabs-js/) and add it to the PR description.
