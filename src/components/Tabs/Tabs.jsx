@@ -2,11 +2,8 @@ import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   let validId = activeTabId;
-  const arrayOfId = [];
 
-  tabs.forEach(tab => {
-    arrayOfId.push(tab.id);
-  });
+  const arrayOfId = tabs.map(tab => tab.id);
 
   if (!arrayOfId.includes(validId)) {
     validId = tabs[0].id;
