@@ -7,8 +7,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     }
   };
 
-  const isValidTab = tabs.some(tab => tab.id === activeTabId);
-  const activeTab = isValidTab ? activeTabId : tabs[0].id;
+  const currentTab = tabs.find(tab => tab.id === activeTabId);
+  const activeTab = currentTab ? currentTab.id : tabs[0].id;
+  const activeContent = currentTab ? currentTab.content : tabs[0].content;
 
   return (
     <div data-cy="TabsComponent">
@@ -33,7 +34,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId)?.content}
+        {activeContent}
       </div>
     </div>
   );
