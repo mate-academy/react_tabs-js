@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
-export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
-  const selectedTab = tabs.find(tab => selectedTabId === tab.id) || tabs[0];
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const selectedTab = tabs.find(tab => activeTabId === tab.id) || tabs[0];
   const handleOnClick = tab =>
     selectedTab.id !== tab.id && onTabSelected(tab.id);
 
