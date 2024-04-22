@@ -11,18 +11,25 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [tabSelect, setTabSelect] = useState(tabs[0].title);
-  const [active, setActive] = useState(tabs[0].id);
+  const [title, setTitle] = useState(tabs[0].title);
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [contentTab, setContentTab] = useState(tabs[0].content);
 
-  const handleTabSelect = (title, id) => {
-    setTabSelect(title);
-    setActive(id);
+  const HendelTab = (id, TabTitle, tabContent) => {
+    setActiveTab(id);
+    setTitle(TabTitle);
+    setContentTab(tabContent);
   };
 
   return (
     <div className="section">
-      <h1 className="title">{`Selected tab is ${tabSelect}`}</h1>
-      <Tabs tabs={tabs} setTab={handleTabSelect} active={active} />
+      <h1 className="title">{`Selected tab is ${title}`}</h1>
+      <Tabs
+        tabs={tabs}
+        onTabSelected={HendelTab}
+        activeTabId={activeTab}
+        contentTabActive={contentTab}
+      />
     </div>
   );
 };

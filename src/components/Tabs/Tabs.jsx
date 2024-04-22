@@ -1,26 +1,33 @@
-import { useState } from 'react';
-import { TabsList } from '../TabsList/TabsList';
-
-export const Tabs = ({ tabs, setTab, active }) => {
-  const [contents, setContents] = useState(tabs[0].content);
-
-  const handleContents = content => {
-    setContents(content);
-  };
-
+export const Tabs = ({
+  tabs,
+  onTabSelected,
+  activeTabId,
+  contentTabActive,
+}) => {
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
-        <TabsList
-          tabs={tabs}
-          TabSelect={setTab}
-          setContent={handleContents}
-          active={active}
-        />
+        <ul>
+          {tabs.map(tab => (
+            <li
+              className={tab.id === activeTabId ? 'is-active' : ''}
+              data-cy="Tab"
+            >
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                key={tab.id}
+                onClick={() => onTabSelected(tab.id, tab.title, tab.content)}
+              >
+                {tab.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="block" data-cy="TabContent">
-        {contents}
+        {contentTabActive}
       </div>
     </div>
   );
