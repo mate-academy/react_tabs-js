@@ -2,6 +2,7 @@ import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => activeTabId === tab.id) || tabs[0];
+  const { id, content } = selectedTab;
   const handleOnClick = tab =>
     selectedTab.id !== tab.id && onTabSelected(tab.id);
 
@@ -12,7 +13,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               className={classNames({
-                'is-active': tab.id === selectedTab.id,
+                'is-active': tab.id === id,
               })}
               data-cy="Tab"
               key={tab.id}
@@ -30,7 +31,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {selectedTab.content}
+        {content}
       </div>
     </div>
   );
