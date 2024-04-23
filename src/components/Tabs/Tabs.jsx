@@ -1,5 +1,4 @@
 import cn from 'classnames';
-// import React from 'react';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const handleTabClick = tabId => {
