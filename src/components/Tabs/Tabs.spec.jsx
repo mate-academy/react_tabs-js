@@ -22,7 +22,7 @@ describe('Tabs component', () => {
       mount(
         <Tabs
           tabs={tabs}
-          activeTabId="tab-20"
+          selectTabId="tab-20"
           onTabSelected={cy.spy().as('onTabSelected')}
         />,
       );
@@ -84,7 +84,7 @@ describe('Tabs component', () => {
   });
 
   describe('', () => {
-    it('should highlight the first tab if activeTabId is wrong', () => {
+    it('should highlight the first tab if selectTabId is wrong', () => {
       const tabs = [
         { id: 'tab-10', title: 'Tab 10', content: 'Some text 10' },
         { id: 'tab-20', title: 'Tab 20', content: 'Some text 20' },
@@ -92,7 +92,7 @@ describe('Tabs component', () => {
         { id: 'tab-40', title: 'Tab 40', content: 'Some text 40' },
       ];
 
-      mount(<Tabs tabs={tabs} activeTabId="asdasd" onTabSelected={() => {}} />);
+      mount(<Tabs tabs={tabs} selectTabId="asdasd" onTabSelected={() => {}} />);
 
       page.tab(0).should('have.class', 'is-active');
       page.tab(1).should('not.have.class', 'is-active');
