@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import './App.scss';
+
 import { Tabs } from './components/Tabs/Tabs';
+import './App.scss';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -12,6 +14,13 @@ export const tabs = [
 
 export const App = () => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const handleTabSelect = tabId => {
+    const selectedTab = tabs.find(tab => tab.id === tabId);
+
+    if (selectedTab) {
+      setActiveTab(selectedTab);
+    }
+  };
 
   return (
     <div className="section">
@@ -19,7 +28,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTabId={activeTab.id}
-        onTabSelected={id => setActiveTab(tabs.find(tab => tab.id === id))}
+        onTabSelected={handleTabSelect}
       />
     </div>
   );
