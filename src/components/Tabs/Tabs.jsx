@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const currentTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+  const currentTab = tabs.find(tab => tab.id === selectedTab) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
