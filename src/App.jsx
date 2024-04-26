@@ -14,7 +14,7 @@ export const tabs = [
 export const App = () => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
-  const findTabSelect = tabId => {
+  const onTabSelected = tabId => {
     const selectedTab = tabs.find(tab => tab.id === tabId);
 
     if (selectedTab) {
@@ -28,7 +28,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTabId={activeTab.id}
-        onTabSelected={findTabSelect}
+        onTabSelected={onTabSelected}
       />
     </div>
   );
