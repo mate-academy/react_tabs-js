@@ -1,9 +1,7 @@
 import cn from 'classnames';
 
-export const Tabs = ({ activeTabId, onTabSelected, tabs }) => {
-  const checkId = tabs.some(tab => tab.id === activeTabId)
-    ? activeTabId
-    : tabs[0].id;
+export const Tabs = ({ activeTabId, onTabSelected, tabs, selectedTab }) => {
+  const isActive = tabId => tabId === activeTabId;
 
   return (
     <div data-cy="TabsComponent">
@@ -12,11 +10,11 @@ export const Tabs = ({ activeTabId, onTabSelected, tabs }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={cn({ 'is-active': tab.id === checkId })}
+              className={cn({ 'is-active': isActive(tab.id) })}
               data-cy="Tab"
             >
               <a
-                onClick={() => tab.id !== checkId && onTabSelected(tab.id)}
+                onClick={() => !isActive(tab.id) && onTabSelected(tab.id)}
                 href={`#${tab.id}`}
                 data-cy="TabLink"
               >
@@ -28,7 +26,7 @@ export const Tabs = ({ activeTabId, onTabSelected, tabs }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.filter(tab => tab.id === checkId)[0].content}
+        {selectedTab.content}
       </div>
     </div>
   );
