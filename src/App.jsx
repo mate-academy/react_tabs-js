@@ -13,17 +13,17 @@ export const tabs = [
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = React.useState(tabs[0].id);
-  const currentTab = tabs.find(tab => tab.id === activeTabId);
-  const onTabSelected = TabId => TabId !== activeTabId && setActiveTabId(TabId);
+  const onTabSelected = tabId => setActiveTabId(tabId);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {currentTab.title}</h1>
+      <h1 className="title">
+        Selected tab is {tabs.find(tab => tab.id === activeTabId).title}
+      </h1>
       <Tabs
         tabs={tabs}
         activeTabId={activeTabId}
         onTabSelected={onTabSelected}
-        currentTab={currentTab}
       />
     </div>
   );
