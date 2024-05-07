@@ -20,7 +20,6 @@ export const App = () => {
       <h1 className="title">Selected tab is {activeTab.title}</h1>
       <Tabs
         tabs={tabs}
-        activeTab={activeTab}
         activeTabId={activeTabId}
         onTabSelected={setActiveTabId}
       />
