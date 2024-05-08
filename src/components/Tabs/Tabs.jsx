@@ -1,15 +1,15 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const findCurrentTab = tabs.find(tab => tab.id === activeTabId);
-  const currentTab = findCurrentTab !== undefined ? findCurrentTab : tabs[0];
+  const findActiveTab = tabs.find(tab => tab.id === activeTabId);
+  const activeTab = findActiveTab !== undefined ? findActiveTab : tabs[0];
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => {
-            const isActive = tab.id === currentTab.id;
+            const isActive = tab.id === activeTab.id;
 
             return (
               <li
@@ -17,6 +17,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                   'is-active': isActive,
                 })}
                 data-cy="Tab"
+                key={tab.id}
               >
                 <a
                   href={`#${tab.id}`}
@@ -32,7 +33,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {currentTab.content}
+        {activeTab.content}
       </div>
     </div>
   );
