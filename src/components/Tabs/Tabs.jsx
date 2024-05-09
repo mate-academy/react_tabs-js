@@ -4,7 +4,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const setByClick = tabId => {
-    if (tabId !== activeTabId) {
+    if (tabId !== activeTab.id) {
       onTabSelected(tabId);
     }
   };
@@ -15,7 +15,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         {tabs.map(tab => (
           <li
             key={tab.id}
-            className={cn({ 'is-active': tab.id === activeTabId })}
+            className={cn({ 'is-active': tab.id === activeTab.id })}
             data-cy="Tab"
             onClick={() => setByClick(tab.id)}
             aria-hidden="true"
@@ -27,7 +27,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         ))}
       </ul>
       <div className="block" data-cy="TabContent">
-        {activeTab?.content}
+        {activeTab.content}
       </div>
     </div>
   );
