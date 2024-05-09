@@ -1,8 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === activeTabId);
-  const defaultTab = tabs[0];
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const setByClick = tabId => {
     if (tabId !== activeTabId) {
@@ -28,7 +27,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         ))}
       </ul>
       <div className="block" data-cy="TabContent">
-        {(activeTab || defaultTab)?.content}
+        {activeTab?.content}
       </div>
     </div>
   );
