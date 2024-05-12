@@ -7,6 +7,22 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     correctActiveTabId = tabs[0].id;
   }
 
+  const handleActiveTab = tab => {
+    if (tab.id !== correctActiveTabId) {
+      return () => onTabSelected(tab.id);
+    }
+
+    return undefined;
+  };
+
+  const getActiveTabContent = () => {
+    const activeTabIndex = tabs.findIndex(tab => tab.id === correctActiveTabId);
+
+    return tabs[activeTabIndex].content;
+  };
+
+  const activeTabContent = getActiveTabContent();
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -21,11 +37,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={
-                    tab.id !== correctActiveTabId
-                      ? () => onTabSelected(tab.id)
-                      : undefined
-                  }
+                  onClick={handleActiveTab(tab)}
                 >
                   {tab.title}
                 </a>
@@ -36,7 +48,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs[tabs.findIndex(tab => tab.id === correctActiveTabId)].content}
+        {activeTabContent}
       </div>
     </div>
   );
