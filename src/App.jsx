@@ -1,7 +1,7 @@
-import React from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+import { useState } from 'react';
 import { Tabs } from './components/Tabs';
 
 export const tabs = [
@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = React.useState(tabs[0].id);
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
   const selectedTab = tabs.find(tab => tab.id === activeTabId);
 
   const onTabSelected = tabId => {
