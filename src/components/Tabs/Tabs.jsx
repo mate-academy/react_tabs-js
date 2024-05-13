@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const handleTabClick = tabId => {
@@ -7,11 +8,13 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     }
   };
 
+  const activeTabContent = tabs.find(tab => tab.id === activeTabId)?.content;
+
   const renderTabLinks = () => {
     return tabs.map(tab => (
       <li
         key={tab.id}
-        className={tab.id === activeTabId ? 'is-active' : ''}
+        className={cn({ 'is-active': tab.id === activeTabId })}
         data-cy="Tab"
       >
         <a
@@ -33,7 +36,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId)?.content}
+        {activeTabContent}
       </div>
     </div>
   );
