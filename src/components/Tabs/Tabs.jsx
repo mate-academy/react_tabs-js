@@ -1,11 +1,11 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  let correctActiveTabId = activeTabId;
+  const getCorrectedTabId = (allTabs, tabId) => {
+    return allTabs.some(({ id }) => id === tabId) ? tabId : allTabs[0].id;
+  };
 
-  if (!tabs.some(tab => tab.id === activeTabId)) {
-    correctActiveTabId = tabs[0].id;
-  }
+  const correctActiveTabId = getCorrectedTabId(tabs, activeTabId);
 
   const handleActiveTab = tab => {
     if (tab.id !== correctActiveTabId) {
