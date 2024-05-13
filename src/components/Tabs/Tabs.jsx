@@ -8,7 +8,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     }
   };
 
-  const activeTabContent = tabs.find(tab => tab.id === activeTabId)?.content;
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const renderTabLinks = () => {
     return tabs.map(tab => (
@@ -36,7 +36,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {activeTabContent}
+        {activeTab.content}
       </div>
     </div>
   );
