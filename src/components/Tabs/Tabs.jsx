@@ -1,56 +1,40 @@
 import classNames from 'classnames';
 
-export const Tabs = ({ tab, selectedTab, setSelectedTab }) => {
+export const Tabs = ({
+  tab,
+  tabs,
+  activeTabId = tabs[0].id,
+  onTabSelected,
+}) => {
   const { content } = tab;
+
+  console.log('tab = ', tab);
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          <li
-            className={classNames({ 'is-active': selectedTab === 'tab-1' })}
-            data-cy="Tab"
-          >
-            <a
-              href="#tab-1"
-              data-cy="TabLink"
-              onClick={() => {
-                setSelectedTab('tab-1');
-              }}
-            >
-              Tab 1
-            </a>
-          </li>
+          {tabs.map(item => {
+            const { id, title } = item;
 
-          <li
-            className={classNames({ 'is-active': selectedTab === 'tab-2' })}
-            data-cy="Tab"
-          >
-            <a
-              href="#tab-2"
-              data-cy="TabLink"
-              onClick={() => {
-                setSelectedTab('tab-2');
-              }}
-            >
-              Tab 2
-            </a>
-          </li>
-
-          <li
-            className={classNames({ 'is-active': selectedTab === 'tab-3' })}
-            data-cy="Tab"
-          >
-            <a
-              href="#tab-3"
-              data-cy="TabLink"
-              onClick={() => {
-                setSelectedTab('tab-3');
-              }}
-            >
-              Tab 3
-            </a>
-          </li>
+            return (
+              <li
+                className={classNames({ 'is-active': activeTabId === id })}
+                data-cy="Tab"
+                key={id}
+              >
+                <a
+                  href={`#${id}`}
+                  data-cy="TabLink"
+                  onClick={() => {
+                    onTabSelected(id);
+                  }}
+                >
+                  {title}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
