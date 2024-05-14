@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('tabs[0].id');
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
   const tab = tabs.find(tabFromArr => tabFromArr.id === activeTabId) || tabs[0];
 
@@ -24,7 +24,6 @@ export const App = () => {
       <h1 className="title">Selected tab is {tab.title}</h1>
 
       <Tabs
-        tab={tab}
         tabs={tabs}
         activeTabId={activeTabId}
         onTabSelected={onTabSelected}
