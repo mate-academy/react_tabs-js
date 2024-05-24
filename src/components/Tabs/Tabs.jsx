@@ -8,20 +8,28 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     selectedTab = { ...tabs[0] };
   }
 
+  // eslint-disable-next-line consistent-return
+  function handleOnTabSelected(tabId) {
+    if (tabId !== selectedTab.id) {
+      return onTabSelected(tabId);
+    }
+  }
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
               key={tab.id}
               className={cn({ 'is-active': selectedTab.id === tab.id })}
               data-cy="Tab"
-              // eslint-disable-next-line consistent-return
               onClick={() => {
-                if (tab.id !== selectedTab.id) {
-                  return onTabSelected(tab.id);
+                handleOnTabSelected(tab.id);
+              }}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  handleOnTabSelected(tab.id);
                 }
               }}
             >
