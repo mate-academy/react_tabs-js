@@ -2,9 +2,10 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  if (!tabs.find(tab => tab.id === activeTabId)) {
-    // eslint-disable-next-line no-param-reassign
-    activeTabId = tabs[0].id;
+  let selectedTab = tabs.find(tab => tab.id === activeTabId);
+
+  if (!selectedTab) {
+    selectedTab = { ...tabs[0] };
   }
 
   return (
@@ -15,14 +16,13 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
               key={tab.id}
-              className={cn({ 'is-active': activeTabId === tab.id })}
+              className={cn({ 'is-active': selectedTab.id === tab.id })}
               data-cy="Tab"
+              // eslint-disable-next-line consistent-return
               onClick={() => {
-                if (tab.id !== activeTabId) {
+                if (tab.id !== selectedTab.id) {
                   return onTabSelected(tab.id);
                 }
-
-                return false;
               }}
             >
               <a href={`#${tab.id}`} data-cy="TabLink">
@@ -33,7 +33,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         </ul>
       </div>
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId).content}
+        {selectedTab.content}
       </div>
     </div>
   );
