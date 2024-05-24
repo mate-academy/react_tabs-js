@@ -2,9 +2,8 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
   if (!tabs.findIndex(tab => tab.id === activeTabId < 0)) {
     onTabSelected(tabs[0].id);
   }
-  const content = tabs.find(tab => tab.id === activeTabId).content;
 
-  console.log(activeTabId);
+  const { content } = tabs.find(tab => tab.id === activeTabId);
 
   return (
     <div data-cy="TabsComponent">
