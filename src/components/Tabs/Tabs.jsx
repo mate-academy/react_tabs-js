@@ -1,9 +1,17 @@
 export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
-  if (!tabs.findIndex(tab => tab.id === activeTabId < 0)) {
-    onTabSelected(tabs[0].id);
+  let active = activeTabId;
+
+  if (!tabs.find(tab => tab.id === active)) {
+    active = tabs[0].id;
   }
 
-  const { content } = tabs.find(tab => tab.id === activeTabId);
+  const handleClick = (e, id) => {
+    if (!e.target.href.includes(active)) {
+      onTabSelected(id);
+    }
+  };
+
+  const { content } = tabs.find(tab => tab.id === active);
 
   return (
     <div data-cy="TabsComponent">
@@ -12,18 +20,14 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
           {tabs.map(tab => {
             return (
               <li
-                className={tab.id === activeTabId ? 'is-active' : null}
+                className={tab.id === active ? 'is-active' : null}
                 data-cy="Tab"
                 key={tab.id}
               >
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={event => {
-                    if (!event.target.href.includes(activeTabId)) {
-                      onTabSelected(tab.id);
-                    }
-                  }}
+                  onClick={e => handleClick(e, tab.id)}
                 >
                   {tab.title}
                 </a>
