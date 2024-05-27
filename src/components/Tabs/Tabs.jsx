@@ -1,9 +1,8 @@
 export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
-
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0]
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const handleClick = (e, id) => {
-    if (!e.target.href.includes(active)) {
+    if (!e.target.href.includes(activeTab)) {
       onTabSelected(id);
     }
   };
