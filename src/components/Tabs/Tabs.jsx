@@ -1,9 +1,6 @@
 export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
-  let active = activeTabId;
 
-  if (!tabs.find(tab => tab.id === active)) {
-    active = tabs[0].id;
-  }
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0]
 
   const handleClick = (e, id) => {
     if (!e.target.href.includes(active)) {
@@ -11,15 +8,13 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
     }
   };
 
-  const { content } = tabs.find(tab => tab.id === active);
-
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
             <li
-              className={tab.id === active ? 'is-active' : null}
+              className={tab.id === activeTab.id ? 'is-active' : null}
               data-cy="Tab"
               key={tab.id}
             >
@@ -36,7 +31,7 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {content}
+        {activeTab.content}
       </div>
     </div>
   );
