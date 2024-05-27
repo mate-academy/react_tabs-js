@@ -2,7 +2,7 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const handleClick = (e, id) => {
-    if (!e.target.href.includes(activeTab)) {
+    if (!e.target.href.includes(activeTab.id)) {
       onTabSelected(id);
     }
   };
