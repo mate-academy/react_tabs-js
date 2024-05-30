@@ -30,10 +30,6 @@ export const App = () => {
         activeTabId={activeTabId}
         onTabSelected={handleTabSelected}
       />
-
-      <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId).content}
-      </div>
     </div>
   );
 };
