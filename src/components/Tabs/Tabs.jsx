@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const currentTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
@@ -7,22 +8,22 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
+          {tabs.map(({ id, title }) => (
             <li
-              key={tab.id}
-              className={tab.id === currentTab.id ? 'is-active' : ''}
+              key={id}
+              className={classNames({ 'is-active': id === currentTab.id })}
               data-cy="Tab"
             >
               <a
-                href={`#${tab.id}`}
+                href={`#${id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (tab.id !== currentTab.id) {
-                    onTabSelected(tab.id);
+                  if (id !== currentTab.id) {
+                    onTabSelected(id);
                   }
                 }}
               >
-                {tab.title}
+                {title}
               </a>
             </li>
           ))}
