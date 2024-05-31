@@ -18,7 +18,12 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">Selected tab is {title}</h1>
-      <Tabs tabs={tabs} activeTabId={tabId} onTabSelected={setActiveTab} />
+
+      <Tabs
+        tabs={tabs}
+        activeTabId={tabId}
+        onTabSelected={setActiveTab}
+      />
     </div>
   );
 };
