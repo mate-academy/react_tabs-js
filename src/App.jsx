@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -9,36 +10,36 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">Selected tab is Tab 1</h1>
+export const getPreparedTabs = (arr, query) => {
+  const visibleTabs = [...arr];
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
+  if (!query) {
+    return visibleTabs;
+  }
 
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
+  return visibleTabs.filter(tab => tab.title === query);
+};
 
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li>
-        </ul>
-      </div>
+export const App = () => {
+  const [query, setQuery] = useState(tabs[0].title);
+  const visibleTabs = getPreparedTabs(tabs, query);
 
-      <div className="block" data-cy="TabContent">
-        Some text 1
+  return (
+    <div className="section">
+      <h1 className="title">Selected tab is {query}</h1>
+      <div data-cy="TabsComponent">
+        <Tabs
+          filterTabs={visibleTabs}
+          tabs={tabs}
+          query={query}
+          setQuery={setQuery}
+        />
+        {visibleTabs.map(tab => (
+          <div className="block" data-cy="TabContent" key={tab.id}>
+            {tab.content}
+          </div>
+        ))}
       </div>
     </div>
-  </div>
-);
+  );
+};
