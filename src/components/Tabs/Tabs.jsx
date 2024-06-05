@@ -1,12 +1,8 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  if (!tabs.some(tab => tab.id === activeTabId)) {
-    // eslint-disable-next-line no-param-reassign
-    activeTabId = tabs[0].id;
-  }
-
-  const { content } = tabs.find(tab => tab.id === activeTabId);
+  const currentTab = tabs.find(tab => activeTabId === tab.id) || tabs[0];
+  const { content } = tabs.find(tab => tab.id === currentTab.id);
 
   return (
     <div data-cy="TabsComponent">
@@ -15,12 +11,12 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={cn({ 'is-active': activeTabId === tab.id })}
+              className={cn({ 'is-active': currentTab.id === tab.id })}
               data-cy="Tab"
             >
               <a
                 onClick={() =>
-                  activeTabId !== tab.id ? onTabSelected(tab.id) : ''
+                  currentTab.id !== tab.id ? onTabSelected(tab.id) : ''
                 }
                 href={`#${tab.id}`}
                 data-cy="TabLink"
