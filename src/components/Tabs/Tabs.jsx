@@ -1,40 +1,39 @@
 import cn from 'classnames';
 
-export const Tabs = ({ tabs, tabField, setTabField }) => (
-  <div className="tabs is-boxed">
-    <ul>
-      {tabs.map(tab => (
-        <li
-          key={tab.id}
-          className={cn({ 'is-active': tabField === tab })}
-          data-cy="Tab"
-        >
-          <a
-            onClick={() => setTabField(tab)}
-            href={`#${tab.id}`}
-            data-cy="TabLink"
-          >
-            {tab.title}
-          </a>
-        </li>
-      ))}
-      {/* <li className="is-active" data-cy="Tab">
-        <a href="#tab-1" data-cy="TabLink">
-          Tab 1
-        </a>
-      </li>
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  if (!tabs.some(tab => tab.id === activeTabId)) {
+    // eslint-disable-next-line no-param-reassign
+    activeTabId = tabs[0].id;
+  }
 
-      <li data-cy="Tab">
-        <a href="#tab-2" data-cy="TabLink">
-          Tab 2
-        </a>
-      </li>
+  const { content } = tabs.find(tab => tab.id === activeTabId);
 
-      <li data-cy="Tab">
-        <a href="#tab-3" data-cy="TabLink">
-          Tab 3
-        </a>
-      </li> */}
-    </ul>
-  </div>
-);
+  return (
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul>
+          {tabs.map(tab => (
+            <li
+              key={tab.id}
+              className={cn({ 'is-active': activeTabId === tab.id })}
+              data-cy="Tab"
+            >
+              <a
+                onClick={() =>
+                  activeTabId !== tab.id ? onTabSelected(tab.id) : ''
+                }
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+              >
+                {tab.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="block" data-cy="TabContent">
+        {content}
+      </div>
+    </div>
+  );
+};
