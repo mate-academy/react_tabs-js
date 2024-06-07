@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const tabTxt = tabs.find(t => t.id === activeTabId)?.content;
+  const currentTab = tabs.find(t => t.id === activeTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -14,14 +14,14 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
               key={tab.id}
-              className={cn({ 'is-active': tab.id === activeTabId })}
+              className={cn({ 'is-active': tab.id === currentTab.id })}
               data-cy="Tab"
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (tab.id !== activeTabId) {
+                  if (tab.id !== currentTab.id) {
                     onTabSelected(tab.id);
                   }
                 }}
@@ -34,7 +34,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabTxt}
+        {currentTab.content}
       </div>
     </div>
   );
