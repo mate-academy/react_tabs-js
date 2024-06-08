@@ -10,36 +10,23 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const getPreparedTabs = (arr, query) => {
-  const visibleTabs = [...arr];
-
-  if (!query) {
-    return visibleTabs;
-  }
-
-  return visibleTabs.filter(tab => tab.title === query);
+export const checkActiveTabId = (array, query) => {
+  return array.find(arr => arr.id === query);
 };
 
 export const App = () => {
-  const [query, setQuery] = useState(tabs[0].title);
-  const visibleTabs = getPreparedTabs(tabs, query);
+  const [activeTabId, onTabSelected] = useState(tabs[0].id);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {query}</h1>
-      <div data-cy="TabsComponent">
-        <Tabs
-          filterTabs={visibleTabs}
-          tabs={tabs}
-          query={query}
-          setQuery={setQuery}
-        />
-        {visibleTabs.map(tab => (
-          <div className="block" data-cy="TabContent" key={tab.id}>
-            {tab.content}
-          </div>
-        ))}
-      </div>
+      <h1 className="title">
+        Selected tab is {tabs.map(tab => tab.id === activeTabId && tab.title)}
+      </h1>
+      <Tabs
+        tabs={tabs}
+        activeTabId={activeTabId}
+        onTabSelected={onTabSelected}
+      />
     </div>
   );
 };
