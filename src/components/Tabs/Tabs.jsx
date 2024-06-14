@@ -1,7 +1,7 @@
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const validTabId = tabs.some(tab => tab.id === activeTabId)
     ? activeTabId
-    : tabs[0]?.id;
+    : tabs[0].id;
   const activeTab = tabs.find(tab => tab.id === activeTabId);
 
   return (
@@ -12,7 +12,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             <li
               data-cy="Tab"
               key={element.id}
-              className={validTabId === element.id ? 'is-active' : ''}
+              className={validTabId === element.id && 'is-active'}
             >
               <a
                 href={`#${element.id}`}
