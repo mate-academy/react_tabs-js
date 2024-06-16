@@ -17,7 +17,8 @@ export const App = () => {
     setActiveTabId(id);
   };
 
-  const selectedTabTitle = tabs.find(tab => tab.id === activeTabId)?.title;
+  const activeTab = tabs.find(tab => tab.id === activeTabId);
+  const selectedTabTitle = activeTab ? activeTab.title : tabs[0].title;
 
   return (
     <div className="section">
