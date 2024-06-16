@@ -11,8 +11,9 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('tab-1');
-  const { title } = tabs.find(tab => tab.id === activeTabId);
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const activeTab = tabs.find(tab => tab.id === activeTabId);
+  const title = activeTab ? activeTab.title : tabs[0].title;
 
   return (
     <div className="section">
