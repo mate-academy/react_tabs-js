@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, onTabSelected] = useState('tab-1');
+  const [activeTabId, onTabSelected] = useState(tabs[0].id);
 
   const findActiveTab = tabs.find(item => {
     return item.id === activeTabId;
