@@ -16,23 +16,24 @@ export const App = () => {
   const activeTab = tabs.find(tab => tab.id === activeTabId);
 
   return (
-  <div className="section">
+    <div className="section">
+      <div data-cy="TabsComponent">
+        <div className="section">
+          <h1 className="title">
+            {activeTab
+              ? `Selected tab is ${activeTab.title}`
+              : 'No tab selected'}
+          </h1>
 
-    <div data-cy="TabsComponent">
-      <div className="section">
-        <h1 className="title">
-          {activeTab ? `Selected tab is ${activeTab.title}` : 'No tab selected'}
-        </h1>
-
-        <div data-cy="TabsComponent">
-          <Tabs
-            tabs={tabs}
-            activeTabId={activeTabId}
-            onTabSelected={setActiveTabId}
-          />
+          <div data-cy="TabsComponent">
+            <Tabs
+              tabs={tabs}
+              activeTabId={activeTabId}
+              onTabSelected={setActiveTabId}
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-)
+  );
 };
