@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
@@ -9,7 +11,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             <li
               key={tab.id}
               data-cy="Tab"
-              className={tab.id === activeTab.id ? 'is-active' : ''}
+              className={cn({ 'is-active': tab.id === activeTab.id })}
             >
               <a
                 href={`#${tab.id}`}
