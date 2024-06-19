@@ -1,7 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  const handleTabClick = (event, id) => {
+    event.preventDefault();
+    if (id !== activeTabId) {
+      onTabSelected(id);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -10,18 +18,13 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === activeTab.id ? 'is-active' : ''}
+              className={classNames({ 'is-active': tab.id === activeTab.id })}
               data-cy="Tab"
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={(event) => {
-                  event.preventDefault();
-                  if (tab.id !== activeTabId) {
-                    onTabSelected(tab.id);
-                  }
-                }}
+                onClick={event => handleTabClick(event, tab.id)}
               >
                 {tab.title}
               </a>
