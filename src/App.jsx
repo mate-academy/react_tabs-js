@@ -12,20 +12,11 @@ export const tabs = [
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0].id);
+  const activeTab = tabs.find(tab => tab.id === selectedTab);
 
   return (
     <div className="section">
-      {tabs.map(tab => {
-        if (tab.id === selectedTab) {
-          return (
-            <h1 className="title" key={tab.title}>
-              Selected tab is {tab.title}
-            </h1>
-          );
-        }
-
-        return null;
-      })}
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
 
       <Tabs
         tabs={tabs}
