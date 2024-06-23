@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const preparedContent = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const preparedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -11,7 +11,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             <li
               key={tab.id}
               className={classNames({
-                'is-active': tab.id === activeTabId,
+                'is-active': tab.id === preparedTab.id,
               })}
               data-cy="Tab"
             >
@@ -32,7 +32,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         className="block"
         data-cy="TabContent"
       >
-        {preparedContent.content}
+        {preparedTab.content}
       </div>
     </div>
   );
