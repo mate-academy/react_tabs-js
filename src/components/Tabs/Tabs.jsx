@@ -1,7 +1,14 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  const handleTabClick = tabId => {
+    if (activeTabId !== tabId) {
+      onTabSelected(tabId);
+    }
+  };
 
   return (
     <div>
@@ -10,16 +17,14 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === activeTab.id ? 'is-active' : ''}
+              className={classNames({ 'is-active': tab.id === activeTab.id })}
               data-cy="Tab"
             >
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (activeTabId !== tab.id) {
-                    onTabSelected(tab.id);
-                  }
+                  handleTabClick(tab.id);
                 }}
               >
                 {tab.title}
