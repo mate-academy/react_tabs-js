@@ -21,7 +21,8 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             >
               <a
                 href={`#${id}`}
-                onClick={() => {handleTabSelected(id);
+                onClick={() => {
+                  handleTabSelected(id);
                 }}
                 data-cy="TabLink"
               >
