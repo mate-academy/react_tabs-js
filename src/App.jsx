@@ -13,10 +13,12 @@ export const tabs = [
 export const App = () => {
   const [activeTabId, setactiveTabId] = useState('tab-1'); // Идентификатор активной вкладки
 
+  const onTabSelected = tab => setactiveTabId(tab.id);
+
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is {tabs.find(tab => tabs.id === activeTabId)?.title}
+        Selected tab is {tabs.find(tab => tab.id === activeTabId).title}
       </h1>
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
@@ -26,17 +28,20 @@ export const App = () => {
                 key={tab.id}
                 className={activeTabId === tab.id ? 'is-active' : ''}
                 data-cy="Tab"
-                onClick={() => setactiveTabId(tab.id)} // Устанавливаем ID
               >
-                <a href={`#${tab.id}`} data-cy="TabLink">
-                  {activeTabId === tab.id ? tab.title : ''}
+                <a
+                  onClick={() => onTabSelected(tab)} // Устанавливаем ID
+                  href={`#${tab.id}`}
+                  data-cy="TabLink"
+                >
+                  {tab.title}
                 </a>
               </li>
             ))}
           </ul>
         </div>
         <div className="block" data-cy="TabContent">
-          {tabs.find(tab => (tabs.id = activeTabId))?.content}
+          {tabs.find(tab => tab.id === activeTabId).content}
         </div>
       </div>
     </div>
