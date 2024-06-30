@@ -1,8 +1,8 @@
-// import React from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import React, { useState } from 'react';
+import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -11,39 +11,20 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setactiveTabId] = useState('tab-1'); // Идентификатор активной вкладки
+  const [activeTabId, setActiveTabId] = useState('tab-1'); // Идентификатор активной вкладки
 
-  const onTabSelected = tab => setactiveTabId(tab.id);
+  const onTabSelected = tabId => setActiveTabId(tabId);
 
   return (
     <div className="section">
       <h1 className="title">
         Selected tab is {tabs.find(tab => tab.id === activeTabId).title}
       </h1>
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            {tabs.map(tab => (
-              <li
-                key={tab.id}
-                className={activeTabId === tab.id ? 'is-active' : ''}
-                data-cy="Tab"
-              >
-                <a
-                  onClick={() => onTabSelected(tab)} // Устанавливаем ID
-                  href={`#${tab.id}`}
-                  data-cy="TabLink"
-                >
-                  {tab.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="block" data-cy="TabContent">
-          {tabs.find(tab => tab.id === activeTabId).content}
-        </div>
-      </div>
+      <Tabs
+        activeTabId={activeTabId}
+        tabs={tabs}
+        onTabSelected={onTabSelected}
+      />
     </div>
   );
 };
