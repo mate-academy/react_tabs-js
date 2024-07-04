@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import './components/Tabs';
 import { Tabs } from './components/Tabs/Tabs';
-import { getActiveTabId } from './utills/functions';
+import { getActiveTab } from './utills/functions';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -14,24 +14,18 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState(null);
-  const activeTab = getActiveTabId(activeTabId, tabs);
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const activeTab = getActiveTab(activeTabId, tabs);
 
   return (
     <div className="section">
       <h1 className="title">Selected tab is {activeTab.title}</h1>
 
-      <div data-cy="TabsComponent">
-        <Tabs
-          tabs={tabs}
-          onTabSelected={setActiveTabId}
-          activeTab={activeTab}
-        />
-
-        <div className="block" data-cy="TabContent">
-          {activeTab.content}
-        </div>
-      </div>
+      <Tabs
+        tabs={tabs}
+        onTabSelected={setActiveTabId}
+        activeTabId={activeTabId}
+      />
     </div>
   );
 };
