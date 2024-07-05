@@ -10,10 +10,8 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const App = ({ initialActiveTabId }) => {
-  const [activeTabId, setActiveTabId] = useState(
-    initialActiveTabId || tabs[0].id,
-  );
+export const App = () => {
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
   const handleTabSelected = tabId => {
     setActiveTabId(tabId);
