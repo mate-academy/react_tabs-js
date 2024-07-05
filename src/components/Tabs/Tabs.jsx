@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId: propActiveTabId, onTabSelected }) => {
-  const [activeTabId, setActiveTabId] = useState(
-    tabs.some(tab => tab.id === propActiveTabId) ? propActiveTabId : tabs[0].id,
-  );
+  const initialActiveTabId = tabs.some(tab => tab.id === propActiveTabId)
+    ? propActiveTabId
+    : tabs[0].id;
+
+  const [activeTabId, setActiveTabId] = useState(initialActiveTabId);
 
   useEffect(() => {
     if (!tabs.some(tab => tab.id === propActiveTabId)) {
       setActiveTabId(tabs[0].id);
+    } else {
+      setActiveTabId(propActiveTabId);
     }
   }, [propActiveTabId, tabs]);
+
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const handleTabClick = tabId => {
     if (tabId !== activeTabId && onTabSelected) {
@@ -20,7 +26,7 @@ export const Tabs = ({ tabs, activeTabId: propActiveTabId, onTabSelected }) => {
     setActiveTabId(tabId);
   };
 
-  const activeTabContent = tabs.find(tab => tab.id === activeTabId)?.content;
+  const activeTabContent = activeTab.content;
 
   return (
     <div data-cy="TabsComponent">
