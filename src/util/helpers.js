@@ -1,3 +1,3 @@
 export function findByIdOrGetFirst(id, array) {
-  return array.find(el => el.id === id) || array[0];
+  return array.find(element => element.id === id) || array[0];
 }
