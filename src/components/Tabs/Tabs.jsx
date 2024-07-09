@@ -1,14 +1,7 @@
 import '@fortawesome/fontawesome-free/css/all.css';
-import React, { useState } from 'react';
 
-export const Tabs = ({
-  tabs,
-  activeTabId,
-  onTabSelected,
-  onTitle,
-  onContent,
-}) => {
-  const [content, setContent] = useState('Some text 1');
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const selectedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -16,7 +9,7 @@ export const Tabs = ({
         <ul>
           {tabs.map(element => (
             <li
-              className={element.id === activeTabId ? 'is-active' : ''}
+              className={element.id === selectedTab.id ? 'is-active' : ''}
               data-cy="Tab"
               key={element.id}
             >
@@ -24,11 +17,9 @@ export const Tabs = ({
                 href={`#${element.id}`}
                 data-cy="TabLink"
                 id={element.id}
-                onClick={event => {
-                  if (event.target.className !== 'is-active') {
-                    onTabSelected(event.target.id);
-                    onTitle(element.title);
-                    setContent(element.content);
+                onClick={() => {
+                  if (element.id !== activeTabId) {
+                    onTabSelected(element.id);
                   }
                 }}
               >
@@ -40,7 +31,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {content}
+        {selectedTab.content}
       </div>
     </div>
   );
