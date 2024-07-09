@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-
 import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
@@ -12,23 +11,18 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
-
-  const handleTabSelected = id => {
-    const newSelectedTab = tabs.find(tab => tab.id === id);
-    setSelectedTab(newSelectedTab);
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const handleTabSelected = tabId => {
+    setActiveTabId(tabId);
   };
-
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {selectedTab.title}</h1>
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
 
-      <div className="block" data-cy="TabContent">
-        Some text 1
-      </div>
       <Tabs
         tabs={tabs}
-        activeTabId={selectedTab.id}
+        activeTabId={activeTabId}
         onTabSelected={handleTabSelected}
       />
     </div>
