@@ -1,7 +1,13 @@
 import '@fortawesome/fontawesome-free/css/all.css';
+import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const activeSelected = element => {
+    if (element.id !== activeTabId) {
+      onTabSelected(element.id);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -9,7 +15,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         <ul>
           {tabs.map(element => (
             <li
-              className={element.id === selectedTab.id ? 'is-active' : ''}
+              className={cn({ 'is-active': element.id === selectedTab.id })}
               data-cy="Tab"
               key={element.id}
             >
@@ -18,9 +24,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                 data-cy="TabLink"
                 id={element.id}
                 onClick={() => {
-                  if (element.id !== activeTabId) {
-                    onTabSelected(element.id);
-                  }
+                  activeSelected(element);
                 }}
               >
                 {element.title}
