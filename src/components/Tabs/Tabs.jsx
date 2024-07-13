@@ -1,22 +1,20 @@
-import { useState } from 'react';
-import { tabs } from '../../api/tabs';
-
-export const Tabs = ({ newTabs, setCurrentTab }) => {
-  const [message, setMessage] = useState(tabs[0].content);
-
+export const Tabs = ({ tabs, onTabSelected, activeTabId }) => {
   const handleClick = tab => {
-    setMessage(tab.content);
-    setCurrentTab(tab.title);
+    if (tab.id !== activeTabId) {
+      onTabSelected(tab.id);
+    }
   };
+
+  const currentTab = tabs.find(el => el.id === activeTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {newTabs.map(tab => {
+          {tabs.map(tab => {
             return (
               <li
-                className={tab.isActive ? 'is-active' : ''}
+                className={tab.id === currentTab.id ? 'is-active' : ''}
                 data-cy="Tab"
                 key={tab.id}
               >
@@ -34,7 +32,7 @@ export const Tabs = ({ newTabs, setCurrentTab }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {message}
+        {currentTab.content}
       </div>
     </div>
   );
