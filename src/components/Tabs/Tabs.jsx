@@ -13,8 +13,9 @@ export const Tabs = ({ tabs, onTabSelected, activeTabId }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
-            <li
+          {tabs.map(tab => {
+            return (
+              <li
                 className={cn({
                   'is-active': tab.id === currentTab.id,
                 })}
