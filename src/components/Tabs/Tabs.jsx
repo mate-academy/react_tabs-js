@@ -1,14 +1,15 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
-  const handleClick = tab => event => {
+  const handleClick = tabId => event => {
     event.preventDefault();
 
-    if (selectedTab.id !== tab.id) {
-      onTabSelected(tab.id);
+    if (selectedTab.id !== tabId) {
+      onTabSelected(tabId);
     }
   };
 
@@ -16,18 +17,14 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
+          {tabs.map(({ id, title }) => (
             <li
-              className={ClassNames({ 'is-active': tab.id === selectedTab.id })}
+              className={classNames({ 'is-active': id === selectedTab.id })}
               data-cy="Tab"
-              key={tab.id}
+              key={id}
             >
-              <a
-                onClick={handleClick(tab)}
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-              >
-                {tab.title}
+              <a onClick={handleClick(id)} href={`#${id}`} data-cy="TabLink">
+                {title}
               </a>
             </li>
           ))}
