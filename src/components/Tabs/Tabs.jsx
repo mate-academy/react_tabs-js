@@ -3,11 +3,12 @@ import ClassNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const selectedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
   const handleClick = tab => event => {
     event.preventDefault();
 
     if (selectedTab.id !== tab.id) {
-      onTabSelected(tab);
+      onTabSelected(tab.id);
     }
   };
 
