@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTab, onSelected }) => {
   const test = tab => {
-    if (activeTab.id !== tab.id && tabs.find(({id}) => id === activeTab.id)) {
+    if (activeTab.id !== tab.id && tabs.find(({ id }) => id === activeTab.id)) {
       onSelected(tab);
     } else {
       onSelected(tabs[0]);
