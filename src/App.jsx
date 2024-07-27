@@ -15,7 +15,8 @@ const DEFULT_ACTIVE_TAB = 'tab-1';
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(DEFULT_ACTIVE_TAB);
 
-  const activeTabName = tabs.find(({ id }) => id === activeTabId).title;
+  const activeTabName =
+    tabs.find(({ id }) => id === activeTabId).title || tabs[0].title;
 
   return (
     <div className="section">
