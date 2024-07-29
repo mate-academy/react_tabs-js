@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 
-export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
+  const selectedTab = tabs.find(tab => tab.id === selectedTabId) || tabs[0];
+
   return (
     <>
       <div data-cy="TabsComponent">
@@ -19,7 +21,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
                   data-cy="TabLink"
                   onClick={() => {
                     if (selectedTab.id !== tabItem.id) {
-                      onTabSelected(tabItem);
+                      onTabSelected(tabItem.id);
                     }
                   }}
                 >
