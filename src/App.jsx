@@ -14,7 +14,6 @@ const DEFULT_ACTIVE_TAB = 'tab-1';
 
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(DEFULT_ACTIVE_TAB);
-  console.log(selectedTab);
 
   const defaultItem = tabs.find(defItem => defItem.id === selectedTab);
 
