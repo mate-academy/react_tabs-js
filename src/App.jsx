@@ -10,8 +10,11 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
+const DEFULT_ACTIVE_TAB = 'tab-1';
+
 export const App = () => {
-  const [selectedTab, setSelectedTab] = useState(tabs[0].id);
+  const [selectedTab, setSelectedTab] = useState(DEFULT_ACTIVE_TAB);
+  console.log(selectedTab);
 
   const defaultItem = tabs.find(defItem => defItem.id === selectedTab);
 
