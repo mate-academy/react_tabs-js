@@ -15,11 +15,11 @@ const DEFULT_ACTIVE_TAB = 'tab-1';
 export const App = () => {
   const [selectedTab, setSelectedTab] = useState(DEFULT_ACTIVE_TAB);
 
-  const defaultItem = tabs.find(defItem => defItem.id === selectedTab);
+  const findItem = tabs.find(defItem => defItem.id === selectedTab);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {defaultItem.title}</h1>
+      <h1 className="title">Selected tab is {findItem.title}</h1>
 
       <Tabs
         tabs={tabs}
