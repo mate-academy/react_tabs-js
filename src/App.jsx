@@ -17,6 +17,12 @@ function getTabById(givenTabs, id) {
 export const App = () => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
+  function setNewActiveTab(newTabId) {
+    const chosenTab = getTabById(tabs, newTabId);
+
+    setActiveTab(chosenTab);
+  }
+
   return (
     <div className="section">
       <h1 className="title">{`Selected tab is ${activeTab.title}`}</h1>
@@ -24,11 +30,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTabId={activeTab.id}
-        onTabSelected={id => {
-          const chosenTab = getTabById(tabs, id);
-
-          setActiveTab(chosenTab);
-        }}
+        onTabSelected={id => setNewActiveTab(id)}
       />
     </div>
   );
