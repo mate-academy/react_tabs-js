@@ -23,7 +23,11 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                 data-cy="Tab"
                 className={classNames({ 'is-active': id === activeId })}
               >
-                <a href={id} data-cy="TabLink" onClick={handleTabClick(id)}>
+                <a
+                  href={`#${id}`}
+                  data-cy="TabLink"
+                  onClick={handleTabClick(id)}
+                >
                   {title}
                 </a>
               </li>
