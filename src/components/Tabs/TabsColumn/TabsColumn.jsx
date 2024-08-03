@@ -1,16 +1,18 @@
 import classNames from 'classnames';
 
 export const TabsColumn = ({ tab, activeTab, onTabSelected }) => {
+  const isCurrentTabActive = activeTab.id === tab.id;
+
   return (
     <li
-      className={classNames({ 'is-active': activeTab.id === tab.id })}
+      className={classNames({ 'is-active': isCurrentTabActive })}
       data-cy="Tab"
     >
       <a
         href={`#${tab.id}`}
         data-cy="TabLink"
         onClick={() => {
-          if (tab.id !== activeTab.id) {
+          if (!isCurrentTabActive) {
             onTabSelected(tab.id);
           }
         }}

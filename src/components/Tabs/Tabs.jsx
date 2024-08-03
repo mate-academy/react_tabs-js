@@ -1,7 +1,11 @@
 import { TabsColumn } from './TabsColumn/TabsColumn';
 
+export const findActiveTab = (tabs_, activeTabId) => {
+  return tabs_.find(tab => tab.id === activeTabId) || tabs_[0];
+};
+
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const activeTab = findActiveTab(tabs, activeTabId);
 
   return (
     <div data-cy="TabsComponent">
@@ -11,7 +15,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             <TabsColumn
               tab={tab}
               activeTab={activeTab}
-              onTabSelected={tabId => onTabSelected(tabId)}
+              onTabSelected={onTabSelected}
               key={tab.id}
             />
           ))}
