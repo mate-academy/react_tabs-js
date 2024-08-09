@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { Tabs } from './components/Tabs';
+import { getTabById } from './services/getTabById';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -13,7 +14,7 @@ const DEFULT_ACTIVE_TAB = 'tab-1';
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(DEFULT_ACTIVE_TAB);
-  const activeTab = tabs.find(({ id }) => activeTabId === id) || tabs[0];
+  const activeTab = getTabById(tabs, activeTabId);
 
   return (
     <div className="section">
