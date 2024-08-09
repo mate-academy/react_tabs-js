@@ -5,10 +5,11 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const isIdValid = tabs.some(item => item.id === activeTabId);
 
   const preparedTabs = tabs.map((tab, index) => {
-    const isTabActive = tab.id === activeTabId;
+    const { id, content, title } = tab;
+    const isTabActive = id === activeTabId;
 
     if (isTabActive) {
-      activeContent = tab.content;
+      activeContent = content;
     }
 
     return (
@@ -17,14 +18,14 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           'is-active': isTabActive || (!isIdValid && index === 0),
         })}
         data-cy="Tab"
-        key={tab.id}
+        key={id}
       >
         <a
-          href={`#${tab.id}`}
+          href={`#${id}`}
           data-cy="TabLink"
-          onClick={!isTabActive ? () => onTabSelected(tab.id) : null}
+          onClick={!isTabActive ? () => onTabSelected(id) : null}
         >
-          {tab.title}
+          {title}
         </a>
       </li>
     );
