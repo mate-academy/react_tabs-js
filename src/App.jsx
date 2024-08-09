@@ -10,8 +10,8 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-function findTabById(id) {
-  return tabs.find(tab => tab.id === id);
+function findCurentTab(id) {
+  return tabs.find(item => item.id === id);
 }
 
 export const App = () => {
@@ -20,11 +20,13 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">Selected tab is {selectedTab.title}</h1>
+
       <Tabs
         tabs={tabs}
-        selectedTab={selectedTab}
-        findTabById={findTabById}
-        setSelectedTab={setSelectedTab}
+        activeTabId={selectedTab.id}
+        onTabSelected={id => {
+          setSelectedTab(findCurentTab(id));
+        }}
       />
     </div>
   );
