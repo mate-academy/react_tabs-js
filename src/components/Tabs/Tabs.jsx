@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
-  const validTab = tabs.find(tab => tab.id === selectedTab.id) || tabs[0];
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const validTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -17,7 +17,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
                 data-cy="Tab"
               >
                 <a
-                  onClick={() => !isSelected && onTabSelected(tab)}
+                  onClick={() => !isSelected && onTabSelected(tab.id)}
                   href={`#${tab.id}`}
                   data-cy="TabLink"
                 >
@@ -29,7 +29,7 @@ export const Tabs = ({ tabs, selectedTab, onTabSelected }) => {
         </ul>
       </div>
       <div className="block" data-cy="TabContent">
-        {selectedTab.content}
+        {validTab.content.trim()}
       </div>
     </div>
   );
