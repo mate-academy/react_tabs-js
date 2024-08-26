@@ -11,51 +11,15 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeId, setActiveId] = useState(tabs[0].id);
-
-  function onTabSelected(id) {
-    setActiveId(id);
-  }
-
-  const selectedTab = tabs.find(tab => tab.id === activeId);
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const selectedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const { id, title } = selectedTab;
 
   return (
     <div className="section">
-      {/* <h1 className="title">Selected tab is Tab 1</h1> */}
-      <h1 className="title">{`Selected tab is ${selectedTab.title}`}</h1>
+      <h1 className="title">{`Selected tab is ${title}`}</h1>
 
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <Tabs
-            tabs={tabs}
-            activeTabId={activeId}
-            onTabSelected={onTabSelected()}
-          />
-
-          {/* <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
-
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
-
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li> */}
-        </div>
-
-        <div className="block" data-cy="TabContent">
-          {/* Some text 1 */}
-          {selectedTab.content}
-        </div>
-      </div>
+      <Tabs tabs={tabs} activeTabId={id} onTabSelected={setActiveTabId} />
     </div>
   );
 };
