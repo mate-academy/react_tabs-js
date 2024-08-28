@@ -17,11 +17,13 @@ export const App = () => {
     setActiveTabId(id);
   };
 
+  // Moving the logic to a variable
+  const activeTabTitle = tabs.find(tab => tab.id === activeTabId)?.title || tabs[0].title;
+
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is{' '}
-        {tabs.find(tab => tab.id === activeTabId)?.title || tabs[0].title}
+        Selected tab is {activeTabTitle}
       </h1>
 
       <Tabs
