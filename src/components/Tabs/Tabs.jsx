@@ -1,5 +1,13 @@
+import classNames from 'classnames';
+
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  const handleTabClick = tabId => {
+    if (tabId !== activeTab.id) {
+      onTabSelected(tabId);
+    }
+  };
 
   return (
     <div data-cy="TabsComponent">
@@ -8,24 +16,16 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === activeTab.id ? 'is-active' : ''}
               data-cy="Tab"
-              onClick={() => {
-                if (tab.id !== activeTab.id) {
-                  onTabSelected(tab.id);
-                }
-              }}
-              onKeyDown={event => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  if (tab.id !== activeTab.id) {
-                    onTabSelected(tab.id);
-                  }
-                }
-              }}
+              className={classNames({ 'is-active': tab.id === activeTab.id })}
               tabIndex="0"
               role="tab"
             >
-              <a href={`#${tab.id}`} data-cy="TabLink">
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => handleTabClick(tab.id)}
+              >
                 {tab.title}
               </a>
             </li>
