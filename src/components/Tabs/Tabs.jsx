@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const validTabId = tabs.some(tab => tab.id === activeTabId) ? activeTabId : tabs[0].id;
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
@@ -12,13 +12,15 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             {tabs.map(tab => (
               <li
                 key={tab.id}
-                className={classNames({ 'is-active': tab.id === validTabId })}
+                className={classNames({ 'is-active': tab.id === activeTab.id })}
                 data-cy="Tab"
               >
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => tab.id !== activeTabId && onTabSelected(tab.id)}
+                  onClick={() =>
+                    tab.id !== activeTabId && onTabSelected(tab.id)
+                  }
                 >
                   {tab.title}
                 </a>
@@ -28,7 +30,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         </div>
 
         <div className="block" data-cy="TabContent">
-          {tabs.find(tab => tab.id === validTabId)?.content || tabs[0].content}
+          {activeTab.content}
         </div>
       </div>
     </div>

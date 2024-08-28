@@ -17,14 +17,12 @@ export const App = () => {
     setActiveTabId(id);
   };
 
-  // Moving the logic to a variable
-  const activeTabTitle = tabs.find(tab => tab.id === activeTabId)?.title || tabs[0].title;
+  // Визначення активної вкладки
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
-      <h1 className="title">
-        Selected tab is {activeTabTitle}
-      </h1>
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
 
       <Tabs
         tabs={tabs}
