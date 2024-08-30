@@ -10,31 +10,27 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-function findElementById(tabList, { activeTabId }) {
-  const item = tabList.find(tab => tab.id === activeTabId);
-
-  if (item) {
-    return item;
-  }
-
-  return tabList[0];
-}
-
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('tab-1');
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const onTabSelected = id => {
+    if (id !== activeTabId) {
+      setActiveTabId(id);
+    }
+  };
 
-  const findEl = findElementById(tabs, { activeTabId });
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
-      <h1 className="title">{`Selected tab is ${findEl.title}`}</h1>
-      <Tabs
-        tabs={tabs}
-        onTabSelected={item => {
-          setActiveTabId(item.id);
-        }}
-        activeTabId={findEl}
-      />
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
+      <div data-cy="TabsComponent">
+        <Tabs
+          tabs={tabs}
+          activeTabId={activeTabId}
+          onTabSelected={onTabSelected}
+        />
+      </div>
     </div>
   );
 };
+
