@@ -10,16 +10,30 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
+function findElementById(tabList, { activeTabId }) {
+  const item = tabList.find(tab => tab.id === activeTabId);
+
+  if (item) {
+    return item;
+  }
+
+  return tabList[0];
+}
+
 export const App = () => {
-  const [selected, setSelected] = useState(tabs[0]);
+  const [activeTabId, setActiveTabId] = useState('tab-1');
+
+  const findEl = findElementById(tabs, { activeTabId });
 
   return (
     <div className="section">
-      <h1 className="title">{`Selected tab is ${selected.title}`}</h1>
+      <h1 className="title">{`Selected tab is ${findEl.title}`}</h1>
       <Tabs
         tabs={tabs}
-        setItem={item => setSelected(item)}
-        selected={selected}
+        onTabSelected={item => {
+          setActiveTabId(item.id);
+        }}
+        activeTabId={findEl}
       />
     </div>
   );
