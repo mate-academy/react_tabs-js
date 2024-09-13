@@ -13,7 +13,7 @@ export const tabs = [
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState('tab-1');
 
-  const activeTab = tabs.filter(tab => tab.id === activeTabId)[0];
+  const activeTab = tabs.filter(tab => tab.id === activeTabId)[0] || tabs[0];
 
   return (
     <div className="section">
