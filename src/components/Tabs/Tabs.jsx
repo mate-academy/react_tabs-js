@@ -17,7 +17,12 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
           <a
             href={`#${tab.id}`}
             data-cy="TabLink"
-            onClick={activeTab !== tab.id && onTabSelected(tab.id)}
+            onClick={e => {
+              /* eslint no-unused-expressions: ["error", { "allowShortCircuit": true }] */
+
+              e.preventDefault();
+              activeTab !== tab.id && onTabSelected(tab.id);
+            }}
           >
             {tab.title}
           </a>
