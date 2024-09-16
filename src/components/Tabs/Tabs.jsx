@@ -1,36 +1,39 @@
+import classNames from 'classnames';
+
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTabValidator =
-    !activeTabId || !tabs.some(tab => tab.id === activeTabId)
+    !activeTabId || !tabs.some(({ id }) => id === activeTabId)
       ? tabs[0].id
       : activeTabId;
+
+  const activeTabContent = tabs.filter(({ id }) => id === activeTabValidator)[0]
+    .content;
 
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => {
-            const isActive = activeTabValidator === tab.id;
+          {tabs.map(({ id, title }) => {
+            const isActive = activeTabValidator === id;
+
+            const handleClick = event => {
+              if (!event.target.closest('li').className.includes('is-active')) {
+                onTabSelected(id);
+              }
+            };
 
             return (
               <li
-                key={tab.id}
-                className={isActive ? 'is-active' : ''}
+                key={id}
+                className={classNames({ 'is-active': isActive })}
                 data-cy="Tab"
               >
                 <a
-                  href={`#${tab.id}`}
+                  href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={event => {
-                    if (
-                      !event.target
-                        .closest('li')
-                        .className.includes('is-active')
-                    ) {
-                      onTabSelected(tab.id);
-                    }
-                  }}
+                  onClick={event => handleClick(event)}
                 >
-                  {tab.title}
+                  {title}
                 </a>
               </li>
             );
@@ -39,7 +42,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.filter(tab => tab.id === activeTabValidator)[0].content}
+        {activeTabContent}
       </div>
     </div>
   );
