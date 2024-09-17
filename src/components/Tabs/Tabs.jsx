@@ -2,7 +2,6 @@
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
-  const activeTabIdToUse = activeTab ? activeTab.id : tabs[0].id;
 
   return (
     <>
@@ -12,7 +11,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
               key={tab.id}
-              className={activeTabIdToUse === tab.id ? 'is-active' : ''}
+              className={activeTab.id === tab.id ? 'is-active' : ''}
               data-cy="Tab"
               onClick={() => {
                 if (activeTabId !== tab.id) {
