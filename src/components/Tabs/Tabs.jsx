@@ -27,7 +27,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                 <a
                   href={`#${id}`}
                   data-cy="TabLink"
-                  onClick={() => handleClick(id)}
+                  onClick={() => handleClick(id)} // helper function causes npm test failing but page still works
                 >
                   {title}
                 </a>
