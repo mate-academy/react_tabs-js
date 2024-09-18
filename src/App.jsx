@@ -9,7 +9,7 @@ import { Tabs } from './components/Tabs/Tabs';
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
-  const onTabSelected = id => {
+  const handleTabSelected = id => {
     setActiveTabId(id);
   };
 
@@ -21,7 +21,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTabId={activeTabId}
-        onTabSelected={onTabSelected}
+        onTabSelected={handleTabSelected}
       />
     </div>
   );
