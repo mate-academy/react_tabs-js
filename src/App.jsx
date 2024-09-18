@@ -19,11 +19,7 @@ export const App = () => {
     <div className="section">
       <h1 className="title">Selected tab is {currentTab.title}</h1>
 
-      <Tabs
-        activeTabId={activeTab}
-        tabs={tabs}
-        onTabSelected={tabId => setActiveTab(tabId)}
-      />
+      <Tabs activeTabId={activeTab} tabs={tabs} onTabSelected={setActiveTab} />
     </div>
   );
 };

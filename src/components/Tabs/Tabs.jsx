@@ -8,30 +8,36 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
 
   const currentTab = tabs.find(tab => tab.id === activeTab);
 
+  function activateTab(tab) {
+    return activeTab !== tab.id && onTabSelected(tab.id);
+  }
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
-            <li
-              key={tab.id}
-              data-cy="Tab"
-              className={cn({ 'is-active': activeTab === tab.id })}
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={e => {
-                  /* eslint no-unused-expressions: ["error", { "allowShortCircuit": true }] */
+          {tabs.map(tab => {
+            const { id, title } = tab;
 
-                  e.preventDefault();
-                  activeTab !== tab.id && onTabSelected(tab.id);
-                }}
+            return (
+              <li
+                key={id}
+                data-cy="Tab"
+                className={cn({ 'is-active': activeTab === id })}
               >
-                {tab.title}
-              </a>
-            </li>
-          ))}
+                <a
+                  href={`#${id}`}
+                  data-cy="TabLink"
+                  onClick={e => {
+                    e.preventDefault();
+                    activateTab(tab);
+                  }}
+                >
+                  {title}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
