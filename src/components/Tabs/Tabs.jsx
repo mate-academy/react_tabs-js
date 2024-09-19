@@ -1,5 +1,11 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+import classNames from 'classnames';
+
+const handleTabSelected = (tabId, currentTabId, onTabSelected) => {
+  if (tabId !== currentTabId) {
+    onTabSelected(tabId);
+  }
+};
+
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
@@ -7,19 +13,20 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     <>
       <div className="tabs is-boxed">
         <ul>
-          {tabs.map(tab => (
+          {tabs.map(({ id, title }) => (
             <li
-              key={tab.id}
+              key={id}
               data-cy="Tab"
-              className={tab.id === activeTab.id ? 'is-active' : ''}
-              onClick={() => {
-                if (tab.id !== activeTab.id) {
-                  onTabSelected(tab.id);
-                }
-              }}
+              className={classNames({ 'is-active': id === activeTab.id })}
             >
-              <a href={`#${tab.id}`} data-cy="TabLink">
-                {tab.title}
+              <a
+                href={`#${id}`}
+                data-cy="TabLink"
+                onClick={() => {
+                  handleTabSelected(id, activeTab.id, onTabSelected);
+                }}
+              >
+                {title}
               </a>
             </li>
           ))}
