@@ -1,10 +1,10 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const active = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const handleSelected = id => {
-    if (active.id !== id) {
+    if (activeTab.id !== id) {
       onTabSelected(id);
     }
   };
@@ -20,7 +20,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
               <li
                 data-cy="Tab"
                 key={id}
-                className={cn({ 'is-active': id === active.id })}
+                className={cn({ 'is-active': id === activeTab.id })}
               >
                 <a
                   href={`#${id}`}
@@ -36,7 +36,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {active.content}
+        {activeTab.content}
       </div>
     </div>
   );
