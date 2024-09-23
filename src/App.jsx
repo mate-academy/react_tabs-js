@@ -11,24 +11,16 @@ export const tabs = [
 ];
 
 export function App() {
-  const [currentId, setCurrentId] = useState(tabs[0].id);
+  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
-  const handleTabId = (id) => setCurrentId(id);
-
-  const findCurrentTab = (array) => {
-    return array.find(element => element.id === currentId);
-  };
-
-  const currentTab = findCurrentTab(tabs);
+  const handleTabId = id => setActiveTabId(id);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {currentTab.title}</h1>
-
       <Tabs
         tabs={tabs}
-        handleTabId={handleTabId}
-        currentTab={currentTab}
+        onTabSelected={handleTabId}
+        activeTabId={activeTabId}
         key={tabs.id}
       />
     </div>
