@@ -19,13 +19,7 @@ export const App = () => {
         Selected tab is Tab {activeTab.replace('tab-', '')}
       </h1>
 
-      <Tabs
-        tabs={tabs}
-        onTabSelected={id => {
-          setActiveTab(id);
-        }}
-        activeTab={activeTab}
-      />
+      <Tabs tabs={tabs} onTabSelected={setActiveTab} activeTab={activeTab} />
     </div>
   );
 };
