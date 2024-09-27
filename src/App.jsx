@@ -13,12 +13,11 @@ export const tabs = [
 
 export const App = () => {
   const [tabSelected, setTabSelected] = useState(tabs[0].id);
+  const currentTab = tabs.find(item => item.id === tabSelected).title;
 
   return (
     <div className="section">
-      <h1 className="title">
-        Selected tab is {tabs.find(item => item.id === tabSelected).title}
-      </h1>
+      <h1 className="title">Selected tab is {currentTab}</h1>
 
       <div data-cy="TabsComponent">
         <Tabs
