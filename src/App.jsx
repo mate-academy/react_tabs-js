@@ -21,17 +21,12 @@ export const App = () => {
     }
   };
 
-  const selectedTab =
-    tabs.find(tabFound => tabFound.id === activeTabId) || tabs[0];
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {selectedTab.title}</h1>
-      <Tabs
-        tabs={tabs}
-        selectedTab={selectedTab}
-        onTabSelected={onTabSelected}
-      />
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
+      <Tabs tabs={tabs} activeTab={activeTab} onTabSelected={onTabSelected} />
     </div>
   );
 };
