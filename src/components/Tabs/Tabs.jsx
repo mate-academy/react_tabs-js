@@ -1,6 +1,12 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const handleTabSelected = id => {
+    if (id !== activeTabId) {
+      onTabSelected(id);
+    }
+  };
+
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
@@ -19,7 +25,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                 onClick={e => {
                   e.preventDefault();
                   if (tab.id !== activeTabId) {
-                    onTabSelected(tab.id);
+                    handleTabSelected(tab.id);
                   }
                 }}
               >
