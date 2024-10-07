@@ -13,24 +13,16 @@ export const tabs = [
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
-
-  const handleTabSelected = id => {
-    setActiveTabId(id);
-  };
-
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
       <h1 className="title">Selected tab is {activeTab.title}</h1>
-
-      <div data-cy="TabsComponent">
-        <Tabs
-          tabs={tabs}
-          activeTabId={activeTabId}
-          onTabSelected={handleTabSelected}
-        />
-      </div>
+      <Tabs
+        tabs={tabs}
+        activeTabId={activeTabId}
+        onTabSelected={setActiveTabId}
+      />
     </div>
   );
 };
