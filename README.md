@@ -10,7 +10,7 @@ The `App` should communicate with the `Tabs` component using the following props
 - `activeTabId` - the `id` of the tab that should be active;
 - `onTabSelected` - a callback executed with the `id` of a just selected tab when the user clicks on it.
 
-The `Tabs` component should be stateless (does not have an internal state, only props).
+The `Tabs` comdponent should be stateless (does not have an internal state, only props).
 
 Follow the next requirements to pass the tests:
 
