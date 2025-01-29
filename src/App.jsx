@@ -11,9 +11,9 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, onTabSelected] = useState(tabs[0].id);
+  const [activeTabId, setActiveTabid] = useState(tabs[0].id);
 
   return (
-    <Tabs tabs={tabs} activeTabId={activeTabId} onTabSelected={onTabSelected} />
+    <Tabs tabs={tabs} activeTabId={activeTabId} onTabSelected={setActiveTabid} />
   );
 };
