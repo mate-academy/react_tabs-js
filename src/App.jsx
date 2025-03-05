@@ -1,44 +1,35 @@
-import React from 'react';
-import 'bulma/css/bulma.css';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './App.scss';
+import React, { useState } from 'react';
+import { Tabs } from './Tabs';
+import './App.css';
 
-export const tabs = [
-  { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
-  { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
-  { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
+const tabsData = [
+    { id: 1, title: 'Tab 1', content: 'Content of Tab 1' },
+    { id: 2, title: 'Tab 2', content: 'Content of Tab 2' },
+    { id: 3, title: 'Tab 3', content: 'Content of Tab 3' },
 ];
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">Selected tab is Tab 1</h1>
+function App() {
+    const [activeTabId, setActiveTabId] = useState(tabsData[0].id); // Default to the first tab
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
+    const handleTabSelected = (id) => {
+        setActiveTabId(id);
+    };
 
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
+    const activeTabTitle = tabsData.find(tab => tab.id === activeTabId)?.title || tabsData[0].title;
 
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li>
-        </ul>
-      </div>
+    return (
+        <div className="App">
+            {/* Dynamic title with the active tab */}
+            <h1 className="App__title">Selected tab is {activeTabTitle}</h1>
 
-      <div className="block" data-cy="TabContent">
-        Some text 1
-      </div>
-    </div>
-  </div>
-);
+            {/* Pass tabs, activeTabId, and callback to the Tabs component */}
+            <Tabs
+                tabs={tabsData}
+                activeTabId={activeTabId}
+                onTabSelected={handleTabSelected}
+            />
+        </div>
+    );
+}
+
+export default App;
