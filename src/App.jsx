@@ -11,37 +11,29 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('Tab 1');
+  const [activeTabId, setActiveTabId] = useState('tab-1');
+  const [activeContent, setActiveContent] = useState('Some text 1');
 
   const onTabSelected = (id) => {
-    if(id) {
-      switch (id) {
-        case "Tab 1" : 
-          return "Some text 1";
-          break;
-        case "Tab 2" :
-          return "Some text 2";
-          break;
-        case "Tab 3" :
-          return "Some text 3";
-          break;
-        default : 
-          return "Some text 1";
-      }
-    }
-  }
+    setActiveTabId(id);
+  };
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {activeTabId}</h1>
+      <h1 className="title">Selected tab is {tabs.find(tab => tab.id === activeTabId)?.title}</h1>
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
-          <Tabs tabs={tabs} setActiveTabId={setActiveTabId} activeTabId={activeTabId}></Tabs>
+          <Tabs
+            tabs={tabs}
+            onTabSelected={onTabSelected}
+            activeTabId={activeTabId}
+            setActiveContent={setActiveContent}
+          />
         </div>
 
         <div className="block" data-cy="TabContent">
-          {onTabSelected(activeTabId)}
+          {activeContent}
         </div>
       </div>
     </div>
