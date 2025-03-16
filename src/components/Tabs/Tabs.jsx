@@ -1,6 +1,6 @@
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   // Find the active tab or default to the first tab if activeTabId is invalid
-  const activeTab = tabs.find(tab => tab.id === activeTabId);
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const handleTabClick = id => {
     if (id !== activeTabId) {
