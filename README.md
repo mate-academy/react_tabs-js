@@ -21,10 +21,11 @@ Follow the next requirements to pass the tests:
 6. The `Tabs` component should render the content of the active tab in the element with `data-cy="TabContent"`.
 7. Call `onTabSelected` only when the user selects a non-active tab.
 8. Use the title of the active tab in the `<h1>` of the `App` component in the following format: `Selected tab is Tab 1`.
+9. 
 
 ## Instructions
 
 - Install the Prettier Extension and use these [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
 - Implement a solution following the [React task guidelines](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_tabs-js/) and add it to the PR description.
+- Replace `<your_account>` with your Github username in the [DEMO LINK](https://hardixxxxx.github.io/react_tabs-js/) and add it to the PR description.
