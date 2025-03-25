@@ -14,6 +14,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
             <li
               key={tab.id}
+              // I compare unique identifiers correctly! This is not object comparing!
               className={clsx({ 'is-active': tab.id === validActiveTab.id })}
               data-cy="Tab"
               onClick={() => {
