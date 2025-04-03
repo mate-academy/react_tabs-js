@@ -1,0 +1,57 @@
+.tabs ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tabs ul li.is-active a {
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+
+  ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      cursor: pointer;
+      padding: 10px 20px;
+      margin-right: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: #f5f5f5;
+        border: 1px solid #bbb;
+      }
+
+      &.is-active {
+        background-color: #3273dc;
+        color: white;
+        border: 1px solid #3273dc;
+      }
+    }
+  }
+}
+
+.block[data-cy='TabContent'] {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
