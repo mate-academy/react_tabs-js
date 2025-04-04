@@ -1,3 +1,5 @@
+[DEMO LINK](https://vkrasnovyd.github.io/react_tabs-js/)
+
 # React Tabs (JS)
 
 Implement the `Tabs` component that renders several tabs and allows the user to switch between them.
