@@ -1,1 +1,51 @@
-export const Tabs = () => {};
+import React from 'react';
+import PropTypes from 'prop-types';
+
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  return (
+    <div className="tabs-component">
+      <ul>
+        {tabs.map(tab => (
+          <li
+            key={tab.id}
+            data-cy="Tab"
+            className={tab.id === activeTab.id ? 'is-active' : ''}
+          >
+            <a
+              href={`#${tab.id}`}
+              data-cy="TabLink"
+              onClick={e => {
+                e.preventDefault();
+                if (tab.id !== activeTab.id) {
+                  onTabSelected(tab.id);
+                }
+              }}
+            >
+              {tab.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div data-cy="TabContent">{activeTab.content}</div>
+    </div>
+  );
+};
+
+Tabs.propTypes = {
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  activeTabId: PropTypes.string,
+  onTabSelected: PropTypes.func.isRequired,
+};
+
+Tabs.defaultProps = {
+  activeTabId: '',
+};
