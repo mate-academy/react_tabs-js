@@ -3,7 +3,7 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
-import { Tabs } from './components/Tabs/Tabs.jsx';
+import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
