@@ -10,8 +10,6 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-function onTabSelected(id) {}
-
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState('tab-1');
 
@@ -22,7 +20,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTabId={activeTabId}
-        setActiveTabId={setActiveTabId}
+        onTabSelected={setActiveTabId}
       />
     </div>
   );
