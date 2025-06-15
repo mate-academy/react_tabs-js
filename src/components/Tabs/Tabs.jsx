@@ -4,11 +4,12 @@ export const Tabs = ({ tabs, selectedTabId, onTabSelected }) => {
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
+        
         <ul>
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={selectedTab === tab ? 'is-active': ''}
+              className={selectedTab === tab ? 'is-active' : ''}
               data-cy="Tab"
             >
               <a
