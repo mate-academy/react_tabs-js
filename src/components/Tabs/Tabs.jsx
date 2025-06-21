@@ -1,1 +1,40 @@
-export const Tabs = () => {};
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const currentActiveTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  const handleKeyDown = (event, tabId) => {
+    if (tabId !== activeTabId) {
+      onTabSelected(tabId);
+    }
+  };
+
+  return (
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul>
+          {tabs.map(tab => (
+            <li
+              key={tab.id}
+              className={tab.id === currentActiveTab.id ? 'is-active' : ''}
+              data-cy="Tab"
+              role="tab"
+              tabIndex={tab.id === currentActiveTab.id ? 0 : -1}
+              onClick={() => {
+                if (tab.id !== activeTabId) {
+                  onTabSelected(tab.id);
+                }
+              }}
+              onKeyDown={event => handleKeyDown(event, tab.id)}
+            >
+              <a href={`#${tab.id}`} data-cy="TabLink">
+                {tab.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="block" data-cy="TabContent">
+        {currentActiveTab.content}
+      </div>
+    </div>
+  );
+};
