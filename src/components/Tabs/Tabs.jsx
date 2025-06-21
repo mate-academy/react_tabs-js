@@ -2,8 +2,11 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const currentActiveTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const handleKeyDown = (event, tabId) => {
-    if (tabId !== activeTabId) {
-      onTabSelected(tabId);
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (tabId !== activeTabId) {
+        onTabSelected(tabId);
+      }
     }
   };
 
