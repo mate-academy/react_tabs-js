@@ -1,14 +1,12 @@
 import React from 'react';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
-
   return (
     <ul>
       {tabs.map(tab => (
         <li
           key={tab.id}
-          className={tab.id === activeTab.id ? 'is-active' : ''}
+          className={tab.id === activeTabId ? 'is-active' : ''}
           data-cy="Tab"
         >
           <a
@@ -16,7 +14,8 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
             data-cy="TabLink"
             onClick={event => {
               event.preventDefault();
-              if (tab.id !== activeTab.id) {
+
+              if (tab.id !== activeTabId) {
                 onTabSelected(tab.id);
               }
             }}
