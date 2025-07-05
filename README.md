@@ -13,6 +13,7 @@ The `App` should communicate with the `Tabs` component using the following props
 The `Tabs` component should be stateless (does not have an internal state, only props).
 
 Follow the next requirements to pass the tests:
+
 1. Render tabs in a list (`<ul>`);
 2. Each `<li>` should have a `data-cy="Tab"`.
 3. The `<li>` of an active tab should have the `is-active` class.
