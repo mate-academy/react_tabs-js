@@ -1,3 +1,17 @@
-iframe {
-  display: none;
+.tab-button {
+  font-weight: normal;
+  background-color: #f0f0f0;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  margin-right: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+  font-weight: bold;
+  background-color: #4caf50;
+  color: white;
 }
