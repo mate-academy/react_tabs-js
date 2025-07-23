@@ -1,16 +1,11 @@
-import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const findTabById = id => tabs.find(tab => tab.id === id) || tabs[0];
-  const [activeTab, setActiveTab] = useState(findTabById(activeTabId));
-
-  useEffect(() => {
-    setActiveTab(findTabById(activeTabId));
-  }, [activeTabId, tabs]);
+  const activeTab = findTabById(activeTabId);
 
   const handleTabClick = tab => {
     if (tab.id !== activeTab.id) {
-      setActiveTab(tab);
       onTabSelected?.(tab.id);
     }
   };
@@ -23,7 +18,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           <ul>
             {tabs.map(tab => (
               <li
-                className={tab.id === activeTab.id ? 'is-active' : ''}
+                className={classNames({ 'is-active': tab.id === activeTab.id })}
                 data-cy="Tab"
                 key={tab.id}
               >
