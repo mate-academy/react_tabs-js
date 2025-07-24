@@ -11,7 +11,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeId);
 
   return (
-    <div> {/* Цей зовнішній div був відсутній у вашому початковому фрагменті */}
+    <div>
+      {' '}
+      {/* Цей зовнішній div був відсутній у вашому початковому фрагменті */}
       <ul>
         {tabs.map(tab => (
           <li
