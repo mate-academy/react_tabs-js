@@ -1,57 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const [selectedTabId, setSelectedTabId] = useState(() => {
-    // Якщо activeTabId валідний — вибираємо його, інакше перший таб
-    return tabs.some(tab => tab.id === activeTabId) ? activeTabId : tabs[0]?.id;
-  });
+  // Визначаємо ID активної вкладки. Якщо activeTabId не знайдено в масиві tabs,
+  // за замовчуванням встановлюємо ID першої вкладки, або null, якщо вкладок немає.
+  const activeId = tabs.some(tab => tab.id === activeTabId)
+    ? activeTabId
+    : tabs[0]?.id;
 
-  useEffect(() => {
-    // Якщо проп activeTabId зміниться, оновлюємо selectedTabId
-    if (tabs.some(tab => tab.id === activeTabId)) {
-      setSelectedTabId(activeTabId);
-    } else {
-      setSelectedTabId(tabs[0]?.id);
-    }
-  }, [activeTabId, tabs]);
-
-  const handleTabClick = (id, e) => {
-    e.preventDefault();
-    if (id !== selectedTabId) {
-      setSelectedTabId(id);
-      if (onTabSelected) {
-        onTabSelected(id);
-      }
-    }
-  };
-
-  const activeTab = tabs.find(tab => tab.id === selectedTabId);
+  // Знаходимо об'єкт активної вкладки для відображення її вмісту
+  const activeTab = tabs.find(tab => tab.id === activeId);
 
   return (
-    <div>
-      <div className="tabs is-boxed">
-        <ul>
-          {tabs.map(tab => (
-            <li
-              key={tab.id}
-              className={tab.id === selectedTabId ? 'is-active' : ''}
-              data-cy="Tab"
+    <div> {/* Цей зовнішній div був відсутній у вашому початковому фрагменті */}
+      <ul>
+        {tabs.map(tab => (
+          <li
+            key={tab.id}
+            className={tab.id === activeId ? 'is-active' : ''}
+            data-cy="Tab"
+          >
+            <a
+              href={`#${tab.id}`}
+              data-cy="TabLink"
+              onClick={e => {
+                e.preventDefault(); // Запобігаємо стандартній поведінці посилання
+                if (tab.id !== activeId) {
+                  onTabSelected(tab.id); // Викликаємо передану функцію зворотного виклику при виборі нової вкладки
+                }
+              }}
             >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={e => handleTabClick(tab.id, e)}
-              >
-                {tab.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
+              {tab.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+      {/* Цей div був неправильно розміщений у вашому початковому коді */}
       <div className="block" data-cy="TabContent">
+        {/* Відображаємо вміст активної вкладки */}
         {activeTab?.content}
       </div>
-    </div>
+    </div> // Закриваючий тег для зовнішнього div
   );
 };
