@@ -16,41 +16,41 @@ describe('Page', () => {
   });
 
   it('should have the first tab selected by default', () => {
-    page.title().should('have.text', 'Selected tab is Tab 1');
+    page.title().should('have.text', ' Selected tab is Tab 1 ');
   });
 
   it('should display the content from the first tab by default', () => {
-    page.tabContent().should('have.text', 'Some text 1');
+    page.tabContent().should('have.text', 'Some text 1 ');
   });
 
   it('should display the title of the second tab in the header after clicking it', () => {
     page.links().eq(1).click();
 
-    page.title().should('have.text', 'Selected tab is Tab 2');
+    page.title().should('have.text', ' Selected tab is Tab 2 ');
   });
 
   it('should display the content from the second tab after it was selected', () => {
     page.links().eq(1).click();
 
-    page.tabContent().should('have.text', 'Some text 2');
+    page.tabContent().should('have.text', 'Some text 2 ');
   });
 
   it('should display the title of the third tab in the header after clicking it', () => {
     page.links().eq(2).click();
 
-    page.title().should('have.text', 'Selected tab is Tab 3');
+    page.title().should('have.text', ' Selected tab is Tab 3 ');
   });
 
   it('should display the content from the third tab after it was selected', () => {
     page.links().eq(2).click();
 
-    page.tabContent().should('have.text', 'Some text 3');
+    page.tabContent().should('have.text', 'Some text 3 ');
   });
 
   it('should display the title of the first tab if it was clicked after another tab', () => {
     page.links().eq(1).click();
     page.links().eq(0).click();
 
-    page.title().should('have.text', 'Selected tab is Tab 1');
+    page.title().should('have.text', ' Selected tab is Tab 1 ');
   });
 });
