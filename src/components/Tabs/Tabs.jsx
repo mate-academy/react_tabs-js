@@ -8,6 +8,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
           {tabs.map((tab, index) => {
             return (
               <li
+                key={tab.id}
                 data-cy="Tab"
                 className={(() => {
                   if (
