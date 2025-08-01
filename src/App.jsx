@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeId, setActiveId] = useState();
+  const [activeId, setActiveId] = useState(tabs[0].id);
 
   const handleClick = tabId => {
     if (tabId !== activeId) {
