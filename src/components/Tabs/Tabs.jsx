@@ -35,9 +35,6 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         })}
       </ul>
 
-      {/* Aqui está o que faltava pros testes */}
-      <h1>{`Selected tab is ${activeTab.title}`}</h1>
-
       <div data-cy="TabContent">{activeTab.content}</div>
     </div>
   );
