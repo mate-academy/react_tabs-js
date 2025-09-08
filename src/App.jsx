@@ -21,9 +21,8 @@ export const App = () => {
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <Tabs
-            data-cy="TabContent"
             tabs={tabs}
-            activeTabId={activeTab.id}
+            activeTabId={activeTabId}
             onTabSelected={newActiveTabId => {
               setActiveTabId(newActiveTabId);
             }}
