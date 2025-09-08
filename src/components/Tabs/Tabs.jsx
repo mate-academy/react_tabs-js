@@ -1,24 +1,20 @@
-import { useState } from 'react';
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const getInitialTabId = () => {
-    if (tabs.length === 0) return null;
-    if (tabs.some(tab => tab.id === activeTabId)) {
-      return activeTabId;
-    }
+  const resolvedActiveId =
+    tabs.find(t => t.id === activeTabId)?.id ?? tabs[0]?.id;
 
-    return tabs[0].id;
-  };
-
-  const [selectedTab, setSelectedTab] = useState(getInitialTabId());
-
-  const onTabChange = id => {
-    if (selectedTab !== id) {
-      setSelectedTab(id);
-      onTabSelected(id);
-    }
-  };
+  // Guard against empty tabs array
+  if (!tabs || tabs.length === 0) {
+    return (
+      <div data-cy="TabsComponent">
+        <div className="tabs is-boxed">
+          <ul />
+        </div>
+        <div className="block" data-cy="TabContent" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -29,13 +25,21 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
               return (
                 <li
                   key={tab.id}
-                  className={cn({ 'is-active': tab.id === selectedTab })}
+                  className={cn({ 'is-active': tab.id === resolvedActiveId })}
                   data-cy="Tab"
                 >
                   <a
                     href={`#${tab.id}`}
                     data-cy="TabLink"
-                    onClick={() => onTabChange(tab.id)}
+                    onClick={() => {
+                      if (tab.id !== resolvedActiveId) {
+                        onTabSelected(tab.id);
+                      }
+
+                      if (!tabs.find(el => el.id === tab.id)) {
+                        onTabSelected(tabs[0].id);
+                      }
+                    }}
                   >
                     {tab.title}
                   </a>
@@ -46,7 +50,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         </div>
 
         <div className="block" data-cy="TabContent">
-          {tabs.find(el => el.id === selectedTab)?.content || ''}
+          {resolvedActiveId
+            ? tabs.find(el => el.id === resolvedActiveId)?.content || ''
+            : ''}
         </div>
       </div>
     </>
