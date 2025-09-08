@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('ta-1');
+  const [activeTabId, setActiveTabId] = useState('tab-1');
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
@@ -20,19 +20,16 @@ export const App = () => {
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
-          <ul>
-            <Tabs
-              data-cy="TabContent"
-              tabs={tabs}
-              activeTabId={activeTab.id}
-              onTabSelected={newActiveTabId => {
-                setActiveTabId(newActiveTabId);
-              }}
-            />
-          </ul>
+          <Tabs
+            data-cy="TabContent"
+            tabs={tabs}
+            activeTabId={activeTab.id}
+            onTabSelected={newActiveTabId => {
+              setActiveTabId(newActiveTabId);
+            }}
+          />
         </div>
       </div>
-      <p data-cy="TabContent">{activeTab.content}</p>
     </div>
   );
 };

@@ -1,17 +1,21 @@
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  const affectiveActiveTabId =
+    tabs.find(tab => tab.id === activeTabId)?.id ?? tabs[0]?.id;
+  const activeTab = tabs.find(tab => tab.id === affectiveActiveTabId);
+
   return (
     <>
-      {tabs.map(tab => {
-        return (
+      <ul>
+        {tabs.map(tab => (
           <li
             key={tab.id}
-            className={tab.id === activeTabId ? 'is-active' : ''}
+            className={tab.id === affectiveActiveTabId ? 'is-active' : ''}
             data-cy="Tab"
           >
             <a
               onClick={e => {
                 e.preventDefault();
-                if (tab.id !== activeTabId) {
+                if (tab.id !== affectiveActiveTabId) {
                   onTabSelected(tab.id);
                 }
               }}
@@ -21,8 +25,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
               {tab.title}
             </a>
           </li>
-        );
-      })}
+        ))}
+      </ul>
+      <div data-cy="TabContent">{activeTab?.content}</div>
     </>
   );
 };
