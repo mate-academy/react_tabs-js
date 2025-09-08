@@ -1,10 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const resolvedActiveId =
-    tabs.find(t => t.id === activeTabId)?.id ?? tabs[0]?.id;
-
-  // Guard against empty tabs array
+  // Guard against empty tabs array first
   if (!tabs || tabs.length === 0) {
     return (
       <div data-cy="TabsComponent">
@@ -15,6 +12,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
     );
   }
+
+  const resolvedActiveId =
+    tabs.find(t => t.id === activeTabId)?.id ?? tabs[0]?.id;
 
   return (
     <>
@@ -34,10 +34,6 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                     onClick={() => {
                       if (tab.id !== resolvedActiveId) {
                         onTabSelected(tab.id);
-                      }
-
-                      if (!tabs.find(el => el.id === tab.id)) {
-                        onTabSelected(tabs[0].id);
                       }
                     }}
                   >

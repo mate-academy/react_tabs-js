@@ -10,7 +10,11 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-const getTabTitleById = id => tabs.find(tab => tab.id === id).title || '';
+const getTabTitleById = id => {
+  const tab = tabs.find(t => t.id === id) ?? tabs[0];
+
+  return tab ? tab.title : '';
+};
 
 export const App = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
