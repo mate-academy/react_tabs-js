@@ -23,7 +23,11 @@ export const App = () => {
     <div className="section">
       <h1 className="title">Selected tab is {activeTab?.title}</h1>
 
-      <Tabs tabs={tabs} onTabSelected={handleTabSelected} />
+      <Tabs
+        tabs={tabs}
+        activeTabId={activeTabId}
+        onTabSelected={handleTabSelected}
+      />
     </div>
   );
 };

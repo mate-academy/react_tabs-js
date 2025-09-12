@@ -1,16 +1,5 @@
-import { useState } from 'react';
-
-export const Tabs = ({ tabs, onTabSelected }) => {
-  const [activeId, setActiveId] = useState(tabs[0]?.id);
-
-  const handleSelect = tabId => {
-    if (tabId !== activeId) {
-      setActiveId(tabId);
-      onTabSelected?.(tabId);
-    }
-  };
-
-  const activeTab = tabs.find(tab => tab.id === activeId) || tabs[0];
+export const Tabs = ({ tabs = [], activeTabId, onTabSelected }) => {
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div data-cy="TabsComponent">
@@ -19,7 +8,7 @@ export const Tabs = ({ tabs, onTabSelected }) => {
           {tabs.map(tab => (
             <li
               key={tab.id}
-              className={tab.id === activeId ? 'is-active' : ''}
+              className={tab.id === activeTab?.id ? 'is-active' : ''}
               data-cy="Tab"
             >
               <a
@@ -27,7 +16,9 @@ export const Tabs = ({ tabs, onTabSelected }) => {
                 data-cy="TabLink"
                 onClick={e => {
                   e.preventDefault();
-                  handleSelect(tab.id);
+                  if (tab.id !== activeTab?.id) {
+                    onTabSelected?.(tab.id);
+                  }
                 }}
               >
                 {tab.title}
