@@ -25,11 +25,11 @@ export const App = () => {
     }
   };
 
+  const displayedTitle = activeTab?.title ?? '';
+
   return (
     <div className="section">
-      <h1 className="title">
-        Selected tab is {activeTab?.title || tabs[0].title}
-      </h1>
+      <h1 className="title">Selected tab is {displayedTitle}</h1>
 
       <Tabs tabs={tabs} activeTabId={activeTabId} onTabSelected={selectedTab} />
     </div>
