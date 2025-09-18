@@ -1,7 +1,9 @@
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const activeTab = tabs.length
+    ? tabs.find(tab => tab.id === activeTabId) || tabs[0]
+    : null;
 
   return (
     <div data-cy="TabsComponent">
@@ -16,8 +18,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={() => {
-                  if (tab.id !== activeTab.id) {
+                onClick={event => {
+                  event.preventDefault();
+                  if (tab.id !== activeTabId) {
                     onTabSelected(tab.id);
                   }
                 }}
@@ -30,7 +33,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {activeTab.content}
+        {activeTab?.content}
       </div>
     </div>
   );
