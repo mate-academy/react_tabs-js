@@ -1,44 +1,37 @@
-import React from 'react';
-import 'bulma/css/bulma.css';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './App.scss';
+// Importações necessárias para o funcionamento do componente
+import React, { useState } from 'react'; // Hook useState para gerenciar estado
+import 'bulma/css/bulma.css'; // Framework CSS Bulma para estilização
+import '@fortawesome/fontawesome-free/css/all.css'; // Ícones do FontAwesome
+import './App.scss'; // Estilos específicos do componente App
+import { Tabs } from './components/Tabs'; // Componente de Tabs customizado
 
+// Array de dados das abas - cada aba possui id único, título e conteúdo
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
   { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">Selected tab is Tab 1</h1>
+// Componente principal da aplicação
+export const App = () => {
+  // Estado para controlar qual aba está ativa - inicia com a primeira aba
+  const [activeTabID, setActiveTabID] = useState(tabs[0].id);
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
+  // Busca o título da aba ativa baseado no ID, com fallback para a primeira aba
+  const activeTabTitle =
+    tabs.find(tab => tab.id === activeTabID)?.title || tabs[0].title;
 
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
-
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="block" data-cy="TabContent">
-        Some text 1
-      </div>
+  // Renderização do componente
+  return (
+    <div className="section">
+      {/* Título que mostra qual aba está selecionada */}
+      <h1 className="title">Selected tab is {activeTabTitle}</h1>
+      {/* Componente Tabs com props: dados das abas, ID ativa e função de callback */}
+      <Tabs
+        tabs={tabs}
+        activeTabId={activeTabID}
+        onTabSelected={setActiveTabID}
+      />
     </div>
-  </div>
-);
+  );
+};
