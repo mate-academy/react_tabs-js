@@ -3,7 +3,7 @@ import React, { useState } from 'react'; // Hook useState para gerenciar estado
 import 'bulma/css/bulma.css'; // Framework CSS Bulma para estilização
 import '@fortawesome/fontawesome-free/css/all.css'; // Ícones do FontAwesome
 import './App.scss'; // Estilos específicos do componente App
-import { Tabs } from './components/Tabs'; // Componente de Tabs customizado
+import { Tabs } from './components/Tabs/Tabs'; // Componente de Tabs customizado
 
 // Array de dados das abas - cada aba possui id único, título e conteúdo
 export const tabs = [

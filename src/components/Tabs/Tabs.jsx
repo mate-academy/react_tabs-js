@@ -1,7 +1,12 @@
 import React from 'react';
 
 // Componente Tabs que recebe as abas, ID ativo e função de callback como props
-export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+export const Tabs = ({ tabs = [], activeTabId, onTabSelected }) => {
+  // Proteção contra array vazio ou indefinido - retorna null se não há abas
+  if (!tabs || tabs.length === 0) {
+    return null;
+  }
+
   // Encontra a aba ativa baseada no ID, com fallback para a primeira aba
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
