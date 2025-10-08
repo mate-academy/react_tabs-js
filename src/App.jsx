@@ -11,7 +11,7 @@ export const tabs = [
 ];
 
 const currentTab = idCur => {
-  return tabs.find(tab => tab.id === idCur) || null;
+  return tabs.find(tab => tab.id === idCur) || tabs[0];
 };
 
 export const App = () => {
