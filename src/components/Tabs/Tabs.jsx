@@ -6,7 +6,9 @@ export const Tabs = ({ tabs = [], activeTabId, onTabSelected }) => {
   };
 
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
-  if (!tabs.length) return null;  
+
+  if (!tabs.length) return null;
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -32,7 +34,7 @@ export const Tabs = ({ tabs = [], activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-      {activeTab ? activeTab.content : null}
+        {activeTab ? activeTab.content : null}
       </div>
     </div>
   );
