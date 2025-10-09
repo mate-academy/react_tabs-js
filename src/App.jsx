@@ -18,8 +18,8 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">
-      Selected tab is {activeTab ? activeTab.title : 'No tab'}
-    </h1>
+        Selected tab is {activeTab ? activeTab.title : 'No tab'}
+      </h1>
 
       <Tabs
         tabs={tabs}

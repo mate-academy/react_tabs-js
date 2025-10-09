@@ -1,41 +1,41 @@
 export const Tabs = ({ tabs = [], activeTabId, onTabSelected }) => {
-  const handleClick = (event, id) => {
-    if (id === activeTabId) return;
-    event.preventDefault();
-    onTabSelected(id);
-  };
-
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
-
-  if (!tabs.length) return null;
-
-  return (
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          {tabs.map(tab => (
-            <li
-              key={tab.id}
-              className={activeTabId === tab.id ? 'is-active' : ''}
-              data-cy="Tab"
-            >
-              <a
-                href={`#${tab.id}`}
-                data-cy="TabLink"
-                onClick={event => {
-                  handleClick(event, tab.id);
-                }}
+    if (!tabs.length) return null;
+  
+    // вычисляем активный таб с fallback на первый
+    const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+    const resolvedTabId = activeTab.id;
+  
+    const handleClick = (event, id) => {
+      event.preventDefault();
+      if (id === resolvedTabId) return;
+      onTabSelected(id);
+    };
+  
+    return (
+      <div data-cy="TabsComponent">
+        <div className="tabs is-boxed">
+          <ul>
+            {tabs.map(tab => (
+              <li
+                key={tab.id}
+                className={resolvedTabId === tab.id ? 'is-active' : ''}
+                data-cy="Tab"
               >
-                {tab.title}
-              </a>
-            </li>
-          ))}
-        </ul>
+                <a
+                  href={`#${tab.id}`}
+                  data-cy="TabLink"
+                  onClick={event => handleClick(event, tab.id)}
+                >
+                  {tab.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+  
+        <div className="block" data-cy="TabContent">
+          {activeTab.content}
+        </div>
       </div>
-
-      <div className="block" data-cy="TabContent">
-        {activeTab ? activeTab.content : null}
-      </div>
-    </div>
-  );
-};
+    );
+  };
