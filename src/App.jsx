@@ -11,6 +11,10 @@ export const tabs = [
 ];
 
 export const App = () => {
+  if (!tabs || tabs.length === 0) {
+    return null;
+  }
+
   const [activeTab, setActiveTab] = React.useState('tab-1');
   const active = tabs.find(tab => tab.id === activeTab) || tabs[0];
 
