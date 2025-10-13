@@ -1,13 +1,13 @@
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+  if (!tabs || tabs.length === 0) {
+    return null;
+  }
+
   const isValidActiveId = tabs.some(tab => tab.id === activeTabId);
 
   const effectiveActiveId = isValidActiveId ? activeTabId : tabs[0].id;
 
   const activeTab = tabs.find(tab => tab.id === effectiveActiveId);
-
-  if (!tabs || tabs.length === 0 || !activeTab) {
-    return null;
-  }
 
   return (
     <>
