@@ -21,16 +21,11 @@ export const App = () => {
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
-          <ul>
-            <Tabs
-              tabs={tabs}
-              activeTabId={activeTab.id}
-              onTabSelected={setActiveTabId}
-            />
-          </ul>
-        </div>
-        <div className="block" data-cy="TabContent">
-          {activeTab.content}
+          <Tabs
+            tabs={tabs}
+            activeTabId={activeTabId}
+            onTabSelected={setActiveTabId}
+          />
         </div>
       </div>
     </div>
