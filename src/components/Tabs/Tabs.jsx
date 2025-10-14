@@ -1,13 +1,7 @@
 import cn from 'classnames';
 
-export const tabsInfo = [
-  { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
-  { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
-  { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
-];
-
-export const Tabs = ({ onTabSelected, activeTabId }) => {
-  const activeTab = tabsInfo.find(tab => tab.id === activeTabId) || tabsInfo[0];
+export const Tabs = ({ onTabSelected, activeTabId, tabs }) => {
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <>
@@ -16,7 +10,7 @@ export const Tabs = ({ onTabSelected, activeTabId }) => {
         <div className="tabs is-boxed">
           <div className="tabs is-boxed">
             <ul>
-              {tabsInfo.map(tab => {
+              {tabs.map(tab => {
                 return (
                   <li
                     key={tab.id}
