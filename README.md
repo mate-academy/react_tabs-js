@@ -2,7 +2,7 @@
 
 Implement the `Tabs` component that renders several tabs and allows the user to switch between them.
 
-> Here is [the working version](https://mate-academy.github.io/react_tabs)
+> Here is [the working version](https://Kanezoor.github.io/react_tabs)
 
 The `App` should communicate with the `Tabs` component using the following props:
 
