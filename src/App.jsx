@@ -11,13 +11,17 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
 
   const onTabSelected = tabId => {
     setActiveTabId(tabId);
   };
 
-  const activeTab = tabs.find(tab => tab.id === activeTabId);
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  if (!activeTab) {
+    return <h1 className="title">No tabs available</h1>;
+  }
 
   return (
     <div className="section">
