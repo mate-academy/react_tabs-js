@@ -1,9 +1,5 @@
 // Tabs.jsx
-import React from 'react';
-import PropTypes from 'prop-types';
-
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  // Find the active tab, fallback to first if activeTabId is invalid
   const validActiveTabId =
     tabs.find(tab => tab.id === activeTabId)?.id || tabs[0]?.id;
 
@@ -27,9 +23,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                   data-cy="TabLink"
                   onClick={e => {
                     e.preventDefault();
-                    if (!isActive) {
-                      onTabSelected(tab.id);
-                    }
+                    if (!isActive) onTabSelected(tab.id);
                   }}
                 >
                   {tab.title}
@@ -47,20 +41,4 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       )}
     </>
   );
-};
-
-Tabs.propTypes = {
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  activeTabId: PropTypes.string,
-  onTabSelected: PropTypes.func.isRequired,
-};
-
-Tabs.defaultProps = {
-  activeTabId: null,
 };
