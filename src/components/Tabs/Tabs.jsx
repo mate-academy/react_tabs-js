@@ -1,6 +1,10 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, onTabSelected, activeTabId }) => {
+  if (!tabs) {
+    return null;
+  }
+
   let activeTab = tabs.find(x => x.id === activeTabId);
   let activeId = activeTabId;
 
