@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 export const Tabs = ({ tabs, onTabSelected, activeTabId }) => {
-  if (!tabs) {
+  if (!tabs || !tabs.length) {
     return null;
   }
 
