@@ -1,11 +1,10 @@
 import cn from 'classnames';
 
-function getActiveTab(tabsForFilter, activeTabId) {
-  return tabsForFilter.find(({ id }) => id === activeTabId);
-}
+import { getActiveTab } from '../../utils';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = getActiveTab(tabs, activeTabId) || tabs[0];
+  const resolvedActiveTab = getActiveTab(tabs, activeTabId) || tabs[0];
+  const resolvedActiveTabId = resolvedActiveTab.id;
 
   return (
     <div data-cy="TabsComponent">
@@ -13,7 +12,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         <ul>
           {tabs.map(({ id, title }) => (
             <li
-              className={cn({ 'is-active': id === activeTabId })}
+              className={cn({ 'is-active': id === resolvedActiveTabId })}
               data-cy="Tab"
               key={id}
             >
@@ -21,7 +20,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                 href={`#${id}`}
                 data-cy="TabLink"
                 onClick={() => {
-                  if (id !== activeTabId) {
+                  if (id !== resolvedActiveTabId) {
                     onTabSelected(id);
                   }
                 }}
@@ -34,7 +33,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {activeTab.content}
+        {resolvedActiveTab.content}
       </div>
     </div>
   );
