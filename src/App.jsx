@@ -16,7 +16,7 @@ function getActiveTab(tabsForFilter, activeTabId) {
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = React.useState('tab-1');
-  const activeTab = getActiveTab(tabs, activeTabId);
+  const activeTab = getActiveTab(tabs, activeTabId) || tabs[0];
 
   return (
     <div className="section">
@@ -25,8 +25,7 @@ export const App = () => {
       <Tabs
         tabs={tabs}
         activeTabId={activeTabId}
-        setActiveTabId={setActiveTabId}
-        activeTab={activeTab}
+        onTabSelected={setActiveTabId}
       />
     </div>
   );
