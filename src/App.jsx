@@ -12,11 +12,21 @@ export const tabs = [
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState('tab-1');
+
+  if (!tabs.length) {
+    return (
+      <div className="section">
+        <h1 className="title">No tabs available</h1>
+      </div>
+    );
+  }
+
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
       <h1 className="title">Selected tab is {activeTab.title}</h1>
+
       <Tabs
         tabs={tabs}
         activeTabId={activeTab.id}
