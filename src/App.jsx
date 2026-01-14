@@ -19,7 +19,8 @@ export const App = () => {
   return (
     <div className='App'>
       <div className="section">
-        <h1 className="title">Selected tab is {tabs.find(tab => tab.id === activeTabId).title}</h1>
+        <h1 className="title">Selected tab is {tabs.find(tab => tab.id === activeTabId)
+          ?.title || tabs[0].title}</h1>
         <Tabs
           tabs={tabs}
           activeTabId={activeTabId}
