@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const page = {
   title: () => cy.get('h1.title'),
   tabContent: () => cy.byDataCy('TabContent'),
