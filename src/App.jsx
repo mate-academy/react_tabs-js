@@ -17,17 +17,23 @@ export const App = () => {
   };
 
   const activeTab = tabs.find(tab => tab.id === activeTabId);
+  let relevateActiveTab = null;
 
-  const activeTabContent = activeTab.content;
+  const firstTab = tabs[0];
+
+  if (activeTab === undefined) {
+    relevateActiveTab = firstTab;
+  } else {
+    relevateActiveTab = activeTab;
+  }
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {activeTab.title}</h1>
+      <h1 className="title">Selected tab is {relevateActiveTab.title}</h1>
       <Tabs
         tabs={tabs}
         activeTabId={activeTabId}
         onTabSelected={onTabSelected}
-        activeTabContent={activeTabContent}
       />
     </div>
   );

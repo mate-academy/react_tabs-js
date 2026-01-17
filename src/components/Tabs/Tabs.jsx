@@ -1,13 +1,9 @@
 // import { Tab } from '../Tab/Tab';
 
-export const Tabs = ({
-  tabs,
-  activeTabId,
-  onTabSelected,
-  activeTabContent,
-}) => {
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const isValidActiveTab = tabs.some(el => el.id === activeTabId);
-  const resolvedActiveTabId = isValidActiveTab ? activeTabId : tabs[0].id;
+  const resolvedActiveTabId = isValidActiveTab ? activeTabId : tabs[0].id; // визначаю валідний таб або перший беру з масиву
+  const resolvedActiveTab = tabs.find(tab => tab.id === activeTabId);
 
   return (
     <div data-cy="TabsComponent">
@@ -36,7 +32,7 @@ export const Tabs = ({
       </div>
 
       <div className="block" data-cy="TabContent">
-        {activeTabContent}
+        {resolvedActiveTab.content}
       </div>
     </div>
   );
