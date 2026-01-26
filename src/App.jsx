@@ -13,7 +13,7 @@ export const tabs = [
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState('tab-1');
-  const selectedTab = tabs.find(tab => tab.id === activeTabId);
+  const selectedTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   const onTabSelected = id => setActiveTabId(id);
 
