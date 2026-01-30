@@ -1,30 +1,47 @@
 # React Tabs (JS)
 
-Implement the `Tabs` component that renders several tabs and allows the user to switch between them.
+Componente de abas reutilizável em React, permitindo alternar entre conteúdos diferentes a partir de uma lista de tabs.
 
-> Here is [the working version](https://mate-academy.github.io/react_tabs)
+[DEMO LINK](https://Igor-hrm.github.io/react_tabs-js/)
 
-The `App` should communicate with the `Tabs` component using the following props:
+---
 
-- `tabs` - an array of tab objects to be rendered as `Tabs`;
-- `activeTabId` - the `id` of the tab that should be active;
-- `onTabSelected` - a callback executed with the `id` of a just selected tab when the user clicks on it.
+## Sobre o projeto
 
-The `Tabs` component should be stateless (does not have an internal state, only props).
+Este projeto implementa um componente `Tabs` totalmente controlado pelo componente pai (`App`), seguindo o padrão de **componentes stateless**.
 
-Follow the next requirements to pass the tests:
-1. Render tabs in a list (`<ul>`);
-2. Each `<li>` should have a `data-cy="Tab"`.
-3. The `<li>` of an active tab should have the `is-active` class.
-4. If `activeTabId` does not match any object in the `tabs` array, the first one should be active.
-5. Add a link with `data-cy="TabLink"` and a `href` to `#tab-id` inside every `<li>` (see the markup).
-6. The `Tabs` component should render the content of the active tab in the element with `data-cy="TabContent"`.
-7. Call `onTabSelected` only when the user selects a non-active tab.
-8. Use the title of the active tab in the `<h1>` of the `App` component in the following format: `Selected tab is Tab 1`.
+A aba ativa é definida via props e toda a comunicação entre `App` e `Tabs` ocorre por meio de callbacks, reforçando boas práticas de fluxo de dados em React.
 
-## Instructions
+---
 
-- Install the Prettier Extension and use these [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
-- Implement a solution following the [React task guidelines](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
-- Open one more terminal and run tests with `npm test` to ensure your solution is correct.
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_tabs-js/) and add it to the PR description.
+## Tecnologias utilizadas
+
+- React
+- JavaScript
+- CSS
+- GitHub Pages
+
+---
+
+## Funcionalidades implementadas
+
+- Renderização dinâmica de abas a partir de um array
+- Controle de aba ativa via props
+- Destaque visual da aba selecionada
+- Renderização do conteúdo da aba ativa
+- Comunicação entre componentes usando callback
+- Componente `Tabs` sem estado interno (stateless)
+
+---
+
+## Regras de funcionamento
+
+- As abas são renderizadas dentro de uma lista (`<ul>`)
+- Cada aba possui:
+  - `data-cy="Tab"`
+  - link interno com `data-cy="TabLink"`
+- A aba ativa recebe a classe `is-active`
+- Se o `activeTabId` não existir, a primeira aba é ativada por padrão
+- O conteúdo da aba ativa é exibido no elemento com `data-cy="TabContent"`
+- O callback `onTabSelected` só é chamado ao clicar em uma aba diferente da ativa
+- O título da aba ativa é exibido no `<h1>` do `App` no formato:
