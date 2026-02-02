@@ -11,7 +11,9 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('tab-1');
+  const [activeTabId, setActiveTabId] = useState('');
+
+  if (tabs.every(tab => tab.id !== activeTabId)) return setActiveTabId('tab-1');
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
@@ -23,10 +25,6 @@ export const App = () => {
           activeTabId={activeTabId}
           onTabSelected={id => setActiveTabId(id)}
         />
-
-        <div className="block" data-cy="TabContent">
-          {activeTab.content}
-        </div>
       </div>
     </div>
   );
