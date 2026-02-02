@@ -13,7 +13,8 @@ export const tabs = [
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState('');
 
-  if (tabs.every(tab => tab.id !== activeTabId)) return setActiveTabId('tab-1');
+  if (tabs.every(tab => tab.id !== activeTabId))
+    return setActiveTabId(tabs[0].id);
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
