@@ -22,7 +22,7 @@ export const App = () => {
       <div data-cy="TabsComponent">
         <Tabs
           tabs={tabs}
-          activeTab={activeTab}
+          activeTabId={activeTabId}
           onTabSelected={setActiveTabId}
         />
       </div>
