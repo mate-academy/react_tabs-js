@@ -6,9 +6,10 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
             <li
               key={tab.id}
-              className={activeTab === tab ? 'is-active' : ''}
+              className={activeTab.id === tab.id ? 'is-active' : ''}
               data-cy="Tab"
               onClick={() => {
                 if (activeTab.id !== tab.id) {
