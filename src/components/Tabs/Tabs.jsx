@@ -9,7 +9,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
 
   const handleKeyDown = (event, id) => {
     if (event.key === 'Enter' || event.key === ' ') {
-      onTabSelected(id);
+      if (id !== activeTab.id) {
+        onTabSelected(id);
+      }
     }
   };
 
