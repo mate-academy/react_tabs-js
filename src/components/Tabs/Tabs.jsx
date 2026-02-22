@@ -1,4 +1,3 @@
-import { act } from "react"
 
 export const Tabs = ({
     tabs,
@@ -9,7 +8,7 @@ export const Tabs = ({
     const activeSearch = tabs.find(tab => tab.id === activeTabId) || tabs[0]
 
     const selctActive = (click) => {
-        if (click === activeTabId) {
+        if (click === activeSearch.id) {
 
         } else {
             onTabSelected(click);
