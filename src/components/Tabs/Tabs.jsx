@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const arr = [...tabs];
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
