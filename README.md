@@ -10,6 +10,12 @@ The `App` should communicate with the `Tabs` component using the following props
 - `activeTabId` - the `id` of the tab that should be active;
 - `onTabSelected` - a callback executed with the `id` of a just selected tab when the user clicks on it.
 
+Компонент App повинен спілкуватися з компонентом Tabs за допомогою наступних параметрів:
+
+- tabs - масив об'єктів, які представляють вкладки, які потрібно відобразити як Tabs;
+- activeTabId - id вкладки, яка повинна бути активною;
+- onTabSelected - callback-функція, яка виконується з id вибраної вкладки, коли користувач на неї натискає.
+
 The `Tabs` component should be stateless (does not have an internal state, only props).
 
 Follow the next requirements to pass the tests:
@@ -22,9 +28,21 @@ Follow the next requirements to pass the tests:
 7. Call `onTabSelected` only when the user selects a non-active tab.
 8. Use the title of the active tab in the `<h1>` of the `App` component in the following format: `Selected tab is Tab 1`.
 
+Компонент Tabs повинен бути без стану (не мати внутрішнього стану, лише параметри).
+
+Щоб пройти тести, потрібно дотримуватися наступних вимог:
+1. Відображати вкладки у списку (<ul>);
+2. Кожен <li> повинен мати атрибут data-cy="Tab".
+3. <li> активної вкладки повинен мати клас is-active.
+4. Якщо activeTabId не відповідає жодному об'єкту в масиві tabs, активною повинна бути перша вкладка.
+5. Додати посилання з атрибутом data-cy="TabLink" та href до #tab-id всередині кожного <li> (див. структуру).
+6. Компонент Tabs повинен відображати вміст активної вкладки в елементі з атрибутом data-cy="TabContent".
+7. Викликати onTabSelected лише тоді, коли користувач вибирає неактивну вкладку.
+8. Використовувати заголовок активної вкладки в <h1> компонента App у такому форматі: Вибрана вкладка - Tab 1.
+
 ## Instructions
 
 - Install the Prettier Extension and use these [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
 - Implement a solution following the [React task guidelines](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_tabs-js/) and add it to the PR description.
+- Replace `<your_account>` with your Github username in the [DEMO LINK](https://NemH.github.io/react_tabs-js/) and add it to the PR description.
