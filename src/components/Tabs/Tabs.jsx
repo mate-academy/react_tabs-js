@@ -5,6 +5,10 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     ? activeTabId
     : tabs[0].id;
 
+  const activeTab = tabs.find(tab => {
+    return tab.id === validActiveTabId;
+  });
+
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -35,17 +39,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         </ul>
       </div>
 
-      {tabs.map(tab => {
-        if (tab.id === validActiveTabId) {
-          return (
-            <div key={tab.id} className="block" data-cy="TabContent">
-              {tab.content}
-            </div>
-          );
-        }
-
-        return '';
-      })}
+      <div className="block" data-cy="TabContent">
+        {activeTab.content}
+      </div>
     </div>
   );
 };
