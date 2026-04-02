@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
 import { Tabs } from './components/Tabs';
+
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
   { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
@@ -11,17 +12,13 @@ export const tabs = [
 ];
 
 export const App = () => {
-  let [activeTabId, setActiveTabId] = useState('tab-1');
-  let allTabs = tabs
+  const [activeTabId, setActiveTabId] = useState('tab-1');
+  const allTabs = tabs;
   const selectedTab = tabs.find(tab => tab.id === activeTabId);
-  console.log(activeTabId);
-  console.log(selectedTab);
 
   return (
     <div className="section">
-      <h1 className="title">
-        Selected tab is {selectedTab.title || 'None'}
-      </h1>
+      <h1 className="title">Selected tab is {selectedTab.title || 'None'}</h1>
 
       <Tabs
         tabs={allTabs}
