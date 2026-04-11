@@ -1,24 +1,40 @@
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  return (
-    <ul>
-      {tabs.map(tab => {
-        const isActive = tab.id === activeTabId ? `is-active` : '';
+  const activeTab = tabs.find(tab => tab.id === activeTabId);
 
-        return (
-          <li className={isActive} data-cy="Tab" key={tab.id}>
-            <a
-              href={`#${tab.id}`}
-              data-cy="TabLink"
-              onClick={event => {
-                event.preventDefault();
-                onTabSelected(tab.id);
-              }}
-            >
-              {tab.title}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+  return (
+    <div className="section">
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
+
+      <div data-cy="TabsComponent">
+        <div className="tabs is-boxed">
+          <ul>
+            {tabs.map(tab => {
+              return (
+                <li
+                  className={tab === activeTab ? 'is-active' : ''}
+                  data-cy="Tab"
+                  key={tab.id}
+                >
+                  <a
+                    href="#tab-1"
+                    data-cy="TabLink"
+                    onClick={e => {
+                      e.preventDefault();
+                      onTabSelected(tab.id);
+                    }}
+                  >
+                    {tab.title}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <div className="block" data-cy="TabContent">
+          {activeTab.content}
+        </div>
+      </div>
+    </div>
   );
 };
