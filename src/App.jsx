@@ -12,19 +12,28 @@ export const tabs = [
 
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+  const currentTab = tabs.find(el => el.id === activeTabId) || tabs[0];
   const onTabSelected = tabId => {
-    const isExist = tabs.find(el => el.id === tabId);
-
-    if (tabId !== activeTabId) {
-      setActiveTabId(tabId);
-    }
+    const isExist = tabs.find(el => el.id === tabId) || tabs[0];
 
     if (isExist === undefined) {
       setActiveTabId(tabs[0].id);
     }
+
+    if (tabId !== activeTabId) {
+      setActiveTabId(tabId);
+    }
   };
 
   return (
-    <Tabs tabs={tabs} activeTabId={activeTabId} onTabSelected={onTabSelected} />
+    <div className="section">
+      <h1 className="title">Selected tab is {currentTab.title}</h1>
+
+      <Tabs
+        tabs={tabs}
+        activeTabId={activeTabId}
+        onTabSelected={onTabSelected}
+      />
+    </div>
   );
 };
