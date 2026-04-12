@@ -16,11 +16,7 @@ export const App = () => {
   const onTabSelected = tabId => {
     const isExist = tabs.find(el => el.id === tabId) || tabs[0];
 
-    if (isExist === undefined) {
-      setActiveTabId(tabs[0].id);
-    }
-
-    if (tabId !== activeTabId) {
+    if (isExist !== activeTabId) {
       setActiveTabId(tabId);
     }
   };
