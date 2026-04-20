@@ -1,7 +1,10 @@
-import React from 'react';
+import { useState, useMemo } from 'react';
+
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+
+import { Tabs } from './components/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -9,36 +12,37 @@ export const tabs = [
   { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
 ];
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">Selected tab is Tab 1</h1>
+const DEFAULT_TAB = tabs[0];
+const DEFAULT_TAB_ID = DEFAULT_TAB.id;
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
+export const App = () => {
+  const [activeTabId, setActiveTabId] = useState(DEFAULT_TAB_ID);
 
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
+  const activeTab = useMemo(() => {
+    const currentActiveTab = tabs.find(tab => tab.id === activeTabId);
 
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li>
-        </ul>
-      </div>
+    return currentActiveTab ?? DEFAULT_TAB ?? tabs[0];
+  }, [activeTabId]);
 
-      <div className="block" data-cy="TabContent">
-        Some text 1
-      </div>
+  const onTabSelected = tabId => {
+    if (tabId) {
+      setActiveTabId(tabId);
+    } else {
+      setActiveTabId(DEFAULT_TAB_ID);
+    }
+  };
+
+  return (
+    <div className="section">
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
+
+      {tabs.length !== 0 && (
+        <Tabs
+          tabs={tabs}
+          activeTabId={activeTab.id}
+          onTabSelected={onTabSelected}
+        />
+      )}
     </div>
-  </div>
-);
+  );
+};
