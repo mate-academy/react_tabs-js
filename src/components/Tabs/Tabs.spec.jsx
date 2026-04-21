@@ -92,7 +92,13 @@ describe('Tabs component', () => {
         { id: 'tab-40', title: 'Tab 40', content: 'Some text 40' },
       ];
 
-      mount(<Tabs tabs={tabs} activeTabId="asdasd" onTabSelected={() => {}} />);
+      mount(
+        <Tabs
+          tabs={tabs}
+          activeTabId="asdasd"
+          onTabSelected={() => {}}
+        />,
+      );
 
       page.tab(0).should('have.class', 'is-active');
       page.tab(1).should('not.have.class', 'is-active');
