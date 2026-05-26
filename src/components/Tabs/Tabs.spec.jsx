@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import { mount } from '@cypress/react18';
 import { Tabs } from './Tabs';
 
