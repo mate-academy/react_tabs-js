@@ -1,44 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react'; // Adicionado o useState aqui
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
+import tabsFromServer from './tabsFromServer.json';
+import { Tabs } from './components/Tabs';
 
-export const tabs = [
-  { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
-  { id: 'tab-2', title: 'Tab 2', content: 'Some text 2' },
-  { id: 'tab-3', title: 'Tab 3', content: 'Some text 3' },
-];
+function getPreparedTabs(tabList) {
+  return [...tabList]; // Deixando a cópia simples como você fez
+}
 
-export const App = () => (
-  <div className="section">
-    <h1 className="title">Selected tab is Tab 1</h1>
+export const App = () => {
+  const visibleTabs = getPreparedTabs(tabsFromServer);
 
-    <div data-cy="TabsComponent">
-      <div className="tabs is-boxed">
-        <ul>
-          <li className="is-active" data-cy="Tab">
-            <a href="#tab-1" data-cy="TabLink">
-              Tab 1
-            </a>
-          </li>
+  // 1. Criando o estado para controlar qual ID de aba está ativo
+  const [activeTabId, setActiveTabId] = useState(visibleTabs[0]?.id || 0);
 
-          <li data-cy="Tab">
-            <a href="#tab-2" data-cy="TabLink">
-              Tab 2
-            </a>
-          </li>
+  // 2. Encontrando a aba ativa atual para conseguir pegar o título dela no <h1>
+  const currentActiveTab =
+    visibleTabs.find(tab => tab.id === activeTabId) || visibleTabs[0];
 
-          <li data-cy="Tab">
-            <a href="#tab-3" data-cy="TabLink">
-              Tab 3
-            </a>
-          </li>
-        </ul>
+  return (
+    <main className="main">
+      <div className="section">
+        {/* Requisito 8: Mostrar o título da aba ativa no h1 do App */}
+        {currentActiveTab && (
+          <h1 className="title">Selected tab is {currentActiveTab.title}</h1>
+        )}
+
+        {/* Passando as props com os nomes exatos exigidos pelo exercício */}
+        <Tabs
+          tabs={visibleTabs}
+          activeTabId={activeTabId}
+          onTabSelected={id => setActiveTabId(id)}
+        />
       </div>
-
-      <div className="block" data-cy="TabContent">
-        Some text 1
-      </div>
-    </div>
-  </div>
-);
+    </main>
+  );
+};
