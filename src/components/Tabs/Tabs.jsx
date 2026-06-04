@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   // Determine the actual active tab ID
@@ -7,13 +6,15 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId);
   const actualActiveTabId = activeTab ? activeTabId : tabs[0]?.id;
 
-  const handleTabClick = (tabId) => {
+  const handleTabClick = tabId => {
     if (tabId !== actualActiveTabId) {
       onTabSelected(tabId);
     }
   };
 
-  const activeTabContent = tabs.find(tab => tab.id === actualActiveTabId)?.content;
+  const activeTabContent = tabs.find(
+    tab => tab.id === actualActiveTabId,
+  )?.content;
 
   return (
     <div data-cy="TabsComponent">
@@ -28,7 +29,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
               <a
                 href={`#${tab.id}`}
                 data-cy="TabLink"
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   handleTabClick(tab.id);
                 }}
@@ -45,16 +46,4 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
     </div>
   );
-};
-
-Tabs.propTypes = {
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  activeTabId: PropTypes.string.isRequired,
-  onTabSelected: PropTypes.func.isRequired,
 };
