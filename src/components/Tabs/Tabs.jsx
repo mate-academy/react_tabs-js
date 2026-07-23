@@ -1,4 +1,4 @@
-const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
+export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
   return (
     <div className="tabs is-boxed">
       <ul>
@@ -12,11 +12,13 @@ const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
               <a
                 href={`#${t.id}`}
                 onClick={() => {
-                  onTabSelected(t.id);
+                  if (activeTabId !== t.id) {
+                    onTabSelected(t.id);
+                  }
                 }}
                 data-cy="TabLink"
               >
-                {t.content}
+                {t.title}
               </a>
             </li>
           );
@@ -25,5 +27,3 @@ const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
     </div>
   );
 };
-
-export default Tabs;
