@@ -3,7 +3,6 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import Tabs from './components/Tabs/Tabs';
-import TabContent from './components/Tabs/TabContent';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -27,7 +26,9 @@ export const App = () => {
         tabs={tabs}
       />
       <div data-cy="TabsComponent">
-        <TabContent text={text} />
+        <div className="block" data-cy="TabContent">
+          {text}
+        </div>
       </div>
     </div>
   );
