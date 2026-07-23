@@ -1,4 +1,4 @@
-export const Tabs = ({ activeTabId, tabs, onTabSelected, text }) => {
+export const Tabs = ({ activeTabId, tabs, onTabSelected }) => {
   const effectiveTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
@@ -30,7 +30,7 @@ export const Tabs = ({ activeTabId, tabs, onTabSelected, text }) => {
       </div>
       <div data-cy="TabsComponent">
         <div className="block" data-cy="TabContent">
-          {text}
+          {effectiveTab.content}
         </div>
       </div>
     </>
