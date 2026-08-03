@@ -18,7 +18,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
                   event.preventDefault();
 
                   if (tab.id !== activeTab.id) {
-                    onTabSelected(tab);
+                    onTabSelected(tab.id);
                   }
                 }}
               >
