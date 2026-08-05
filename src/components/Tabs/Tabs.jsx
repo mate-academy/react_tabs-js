@@ -1,1 +1,3 @@
-export const Tabs = () => {};
+export const Tabs = () => {
+  return null;
+};
