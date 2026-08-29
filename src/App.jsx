@@ -14,13 +14,11 @@ export const App = () => {
   const [activeTab, setActiveTab] = React.useState(tabs[0].id);
 
   return (
-  <div className="section">
-    <h1 className="title">Selected tab is: {tabs.find(tab => tab.id === activeTab).title}</h1>
-    <Tabs
-      tabs={tabs}
-      activeTabId={activeTab}
-      onTabSelected={setActiveTab}
-    />
-
-  </div>
-)};
+    <div className="section">
+      <h1 className="title">
+        Selected tab is {tabs.find(tab => tab.id === activeTab).title}
+      </h1>
+      <Tabs tabs={tabs} activeTabId={activeTab} onTabSelected={setActiveTab} />
+    </div>
+  );
+};

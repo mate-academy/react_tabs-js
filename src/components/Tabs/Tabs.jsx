@@ -12,9 +12,11 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
               <a
                 data-cy="TabLink"
                 href={`#${tab.id}`}
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
-                  onTabSelected(tab.id);
+                  if (tab.id !== activeTabId) {
+                    onTabSelected(tab.id);
+                  }
                 }}
               >
                 {tab.title}
@@ -25,7 +27,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.find(tab => tab.id === activeTabId).content}
+        {(tabs.find(tab => tab.id === activeTabId) || tabs[0]).content}
       </div>
     </div>
   );
