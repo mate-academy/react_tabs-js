@@ -1,8 +1,8 @@
-function renderTabs(tabs, activeTab, onTabSelected) {
+function renderTabs(tabs, activeTabId, onTabSelected) {
   return tabs.map(tab => {
     return (
       <li
-        className={tab.id === activeTab ? 'is-active' : ''}
+        className={tab.id === activeTabId ? 'is-active' : ''}
         key={tab.id}
         data-cy="Tab"
       >
@@ -10,7 +10,7 @@ function renderTabs(tabs, activeTab, onTabSelected) {
           href={`#${tab.id}`}
           data-cy="TabLink"
           onClick={() => {
-            if (tab.id !== activeTab) {
+            if (tab.id !== activeTabId) {
               onTabSelected(tab.id);
             }
           }}
