@@ -1,8 +1,8 @@
 import React from 'react';
+import { Tabs } from './components/Tabs';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
   { id: 'tab-1', title: 'Tab 1', content: 'Some text 1' },
@@ -14,6 +14,6 @@ export const App = () => (
   <div className="section">
     <h1 className="title">Selected tab is Tab 1</h1>
 
-    <Tabs tabs={tabs} />
+    <Tabs tabs={tabs} activeTabId="tab-1" />
   </div>
 );
