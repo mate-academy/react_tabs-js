@@ -1,7 +1,8 @@
 import React from 'react';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const activeTab =
+    tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <>
