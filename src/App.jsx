@@ -14,6 +14,6 @@ export const App = () => (
   <div className="section">
     <h1 className="title">Selected tab is Tab 1</h1>
 
-    <Tabs />
+    <Tabs tabs={tabs} />
   </div>
 );
