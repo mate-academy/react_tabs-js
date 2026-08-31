@@ -1,4 +1,4 @@
-export const Tabs = ({ tabs, activeTabId }) => {
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
@@ -11,7 +11,15 @@ export const Tabs = ({ tabs, activeTabId }) => {
               key={tab.id}
               className={tab.id === activeTab.id ? 'is-active' : ''}
             >
-              <a href={`#${tab.id}`} data-cy="TabLink">
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => {
+                  if (tab.id !== activeTab.id) {
+                    onTabSelected(tab.id);
+                  }
+                }}
+              >
                 {tab.title}
               </a>
             </li>
