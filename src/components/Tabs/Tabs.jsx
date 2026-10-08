@@ -1,5 +1,7 @@
+import { findActiveTabById } from '../../utils/findActiveTabById';
+
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+  const activeTab = findActiveTabById(tabs, activeTabId);
 
   return (
     <div data-cy="TabsComponent">
